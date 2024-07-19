@@ -75,10 +75,10 @@ TextStyle getBodyMeduimOrSmall({required bool isMeduim}) {
 }
 
 /// label small = use when a word work as a button
-TextStyle getLabelSmall() {
+TextStyle getLabelSmall({double? fontSize, Color? color}) {
   return _getTextStyle(
-      fontSize: FontSize.s12,
-      color: ColorManager.primary,
+      fontSize: fontSize ?? FontSize.s12,
+      color: color ?? ColorManager.primary,
       fontWeight: FontWegihtManager.regular);
 }
 
