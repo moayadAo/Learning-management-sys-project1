@@ -21,28 +21,92 @@ Divider divider({
 }
 
 TextStyle _getTextStyle(
-    {double? fontSize, FontWeight? fontWeight, Color? color,double? letterSpacing}) {
+    {double? fontSize,
+    FontWeight? fontWeight,
+    Color? color,
+    double? letterSpacing}) {
   return TextStyle(
-     fontFamily: FontManager.fontFamilyAR,
+      fontFamily: FontManager.fontFamilyPoppins,
       fontSize: fontSize,
-      letterSpacing:letterSpacing,
+      decoration: TextDecoration.none,
+      letterSpacing: letterSpacing,
       fontWeight: fontWeight,
-
-      color: color??ColorManager.textColor);
+      color: color ?? ColorManager.textColor);
 }
 
 ///Regular Style
-TextStyle getRegularStyle(
-    {double? fontSize = FontSize.s16,  Color? color}) {
+TextStyle getRegularStyle({double? fontSize = FontSize.s16, Color? color}) {
   return _getTextStyle(
       fontSize: fontSize, fontWeight: FontWegihtManager.regular, color: color);
 }
 
 ///Bold Style
 TextStyle getBoldStyle(
-    {double? fontSize = FontSize.s16,  Color? color,double? letterSpacing}) {
+    {double? fontSize = FontSize.s16, Color? color, double? letterSpacing}) {
   return _getTextStyle(
-      fontSize: fontSize, fontWeight: FontWegihtManager.bold, color: color,letterSpacing:letterSpacing);
+      fontSize: fontSize,
+      fontWeight: FontWegihtManager.bold,
+      color: color,
+      letterSpacing: letterSpacing);
+}
+
+// body large = using in body of page and size is large and using when you want to
+// write some thing a main thing and only in page used to display a explaintion of app
+
+TextStyle getBodyLargeStyle({double? fontSize = FontSize.s22}) {
+  return _getTextStyle(
+      fontSize: fontSize,
+      color: ColorManager.darkBlue,
+      fontWeight: FontWegihtManager.bold);
+}
+
+///body small or meduim the different it is just in font size
+/// just send true if meduim and false if small
+// body meduim = using in body of page and size is meduim and the text
+// and it is a not a main text it is like explain text to a large one.
+//body small = using in body of page and size is small and it is using when you
+//want to type something small in page ex:Already i have an account?
+///body small or meduim
+TextStyle getBodyMeduimOrSmall({required bool isMeduim}) {
+  return _getTextStyle(
+      fontSize: isMeduim ? FontSize.s16 : FontSize.s12,
+      color: ColorManager.grey,
+      fontWeight: FontWegihtManager.regular);
+}
+
+/// label small = use when a word work as a button
+TextStyle getLabelSmall() {
+  return _getTextStyle(
+      fontSize: FontSize.s12,
+      color: ColorManager.primary,
+      fontWeight: FontWegihtManager.regular);
+}
+
+///headlineLarge = using in head line in page it is express about
+TextStyle getHeadLineLarge(
+    {double? fontSize, Color? color, FontWeight? fontWeight}) {
+  return _getTextStyle(
+      color: color ?? ColorManager.darkBlue,
+      fontSize: fontSize ?? FontSize.s32,
+      fontWeight: fontWeight ?? FontWegihtManager.bold);
+}
+
+///headlineMedium = using in head lint title but not a main title like a secondary title
+TextStyle getHeadLineMeduim(
+    {double? fontSize, Color? color, FontWeight? fontWeight}) {
+  return _getTextStyle(
+      color: color ?? ColorManager.darkBlue,
+      fontSize: fontSize ?? FontSize.s18,
+      fontWeight: fontWeight ?? FontWegihtManager.medium);
+}
+
+///titleMedium = using in title in form filed ex: password
+TextStyle getTitleMeduim(
+    {double? fontSize, Color? color, FontWeight? fontWeight}) {
+  return _getTextStyle(
+      color: color ?? ColorManager.grey,
+      fontSize: fontSize ?? FontSize.s14,
+      fontWeight: fontWeight ?? FontWegihtManager.regular);
 }
 
 ///SemiBold Style
@@ -54,27 +118,29 @@ TextStyle getSemiBoldStyle(
 
 ///Bold Style
 TextStyle getMediumStyle(
-    {double? fontSize = FontSize.s16,  Color? color,double? letterSpacing}) {
+    {double? fontSize = FontSize.s16, Color? color, double? letterSpacing}) {
   return _getTextStyle(
-      fontSize: fontSize, fontWeight: FontWegihtManager.medium, color: color,letterSpacing:letterSpacing);
+      fontSize: fontSize,
+      fontWeight: FontWegihtManager.medium,
+      color: color,
+      letterSpacing: letterSpacing);
 }
 
 ///Light Style
-TextStyle getLightStyle(
-    {double? fontSize = FontSize.s16,  Color? color}) {
+TextStyle getLightStyle({double? fontSize = FontSize.s16, Color? color}) {
   return _getTextStyle(
       fontSize: fontSize, fontWeight: FontWegihtManager.light, color: color);
 }
 
 ///Regular Style
 TextStyle getPoppinsStyle(
-    {double? fontSize = FontSize.s16, required Color? color,FontWeight? fontWeight}) {
-  return
-    TextStyle(
-        fontFamily: FontManager.fontFamilyPoppins,
-        fontSize: fontSize,
-        // letterSpacing:letterSpacing,
-         fontWeight: fontWeight,
-        color: color
-    );
+    {double? fontSize = FontSize.s16,
+    required Color? color,
+    FontWeight? fontWeight}) {
+  return TextStyle(
+      fontFamily: FontManager.fontFamilyPoppins,
+      fontSize: fontSize,
+      // letterSpacing:letterSpacing,
+      fontWeight: fontWeight,
+      color: color);
 }
