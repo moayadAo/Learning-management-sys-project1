@@ -7,7 +7,7 @@ import '../utils/assets_manager.dart';
 class ContainerWithImage extends StatelessWidget {
   const ContainerWithImage(
       {super.key,
-      this.imagePath = AssetsManager.logoIMG,
+      this.imagePath = AssetsManager.logoIMGBlack,
       this.child,
       this.alignment = Alignment.center});
 
