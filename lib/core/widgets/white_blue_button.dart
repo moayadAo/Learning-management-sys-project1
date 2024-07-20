@@ -29,13 +29,13 @@ class WhiteBlueButton extends StatelessWidget {
       shape: RoundedRectangleBorder(
           borderRadius: const BorderRadius.all(Radius.circular(AppRadius.r10)),
           side: isBlue
-              ? const BorderSide()
+              ? BorderSide.none
               : const BorderSide(color: ColorManager.primary, width: 1)),
       child: Text(
         label,
         style: getLabelSmall(
           fontSize: FontSize.s16,
-          color: isBlue ? null : ColorManager.white,
+          color: isBlue ? ColorManager.white : ColorManager.primary,
         ),
       ),
     );
