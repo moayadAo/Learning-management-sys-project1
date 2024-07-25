@@ -1,3 +1,3 @@
 class AppString {
-  static const appName = "Course PTC";
+  static const appName = "EduBridge";
 }
