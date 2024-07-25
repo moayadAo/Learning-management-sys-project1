@@ -46,6 +46,9 @@ dependencies:
   animate_do: ^3.3.4
   smooth_page_indicator: ^1.2.0
   flutter_bloc: ^8.1.6
+  bloc: ^8.1.4
+  json_serializable: ^6.8.0
+  build_runner: ^2.4.11
 
 dev_dependencies:
   flutter_test:
