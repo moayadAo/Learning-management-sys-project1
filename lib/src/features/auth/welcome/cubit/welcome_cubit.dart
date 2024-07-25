@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:learning_system/src/feautres/auth/welcome/cubit/welcome_state.dart';
+import 'package:learning_system/src/features/auth/welcome/cubit/welcome_state.dart';
 
 class WelcomeCubit extends Cubit<WelcomeState> {
   WelcomeCubit() : super(WelcomeFirstPage());

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:learning_system/src/feautres/auth/welcome/welcome.dart';
+import 'package:learning_system/src/features/auth/welcome/welcome.dart';
 
 class EduBridgeApp extends StatelessWidget {
   const EduBridgeApp({super.key});
