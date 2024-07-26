@@ -17,12 +17,16 @@ class ColorManager {
   static const Color mediumViolet = Color(0xFF9065BE);
   static const Color lightOrange = Color(0xFFFFEBF0);
   static const Color orange = Color(0xFFFF6905);
+  static const Color lightBlue = Color(0xFFCEF4EB);
   static const Color darkBlue = Color(0xFF1F1F39);
   static const Color moreLightOrange = Color(0xFFFFE7EE);
   static const Color lightGrey = Color(0xFFB8B8D2);
   static const Color grey = Color(0xff858597);
   static const Color white = Color(0xffffffff);
   static const Color black = Color(0xFF000000);
+  static const Color primaryColorLogo = Color(0xFFFFC604);
+  static const Color SecondaryColorLogo = Color(0xFF45a1b8);
+  static const Color blackColorLogo = Color(0xFF3D3839);
 
   static const appBarColor = Color(0xffFAFAFA);
   // static const appBarColor = Color(0xffF3F3F3);
