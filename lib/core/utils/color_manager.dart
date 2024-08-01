@@ -23,6 +23,9 @@ class ColorManager {
   static const Color grey = Color(0xff858597);
   static const Color white = Color(0xffffffff);
   static const Color black = Color(0xFF000000);
+  static const Color jewelry  = Color(0xFFEED127);
+  static const Color lightBlue  = Color(0xFFD4F1F4);
+
 
   static const appBarColor = Color(0xffFAFAFA);
   // static const appBarColor = Color(0xffF3F3F3);
