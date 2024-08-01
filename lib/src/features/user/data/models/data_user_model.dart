@@ -2,15 +2,17 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:learning_system/src/features/user/data/models/credentialId_model.dart';
 import 'package:learning_system/src/features/user/data/models/progress_model.dart';
 
-
 import 'courses_content_model.dart';
 
 part 'data_user_model.g.dart';
 
 @JsonSerializable()
 class DataUserModel {
-  @JsonKey(name: "credentialId", fromJson: _credentialIdFromJson, toJson: _credentialIdToJson)
-  dynamic credentialId;
+  @JsonKey(
+      name: "credentialId",
+      fromJson: _credentialIdFromJson,
+      toJson: _credentialIdToJson)
+  CredentialIdModel credentialId;
   @JsonKey(name: "firstName")
   String firstName;
   @JsonKey(name: "lastName")
@@ -34,16 +36,16 @@ class DataUserModel {
 
   DataUserModel(
       {required this.id,
-        required this.credentialId,
-        required this.firstName,
-        required this.lastName,
-        required this.birthDate,
-        this.finishedCourses,
-        this.enrolledCourses,
-        this.wishlist,
-        this.progress,
-        required this.createdAt,
-        required this.updatedAt});
+      required this.credentialId,
+      required this.firstName,
+      required this.lastName,
+      required this.birthDate,
+      this.finishedCourses,
+      this.enrolledCourses,
+      this.wishlist,
+      this.progress,
+      required this.createdAt,
+      required this.updatedAt});
 
   factory DataUserModel.fromJson(Map<String, dynamic> json) =>
       _$DataUserModelFromJson(json);

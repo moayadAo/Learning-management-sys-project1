@@ -5,8 +5,9 @@ part 'error_model.g.dart';
 class ErrorModel {
   final int? httpStatusCode;
   final String? message;
+  final String? stackTrace;
 
-  ErrorModel({this.httpStatusCode, this.message});
+  ErrorModel({this.httpStatusCode, this.message, this.stackTrace});
 
   factory ErrorModel.fromJson(Map<String, dynamic> json) =>
       _$ErrorModelFromJson(json);

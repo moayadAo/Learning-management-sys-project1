@@ -53,10 +53,10 @@ TextStyle getBoldStyle(
 // body large = using in body of page and size is large and using when you want to
 // write some thing a main thing and only in page used to display a explaintion of app
 
-TextStyle getBodyLargeStyle({double? fontSize = FontSize.s22}) {
+TextStyle getBodyLargeStyle({double? fontSize = FontSize.s22, Color? color}) {
   return _getTextStyle(
       fontSize: fontSize,
-      color: ColorManager.darkBlue,
+      color: color ?? ColorManager.darkBlue,
       fontWeight: FontWegihtManager.bold);
 }
 
@@ -67,10 +67,10 @@ TextStyle getBodyLargeStyle({double? fontSize = FontSize.s22}) {
 //body small = using in body of page and size is small and it is using when you
 //want to type something small in page ex:Already i have an account?
 ///body small or meduim
-TextStyle getBodyMeduimOrSmall({required bool isMeduim}) {
+TextStyle getBodyMeduimOrSmall({required bool isMeduim, Color? color}) {
   return _getTextStyle(
       fontSize: isMeduim ? FontSize.s16 : FontSize.s12,
-      color: ColorManager.grey,
+      color: color ?? ColorManager.grey,
       fontWeight: FontWegihtManager.regular);
 }
 

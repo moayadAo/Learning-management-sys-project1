@@ -4,12 +4,13 @@ import 'package:learning_system/core/api/api_interceptors.dart';
 import 'package:learning_system/core/errors/error_model.dart';
 import 'package:learning_system/core/errors/exceptions.dart';
 import 'package:learning_system/core/errors/handle_dio_excpetion.dart';
+import 'package:learning_system/core/utils/app_url.dart';
 
 class DioConsumer extends ApiConsumer {
   final Dio dio;
 
   DioConsumer({required this.dio}) {
-    dio.options.baseUrl = "";
+    dio.options.baseUrl = '$baseUrl';
     dio.interceptors.add(ApiInterceptor());
     dio.interceptors.add(LogInterceptor(
         request: true,
@@ -77,18 +78,18 @@ class DioConsumer extends ApiConsumer {
   }
 
   @override
-  Future post(
-    String url, {
-    data,
-    Map<String, dynamic>? queryParameters,
-    bool isFormData = false,
-  }) async {
+  Future post(String url,
+      {data,
+      Map<String, dynamic>? queryParameters,
+      bool isFormData = false,
+      bool isFormUrlEncoded = false}) async {
     try {
-      final response = await dio.post(
-        url,
-        data: isFormData ? FormData.fromMap(data) : data,
-        queryParameters: queryParameters,
-      );
+      final response = await dio.post(url,
+          data: isFormData ? FormData.fromMap(data) : data,
+          queryParameters: queryParameters,
+          options: isFormUrlEncoded
+              ? Options(contentType: Headers.formUrlEncodedContentType)
+              : null);
       return response.data;
     } on DioException catch (e) {
       HandleDioException(e);

@@ -42,6 +42,9 @@ void HandleDioException(DioException e) {
         case 504: //Server exception
           throw ServerException(
               errorModel: ErrorModel.fromJson(e.response!.data));
+        case 500: //valdiation error
+          throw ServerException(
+              errorModel: ErrorModel.fromJson(e.response!.data));
       }
   }
 }
