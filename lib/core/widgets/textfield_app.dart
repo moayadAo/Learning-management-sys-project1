@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:learning_system/core/utils/font_manager.dart';
 import '../utils/color_manager.dart';
 import '../utils/values_manager.dart';
 
@@ -77,12 +78,14 @@ class _TextFiledAppState extends State<TextFiledApp> {
           helperText: widget.helperText,
           contentPadding:
               const EdgeInsets.symmetric(horizontal: AppPadding.p12),
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-          enabledBorder:
-              OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+          border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(AppRadius.r8)),
+          enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(AppRadius.r8)),
           filled: true,
           fillColor: widget.fillColor,
-          hintStyle: TextStyle(fontSize: 14, color: widget.textFieldHintColor),
+          hintStyle: TextStyle(
+              fontSize: FontSize.s14, color: widget.textFieldHintColor),
           prefixIcon: widget.iconData == null
               ? null
               : Icon(

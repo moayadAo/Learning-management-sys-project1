@@ -26,7 +26,6 @@ class ValidatorManager {
   }
 
   String? validatePhone(String value) {
-
     if (value.isEmpty) {
       return 'Please enter your phone number';
     }
@@ -40,7 +39,6 @@ class ValidatorManager {
     // Define your password criteria
     const int minLength = 8;
 
-
     // Check for empty input
     if (value.isEmpty) {
       return 'Please enter a password';
@@ -51,22 +49,22 @@ class ValidatorManager {
       return 'Password must be at least $minLength characters long';
     }
 
-    // // Check for uppercase letters
+    // Check for uppercase letters
     // if (!regExp.upperCaseRegex.hasMatch(value)) {
     //   return 'Password must contain at least one uppercase letter';
     // }
-    //
-    // // Check for lowercase letters
+
+    // Check for lowercase letters
     // if (!regExp.lowerCaseRegex.hasMatch(value)) {
     //   return 'Password must contain at least one lowercase letter';
     // }
 
     // Check for digits
-    if (!regExp.digitRegex.hasMatch(value)) {
-      return 'Password must contain at least one digit';
-    }
+    // if (!regExp.digitRegex.hasMatch(value)) {
+    //   return 'Password must contain at least one digit';
+    // }
 
-    // // Check for special characters
+    // Check for special characters
     // if (!regExp.specialCharRegex.hasMatch(value)) {
     //   return 'Password must contain at least one special character';
     // }
@@ -89,8 +87,6 @@ class ValidatorManager {
     // Passwords match
     return null;
   }
-
-
 }
 
 class RegularExpressions {

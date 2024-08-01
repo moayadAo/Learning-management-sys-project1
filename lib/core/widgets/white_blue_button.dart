@@ -9,14 +9,14 @@ class WhiteBlueButton extends StatelessWidget {
       {super.key,
       this.onPressed,
       required this.height,
-      required this.width,
+      this.width,
       required this.label,
       required this.isBlue});
 
   final VoidCallback? onPressed;
   final String label;
   final bool isBlue;
-  final double width;
+  final double? width;
   final double height;
 
   @override

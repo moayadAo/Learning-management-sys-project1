@@ -1,6 +1,6 @@
-//final  baseUrl ="http://localhost:8080/";
+const baseUrl = "http://192.168.1.15:8080/";
 const baseServ = "https://ptc.yorkacademy.uk/";
-const baseUrl = "${baseServ}api/";
+// const baseUrl = "${baseServ}api/";
 const storageUrl = "${baseServ}storage/";
 const user = "user/";
 const mailBox = "mailBox/";
@@ -13,7 +13,7 @@ class AppUrl {
   ///*******************************************************************************
   ///<------------------------------------------------------------------------------
   // static final getUser = "${baseUrl}";
-  static const login = "${baseUrl}login";
+  static const loginUser = "${baseUrl}${user}login";
   static const register = "${baseUrl}register";
   static const logout = "${baseUrl}logout";
   static const getProfile = baseServ + 'api';
@@ -64,4 +64,7 @@ class AppUrl {
   ///------------------------------------------------------------------------------>
 }
 
-class ApiKey {}
+class ApiKey {
+  static const email = 'email';
+  static const password = 'password';
+}
