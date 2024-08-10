@@ -18,9 +18,15 @@ class EduBridgeApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-
-      home: ProfileUser(),
-
+      home: const SplashPage(),
+      initialRoute: '/',
+      routes: {
+        'welcome': (context) => WelcomePage(),
+        'signup user': (context) => SignUpScreenUser(),
+        'login': (context) => LoginPage(),
+        'role': (context) => const chooseRoleScreen(),
+        'user profile': (context) => const ProfileUserPage()
+      },
     );
   }
 }

@@ -20,8 +20,9 @@ class ProfileUserPage extends StatelessWidget {
                 "Account",
                 style: getBodyLargeStyle(),
               ),
-              SizedBox(height: AppSize.s30
-                ,),
+              SizedBox(
+                height: AppSize.s30,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -37,14 +38,14 @@ class ProfileUserPage extends StatelessWidget {
                       right: 5,
                       child: CircleAvatar(
                         radius: AppSize.s56,
-                        backgroundImage: AssetImage("assets/images/logo/photo_2023-07-01_23-38-36.jpg"),
+                        backgroundImage: AssetImage(
+                            "assets/images/logo/photo_2023-07-01_23-38-36.jpg"),
                         //backgroundImage: NetworkImage(""),
                       ),
                     ),
                     Positioned(
-
                         child: CircleAvatar(
-                          radius: AppSize.s16,
+                      radius: AppSize.s16,
                       child: Icon(Icons.camera_alt_outlined),
                       backgroundColor: ColorManager.primary,
                     ))
@@ -58,7 +59,9 @@ class ProfileUserPage extends StatelessWidget {
                   children: [
                     Text(
                       "Abd Alrifai",
-                      style: getHeadLineMeduim(color: ColorManager.grayDark,fontWeight: FontWegihtManager.light),
+                      style: getHeadLineMeduim(
+                          color: ColorManager.grayDark,
+                          fontWeight: FontWegihtManager.light),
                     ),
                   ],
                 ),
@@ -68,76 +71,72 @@ class ProfileUserPage extends StatelessWidget {
                 children: [
                   InkWell(
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical:AppPadding.p25),
-                        child: Container(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Favourite",
-                                style: getMediumStyle(color: ColorManager.black),
-                              ),
-                            Icon(Icons.arrow_forward_ios)
-
-                            ],
-
-                                          ),
-                        ),
-                      )),
+                    padding:
+                        const EdgeInsets.symmetric(vertical: AppPadding.p25),
+                    child: Container(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Favourite",
+                            style: getMediumStyle(color: ColorManager.black),
+                          ),
+                          Icon(Icons.arrow_forward_ios)
+                        ],
+                      ),
+                    ),
+                  )),
                   InkWell(
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical:AppPadding.p25),
-                        child: Container(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Edit Account",
-                                style: getMediumStyle(color: ColorManager.black),
-                              ),
-                              Icon(Icons.arrow_forward_ios)
-
-                            ],
-
+                    padding:
+                        const EdgeInsets.symmetric(vertical: AppPadding.p25),
+                    child: Container(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Edit Account",
+                            style: getMediumStyle(color: ColorManager.black),
                           ),
-                        ),
-                      )),
+                          Icon(Icons.arrow_forward_ios)
+                        ],
+                      ),
+                    ),
+                  )),
                   InkWell(
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical:AppPadding.p25),
-                        child: Container(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Setting & Privacy",
-                                style: getMediumStyle(color: ColorManager.black),
-                              ),
-                              Icon(Icons.arrow_forward_ios)
-
-                            ],
-
+                    padding:
+                        const EdgeInsets.symmetric(vertical: AppPadding.p25),
+                    child: Container(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Setting & Privacy",
+                            style: getMediumStyle(color: ColorManager.black),
                           ),
-                        ),
-                      )),
+                          Icon(Icons.arrow_forward_ios)
+                        ],
+                      ),
+                    ),
+                  )),
                   InkWell(
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical:AppPadding.p25),
-                        child: Container(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Help",
-                                style: getMediumStyle(color: ColorManager.black),
-                              ),
-                              Icon(Icons.arrow_forward_ios)
-
-                            ],
-
+                    padding:
+                        const EdgeInsets.symmetric(vertical: AppPadding.p25),
+                    child: Container(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Help",
+                            style: getMediumStyle(color: ColorManager.black),
                           ),
-                        ),
-                      )),
+                          Icon(Icons.arrow_forward_ios)
+                        ],
+                      ),
+                    ),
+                  )),
                 ],
               )
             ],

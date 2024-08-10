@@ -1,8 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:learning_system/core/api/api_consumer.dart';
 import 'package:learning_system/core/api/api_interceptors.dart';
-import 'package:learning_system/core/errors/error_model.dart';
-import 'package:learning_system/core/errors/exceptions.dart';
 import 'package:learning_system/core/errors/handle_dio_excpetion.dart';
 import 'package:learning_system/core/utils/app_url.dart';
 

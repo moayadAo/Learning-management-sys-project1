@@ -13,6 +13,7 @@ DataUserModel _$DataUserModelFromJson(Map<String, dynamic> json) =>
       firstName: json['firstName'] as String,
       lastName: json['lastName'] as String,
       birthDate: DateTime.parse(json['birthDate'] as String),
+      wallet: (json['wallet'] as num).toDouble(),
       finishedCourses: (json['finishedCourses'] as List<dynamic>?)
           ?.map((e) => CoursesModel.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -32,6 +33,7 @@ DataUserModel _$DataUserModelFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$DataUserModelToJson(DataUserModel instance) =>
     <String, dynamic>{
       'credentialId': DataUserModel._credentialIdToJson(instance.credentialId),
+      'wallet': instance.wallet,
       'firstName': instance.firstName,
       'lastName': instance.lastName,
       'birthDate': instance.birthDate.toIso8601String(),

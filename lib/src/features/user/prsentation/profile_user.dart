@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:learning_system/core/utils/color_manager.dart';
 import 'package:learning_system/core/utils/icon_manager.dart';
 import 'package:learning_system/core/utils/values_manager.dart';
@@ -82,7 +81,7 @@ class ProfileUser extends StatelessWidget {
                   Text(
                     "Info",
                     style:
-                    getBoldStyle(fontSize: 20, color: ColorManager.black),
+                        getBoldStyle(fontSize: 20, color: ColorManager.black),
                   ),
                   SizedBox(
                     height: AppPadding.p10,
@@ -99,54 +98,52 @@ class ProfileUser extends StatelessWidget {
                   ),
                   Text("24 years old",
                       style: getLabelSmall(color: ColorManager.grayDark)),
-
                 ],
               ),
             ),
           ),
-          SliverToBoxAdapter(child :divider(height: 6,thickness: 10,color: ColorManager.grayDark)),
-SliverToBoxAdapter(
-  child: ListView(
-    shrinkWrap: true,
-    physics: NeverScrollableScrollPhysics(),
-    children: [
-      ListTile(
-        title: Text('Progress Course '),
-        trailing: IconManager.angleRight,
-        onTap: () {
-          // Handle tap
-        },
-      ),
-      divider(height: 6,thickness: 1),
-      ListTile(
-        title: Text('Finish Course'),
-        trailing: IconManager.angleRight,
-        onTap: () {
-          // Handle tap
-        },
-      ),
-      divider(height: 6,thickness: 1),
-      ListTile(
-        title: Text('Enroll Course'),
-        trailing: IconManager.angleRight,
-        onTap: () {
-          // Handle tap
-        },
-      ),
-      divider(height: 6,thickness: 1),
-      ListTile(
-        title: Text('Wish List'),
-        trailing: IconManager.angleRight,
-        onTap: () {
-          // Handle tap
-        },
-      ),
-    ],
-  )
-  ,
-),
-
-
+          SliverToBoxAdapter(
+              child: divider(
+                  height: 6, thickness: 10, color: ColorManager.grayDark)),
+          SliverToBoxAdapter(
+            child: ListView(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              children: [
+                ListTile(
+                  title: Text('Progress Course '),
+                  trailing: IconManager.angleRight,
+                  onTap: () {
+                    // Handle tap
+                  },
+                ),
+                divider(height: 6, thickness: 1),
+                ListTile(
+                  title: Text('Finish Course'),
+                  trailing: IconManager.angleRight,
+                  onTap: () {
+                    // Handle tap
+                  },
+                ),
+                divider(height: 6, thickness: 1),
+                ListTile(
+                  title: Text('Enroll Course'),
+                  trailing: IconManager.angleRight,
+                  onTap: () {
+                    // Handle tap
+                  },
+                ),
+                divider(height: 6, thickness: 1),
+                ListTile(
+                  title: Text('Wish List'),
+                  trailing: IconManager.angleRight,
+                  onTap: () {
+                    // Handle tap
+                  },
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );

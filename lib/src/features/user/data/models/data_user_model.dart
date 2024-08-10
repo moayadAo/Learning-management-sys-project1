@@ -12,7 +12,9 @@ class DataUserModel {
       name: "credentialId",
       fromJson: _credentialIdFromJson,
       toJson: _credentialIdToJson)
-  CredentialIdModel credentialId;
+  dynamic credentialId;
+  @JsonKey(name: "wallet")
+  double wallet;
   @JsonKey(name: "firstName")
   String firstName;
   @JsonKey(name: "lastName")
@@ -40,6 +42,7 @@ class DataUserModel {
       required this.firstName,
       required this.lastName,
       required this.birthDate,
+      required this.wallet,
       this.finishedCourses,
       this.enrolledCourses,
       this.wishlist,

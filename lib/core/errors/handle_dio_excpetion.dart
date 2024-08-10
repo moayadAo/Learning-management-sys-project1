@@ -1,4 +1,3 @@
-
 import 'package:dio/dio.dart';
 import 'package:learning_system/core/errors/error_model.dart';
 import 'package:learning_system/core/errors/exceptions.dart';
@@ -6,7 +5,9 @@ import 'package:learning_system/core/errors/exceptions.dart';
 void HandleDioException(DioException e) {
   switch (e.type) {
     case DioExceptionType.connectionTimeout:
-      throw ServerException(errorModel: ErrorModel.fromJson(e.response!.data));
+      ErrorModel err =
+          ErrorModel(httpStatusCode: 500, message: 'connectionTimeout');
+      throw ServerException(errorModel: err);
     case DioExceptionType.sendTimeout:
       throw ServerException(errorModel: ErrorModel.fromJson(e.response!.data));
     case DioExceptionType.receiveTimeout:
