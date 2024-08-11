@@ -1,7 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:learning_system/core/utils/style_manager.dart';
+import 'package:learning_system/core/widgets/loading_indicator.dart';
+import 'package:learning_system/core/widgets/snack_bar.dart';
 import 'package:learning_system/src/features/user/cubit/user_cubit.dart';
 import 'package:learning_system/src/features/user/cubit/user_states.dart';
 import '../../../../../core/helper/sizer_media_query.dart';
@@ -25,7 +29,18 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<UserCubit, UserStates>(
+    return BlocConsumer<UserCubit, UserStates>(
+      listener: (context, state) {
+        if (state is SignInFailure) {
+          ScaffoldMessenger.of(context).showSnackBar(
+              SnackBarMessage(message: 'userName or password wrong!')
+                  .buildSnackBar(context));
+        } else if (state is SignInSuccess) {
+          // here should move to profile page and hit api get user
+          log('log in succesful');
+          context.read<UserCubit>().getUser();
+        }
+      },
       builder: (context, state) {
         return Scaffold(
           backgroundColor: ColorManager.white,
@@ -148,17 +163,7 @@ class LoginPage extends StatelessWidget {
                         height: AppSize.s10,
                       ),
                       state is SignInLoading
-                          ? const Center(
-                              child: SizedBox(
-                                  height: 30,
-                                  width: 30,
-                                  child: CircularProgressIndicator(
-                                    backgroundColor:
-                                        ColorManager.SecondaryColorLogo,
-                                    valueColor: AlwaysStoppedAnimation(
-                                        ColorManager.primaryColorLogo),
-                                  )),
-                            )
+                          ? LoadingIndicator()
                           : Padding(
                               padding: const EdgeInsets.symmetric(
                                   horizontal: AppPadding.p12),

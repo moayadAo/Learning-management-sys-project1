@@ -11,7 +11,6 @@ import 'package:learning_system/src/features/user/presentation/profile_user.dart
 import 'package:learning_system/src/features/user/presentation/progress_page.dart';
 import 'package:learning_system/src/features/user/presentation/wish_list_page.dart';
 
-
 class EduBridgeApp extends StatelessWidget {
   const EduBridgeApp({super.key});
 
@@ -19,24 +18,20 @@ class EduBridgeApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const SplashPage(),
-      initialRoute: 'profile',
+      initialRoute: 'splash', // Start from splash page
       routes: {
-        'profile' : (context) => ProfileUser(),
-        'progress_course' : (context)=>ProgressPage(),
-        'finish_course' :(context)=> FinishPage(),
-        'wish_list_page' :(context)=>WishListPage(),
-        'enroll_course' : (context)=> EnrollPage(),
-        'course_page' : (context)=> CoursePage(),
-   /*     'home_page':(context)=>HomePage(),
-        'pages_move':(context)=>HomeScreen(),
-        'courseVideoPage':(context)=>CourseVideoPage(),*/
-
-        'welcome': (context) => WelcomePage(),
-        'signup user': (context) => SignUpScreenUser(),
-        'login': (context) => LoginPage(),
-        'role': (context) => const chooseRoleScreen(),
-
+        'splash': (context) => const SplashPage(),
+        'welcome': (context) =>  WelcomePage(),
+        'signup_user': (context) =>  SignUpScreenUser(),
+        'login': (context) =>  LoginPage(),
+       'role': (context) =>  const ChooseRoleScreen(),
+        'profile': (context) => const ProfileUser(),
+        'progress_course': (context) =>  ProgressPage(),
+        'finish_course': (context) =>  FinishPage(),
+        'wish_list_page': (context) =>  WishListPage(),
+        'enroll_course': (context) =>  EnrollPage(),
+        'course_page': (context) => const CoursePage(),
+        // Add any additional routes here
       },
     );
   }
