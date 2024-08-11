@@ -144,3 +144,8 @@ TextStyle getPoppinsStyle(
       fontWeight: fontWeight,
       color: color);
 }
+///headlineLarge = using in head line in page it is express about
+TextStyle getMoreOrLess(
+    {double? fontSize, Color? color,}) {
+  return TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: color);
+}

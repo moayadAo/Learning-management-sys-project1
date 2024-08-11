@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:learning_system/core/utils/color_manager.dart';
 import 'package:learning_system/core/utils/icon_manager.dart';
 import 'package:learning_system/core/utils/values_manager.dart';
-
 import '../../../../core/utils/style_manager.dart';
+import '../../../../core/widgets/bottom_sheet/bottom_sheet_base.dart';
 
 class ProfileUser extends StatelessWidget {
+  const ProfileUser({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,25 +22,68 @@ class ProfileUser extends StatelessWidget {
               },
             ),
             actions: [
-              IconButton(
-                color: ColorManager.white,
-                icon: IconManager.pencil,
-                onPressed: () {
-                  // Handle edit button press
+              Builder(
+                builder: (BuildContext context) {
+                  return IconButton(
+                    color: ColorManager.white,
+                    icon: IconManager.pencil,
+                    onPressed: () {
+                      bottomSheetBase(
+                        context: context,
+                           content: ListView(
+                             shrinkWrap: true,
+                             physics: NeverScrollableScrollPhysics(),
+                             children: [
+                               ListTile(
+                                 title: Text('Edit Name',style: getLightStyle(),),
+                                 trailing: IconManager.pencilSquare,
+                                 onTap: () {
+                                   // Handle tap
+                                 },
+                               ),
+                               Divider(height: 6, thickness: 1),
+                               ListTile(
+                                 title: Text('Edit Image',style: getLightStyle(),),
+                                 trailing: IconManager.picture,
+                                 onTap: () {
+                                   // Handle tap
+                                 },
+                               ),
+                               Divider(height: 6, thickness: 1),
+                               ListTile(
+                                 title: Text('Edit Age',style: getLightStyle(),),
+                                 trailing: IconManager.calender,
+                                 onTap: () {
+                                   // Handle tap
+                                 },
+                               ),
+                               Divider(height: 6, thickness: 1),
+                               ListTile(
+                                 title: Text('Edit Email',style: getLightStyle(),),
+                                 trailing: IconManager.email,
+                                 onTap: () {
+                                   // Handle tap
+                                 },
+                               ),
+                             ],
+                           ),
+                          title: 'Edit Info',
+
+                      );
+                    },
+                  );
                 },
               ),
               IconButton(
                 color: ColorManager.white,
-                icon: IconManager.bars,
+                icon: IconManager.homeOutLine,
                 onPressed: () {
-                  // Handle more options button press
+                Navigator.pushNamed(context, 'pages_move');
                 },
               ),
             ],
-            backgroundColor: ColorManager.grayDark,
-            // title:Text( "Account"),
+            backgroundColor: ColorManager.primaryColorLogo,
             expandedHeight: AppSize.s160,
-            // floating: false,
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
               background: Stack(
@@ -61,10 +105,12 @@ class ProfileUser extends StatelessWidget {
                             width: 25,
                           ),
                           RichText(
-                              text: TextSpan(
-                                  text: "Abd Alrifai",
-                                  style: getBoldStyle(
-                                      fontSize: 25, color: ColorManager.white)))
+                            text: TextSpan(
+                              text: "Abd Alrifai",
+                              style: getBoldStyle(
+                                  fontSize: 25, color: ColorManager.white),
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -81,8 +127,7 @@ class ProfileUser extends StatelessWidget {
                 children: [
                   Text(
                     "Info",
-                    style:
-                    getBoldStyle(fontSize: 20, color: ColorManager.black),
+                    style: getBoldStyle(fontSize: 20, color: ColorManager.black),
                   ),
                   SizedBox(
                     height: AppPadding.p10,
@@ -99,60 +144,59 @@ class ProfileUser extends StatelessWidget {
                   ),
                   Text("24 years old",
                       style: getLabelSmall(color: ColorManager.grayDark)),
-
                 ],
               ),
             ),
           ),
-          SliverToBoxAdapter(child :divider(height: 6,thickness: 10,color: ColorManager.grayDark)),
-SliverToBoxAdapter(
-  child: ListView(
-    shrinkWrap: true,
-    physics: NeverScrollableScrollPhysics(),
-    children: [
-      ListTile(
-        title: Text('Progress Course '),
-        trailing: IconManager.angleRight,
-        onTap: () {
-          // Handle tap
-        },
-      ),
-      divider(height: 6,thickness: 1),
-      ListTile(
-        title: Text('Finish Course'),
-        trailing: IconManager.angleRight,
-        onTap: () {
-          // Handle tap
-        },
-      ),
-      divider(height: 6,thickness: 1),
-      ListTile(
-        title: Text('Enroll Course'),
-        trailing: IconManager.angleRight,
-        onTap: () {
-          // Handle tap
-        },
-      ),
-      divider(height: 6,thickness: 1),
-      ListTile(
-        title: Text('Wish List'),
-        trailing: IconManager.angleRight,
-        onTap: () {
-          // Handle tap
-        },
-      ),
-    ],
-  )
-  ,
-),
-
-
+          SliverToBoxAdapter(
+            child: Divider(
+              height: 6,
+              thickness: 10,
+              color: ColorManager.primaryColorLogo,
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: ListView(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              children: [
+                ListTile(
+                  title: Text('Progress Course '),
+                  trailing: IconManager.angleRight,
+                  onTap: () {
+                    Navigator.pushNamed(context, 'progress_course');
+                  },
+                ),
+                Divider(height: 6, thickness: 1),
+                ListTile(
+                  title: Text('Finish Course'),
+                  trailing: IconManager.angleRight,
+                  onTap: () {
+                    Navigator.pushNamed(context, 'finish_course');                  },
+                ),
+                Divider(height: 6, thickness: 1),
+                ListTile(
+                  title: Text('Enroll Course'),
+                  trailing: IconManager.angleRight,
+                  onTap: () {
+                    Navigator.pushNamed(context, 'enroll_course');                  },
+                ),
+                Divider(height: 6, thickness: 1),
+                ListTile(
+                  title: Text('Wish List'),
+                  trailing: IconManager.angleRight,
+                  onTap: () {
+                    Navigator.pushNamed(context, 'wish_list_page');
+                  },
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
   }
 }
-
 
 /*
    SliverToBoxAdapter(
