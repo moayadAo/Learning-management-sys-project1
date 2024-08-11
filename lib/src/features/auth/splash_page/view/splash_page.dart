@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:learning_system/core/cache/cache_helper.dart';
 import 'package:learning_system/core/helper/sizer_media_query.dart';
 import 'package:learning_system/core/services/service_locator.dart';
 import 'package:learning_system/core/utils/app_string.dart';
 import 'package:learning_system/core/utils/assets_manager.dart';
 import 'package:learning_system/core/utils/color_manager.dart';
+import 'package:learning_system/src/features/user/cubit/user_cubit.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -40,10 +42,14 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
 
     Future.delayed(const Duration(seconds: 2), () {
       if (!isOnBoardingVisited) {
-        Navigator.of(context).pushReplacementNamed('welcome');
+        Navigator.pushReplacementNamed(context, AppRoute.welcomeScreen);
       } else {
-        // here where i should to check if i has token or not for navigate to login of to homePage
-        Navigator.of(context).pushReplacementNamed('login');
+        if (getIt<CacheHelper>().getData(key: AppString.token) == null) {
+          Navigator.pushReplacementNamed(context, AppRoute.loginScreen);
+        } else {
+          context.read<UserCubit>().getUser();
+          Navigator.pushReplacementNamed(context, AppRoute.profileScreen);
+        }
       }
     });
 

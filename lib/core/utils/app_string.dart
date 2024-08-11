@@ -7,3 +7,17 @@ class AppString {
   static const roleCacheKey = 'role';
   static const token = 'token';
 }
+
+class AppRoute {
+  static const splashScreen = "splash";
+  static const welcomeScreen = "welcome";
+  static const signupUserScreen = "signup_user";
+  static const loginScreen = "login";
+  static const roleScreen = "role";
+  static const profileScreen = "profile";
+  static const progressCourseScreen = "progress_course";
+  static const finishCourseScreen = "finish_course";
+  static const wishListScreen = "wish_list_page";
+  static const enrollCourseScreen = "enroll_course";
+  static const coursePageScreen = "course_page";
+}

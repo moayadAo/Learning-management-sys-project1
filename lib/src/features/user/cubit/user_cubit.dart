@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
@@ -19,6 +18,7 @@ import 'package:learning_system/src/features/user/data/models/data_user_model.da
 
 class UserCubit extends Cubit<UserStates> {
   final ApiConsumer api;
+  DataUserModel? userModel;
   UserCubit({required this.api}) : super(UserInitial());
   //Sign in Form key
   GlobalKey<FormState> signInFormKey = GlobalKey();
@@ -50,8 +50,6 @@ class UserCubit extends Cubit<UserStates> {
 
   login() async {
     try {
-      // log('email : ' + signInEmail.text);
-      // log('password : ' + signInPassword.text);
       emit(SignInLoading());
       final response = await api.post(
         AppUrl.loginUser,
@@ -71,13 +69,10 @@ class UserCubit extends Cubit<UserStates> {
           key: AppString.roleCacheKey,
           value: decodedToken[AppString.decodeTokenForRole]);
 
-      log("role is :" + decodedToken[AppString.decodeTokenForRole]);
-      log("user id : ${decodedToken[AppString.decodeTokenForId]}");
-
       emit(SignInSuccess());
+      getUser();
     } on ServerException catch (e) {
       emit(SignInFailure(errMessage: e.errorModel.message!));
-      log('--------------------------in catch--------------------');
     }
   }
 
@@ -121,8 +116,9 @@ class UserCubit extends Cubit<UserStates> {
     try {
       emit(GetUserLoading());
       final response = await api.getApi(AppUrl.getProfile);
-      DataUserModel userModel = SignupModel.fromJson(response).data;
-      emit(GetUserSuccess(user: userModel));
+      userModel = SignupModel.fromJson(response).data;
+      emit(GetUserSuccess());
+      log('-------------------------------------------------image ${userModel!.image}');
     } on ServerException catch (e) {
       emit(GetUserFailure(errMessage: e.errorModel.message!));
     }

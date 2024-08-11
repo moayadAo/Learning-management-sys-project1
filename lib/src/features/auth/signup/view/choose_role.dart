@@ -5,8 +5,8 @@ import 'package:learning_system/core/utils/style_manager.dart';
 import 'package:learning_system/core/widgets/arrow_back.dart';
 import 'package:learning_system/src/features/auth/signup/view/role_widget.dart';
 
-class chooseRoleScreen extends StatelessWidget {
-  const chooseRoleScreen({super.key});
+class ChooseRoleScreen extends StatelessWidget {
+  const ChooseRoleScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +26,7 @@ class chooseRoleScreen extends StatelessWidget {
             roleWidget(
                 borderColor: ColorManager.purple,
                 tap: () {
-                  Navigator.pushNamed(context, 'signup user');
+                  Navigator.pushNamed(context, 'signup_user');
                 },
                 image: AssetsManager.student3Role,
                 description:

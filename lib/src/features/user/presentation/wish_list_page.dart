@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:learning_system/core/utils/app_string.dart';
 
 import '../../../../core/utils/color_manager.dart';
 import '../../../../core/utils/icon_manager.dart';
 import '../../../../core/utils/style_manager.dart';
 import '../../../../core/utils/values_manager.dart';
-import '../../../../core/widgets/new/new_search/search_textfield.dart';
+import 'package:learning_system/core/widgets/new_search/search_textfield.dart';
 import '../cubit/search_cubit/course_item.dart';
 import '../cubit/search_cubit/search_cubit.dart';
 import '../cubit/search_cubit/search_state.dart';
@@ -50,9 +51,8 @@ class WishListPage extends StatelessWidget {
                         return SearchTextField(
                           onChanged: (query) =>
                               context.read<SearchCubit>().updateSearch(query),
-                          iconClosePressed:() =>
+                          iconClosePressed: () =>
                               context.read<SearchCubit>().clearSearch(),
-
                         );
                       },
                     ),
@@ -67,7 +67,10 @@ class WishListPage extends StatelessWidget {
                     (context, index) {
                       final course = state.filteredCourses[index];
                       return InkWell(
-                        onTap: () {   Navigator.pushNamed(context, 'course_page');},
+                        onTap: () {
+                          Navigator.pushNamed(
+                              context, AppRoute.coursePageScreen);
+                        },
                         child: Container(
                           height: AppSize.s130,
                           width:
@@ -87,7 +90,7 @@ class WishListPage extends StatelessWidget {
                                   width: AppSize.s120,
                                   height: AppSize.s120,
                                   decoration: BoxDecoration(
-                                   border: Border.all(),
+                                    border: Border.all(),
                                     borderRadius: BorderRadius.circular(10),
                                     color: ColorManager.primaryColorLogo,
                                     image: DecorationImage(
@@ -141,7 +144,8 @@ class WishListPage extends StatelessWidget {
                                         text: "\$${course.priceOfCourse}",
                                         style: getHeadLineLarge(
                                           fontSize: AppSize.s16,
-                                          color: ColorManager.SecondaryColorLogo,
+                                          color:
+                                              ColorManager.SecondaryColorLogo,
                                         ),
                                       )),
                                       SizedBox(

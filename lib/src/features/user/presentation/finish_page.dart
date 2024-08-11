@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:learning_system/core/utils/app_string.dart';
 
 import '../../../../core/utils/color_manager.dart';
 import '../../../../core/utils/icon_manager.dart';
 import '../../../../core/utils/style_manager.dart';
 import '../../../../core/utils/values_manager.dart';
-import '../../../../core/widgets/new/new_search/search_textfield.dart';
+import 'package:learning_system/core/widgets/new_search/search_textfield.dart';
 import '../cubit/search_cubit/course_item.dart';
 import '../cubit/search_cubit/search_cubit.dart';
 import '../cubit/search_cubit/search_state.dart';
@@ -50,9 +51,8 @@ class FinishPage extends StatelessWidget {
                         return SearchTextField(
                           onChanged: (query) =>
                               context.read<SearchCubit>().updateSearch(query),
-                          iconClosePressed:() =>
+                          iconClosePressed: () =>
                               context.read<SearchCubit>().clearSearch(),
-
                         );
                       },
                     ),
@@ -64,14 +64,17 @@ class FinishPage extends StatelessWidget {
               builder: (context, state) {
                 return SliverList(
                   delegate: SliverChildBuilderDelegate(
-                        (context, index) {
+                    (context, index) {
                       final course = state.filteredCourses[index];
                       return InkWell(
-                        onTap: () {   Navigator.pushNamed(context, 'course_page');},
+                        onTap: () {
+                          Navigator.pushNamed(
+                              context, AppRoute.coursePageScreen);
+                        },
                         child: Container(
                           height: AppSize.s130,
                           width:
-                          AppSize.s100 * 2.6, // Adjust the width as needed
+                              AppSize.s100 * 2.6, // Adjust the width as needed
                           margin: EdgeInsets.all(8),
                           decoration: BoxDecoration(
                             color: ColorManager.white,
@@ -120,7 +123,7 @@ class FinishPage extends StatelessWidget {
                                       IconManager.user,
                                       SizedBox(
                                           width:
-                                          AppSize.s4), // Add some spacing
+                                              AppSize.s4), // Add some spacing
                                       RichText(
                                         text: TextSpan(
                                           text: course.nameOfTeacher,
@@ -138,12 +141,13 @@ class FinishPage extends StatelessWidget {
                                     children: [
                                       RichText(
                                           text: TextSpan(
-                                            text: "\$${course.priceOfCourse}",
-                                            style: getHeadLineLarge(
-                                              fontSize: AppSize.s16,
-                                              color: ColorManager.SecondaryColorLogo,
-                                            ),
-                                          )),
+                                        text: "\$${course.priceOfCourse}",
+                                        style: getHeadLineLarge(
+                                          fontSize: AppSize.s16,
+                                          color:
+                                              ColorManager.SecondaryColorLogo,
+                                        ),
+                                      )),
                                       SizedBox(
                                         width: AppSize.s60,
                                       ),

@@ -26,6 +26,7 @@ DataUserModel _$DataUserModelFromJson(Map<String, dynamic> json) =>
       progress: (json['progress'] as List<dynamic>?)
           ?.map((e) => ProgressModel.fromJson(e as Map<String, dynamic>))
           .toList(),
+      image: json['image'] as String?,
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
     );
@@ -44,4 +45,5 @@ Map<String, dynamic> _$DataUserModelToJson(DataUserModel instance) =>
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),
       'id': instance.id,
+      'image': instance.image,
     };

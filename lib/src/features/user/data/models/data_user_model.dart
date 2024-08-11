@@ -35,6 +35,8 @@ class DataUserModel {
   DateTime updatedAt;
   @JsonKey(name: "id")
   String id;
+  @JsonKey(name: 'image')
+  String? image;
 
   DataUserModel(
       {required this.id,
@@ -47,6 +49,7 @@ class DataUserModel {
       this.enrolledCourses,
       this.wishlist,
       this.progress,
+      this.image,
       required this.createdAt,
       required this.updatedAt});
 

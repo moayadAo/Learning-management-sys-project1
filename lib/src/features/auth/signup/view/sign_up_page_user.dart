@@ -15,7 +15,7 @@ import 'package:learning_system/core/widgets/textfield_app.dart';
 import 'package:learning_system/core/widgets/textfield_with_label.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:learning_system/src/features/auth/login/login.dart';
+import 'package:learning_system/src/features/auth/login/view/login.dart';
 import 'package:learning_system/src/features/user/cubit/user_cubit.dart';
 import 'package:learning_system/src/features/user/cubit/user_states.dart';
 

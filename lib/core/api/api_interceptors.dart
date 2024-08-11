@@ -8,7 +8,7 @@ class ApiInterceptor extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     options.headers[ApiKey.authorization] =
-        getIt<CacheHelper>().getData(key: AppString.token) ?? null;
+        getIt<CacheHelper>().getData(key: AppString.token) ?? '';
     // ? getIt<CacheHelper>().getData(key: AppString.token)
     // : null;
     super.onRequest(options, handler);

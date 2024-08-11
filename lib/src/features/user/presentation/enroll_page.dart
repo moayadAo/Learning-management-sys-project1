@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:learning_system/core/utils/app_string.dart';
+import 'package:learning_system/core/widgets/new_search/search_textfield.dart';
 
 import '../../../../core/utils/color_manager.dart';
 import '../../../../core/utils/icon_manager.dart';
 import '../../../../core/utils/style_manager.dart';
 import '../../../../core/utils/values_manager.dart';
-import '../../../../core/widgets/new/new_search/search_textfield.dart';
 import '../cubit/search_cubit/course_item.dart';
 import '../cubit/search_cubit/search_cubit.dart';
 import '../cubit/search_cubit/search_state.dart';
@@ -50,9 +51,8 @@ class EnrollPage extends StatelessWidget {
                         return SearchTextField(
                           onChanged: (query) =>
                               context.read<SearchCubit>().updateSearch(query),
-                          iconClosePressed:() =>
+                          iconClosePressed: () =>
                               context.read<SearchCubit>().clearSearch(),
-
                         );
                       },
                     ),
@@ -64,17 +64,18 @@ class EnrollPage extends StatelessWidget {
               builder: (context, state) {
                 return SliverList(
                   delegate: SliverChildBuilderDelegate(
-                        (context, index) {
+                    (context, index) {
                       final course = state.filteredCourses[index];
                       return InkWell(
                         onTap: () {
-                          Navigator.pushNamed(context, 'course_page');
+                          Navigator.pushNamed(
+                              context, AppRoute.coursePageScreen);
                         },
                         child: Container(
                           height: AppSize.s130,
                           width:
-                          AppSize.s100 * 2.6, // Adjust the width as needed
-                          margin: EdgeInsets.all(8),
+                              AppSize.s100 * 2.6, // Adjust the width as needed
+                          margin: const EdgeInsets.all(8),
                           decoration: BoxDecoration(
                             color: ColorManager.white,
                             border: Border.all(),
@@ -99,7 +100,7 @@ class EnrollPage extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: AppSize.s40,
                               ),
                               Column(
@@ -114,15 +115,15 @@ class EnrollPage extends StatelessWidget {
                                           color: ColorManager.black),
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: AppSize.s10,
                                   ),
                                   Row(
                                     children: [
                                       IconManager.user,
-                                      SizedBox(
+                                      const SizedBox(
                                           width:
-                                          AppSize.s4), // Add some spacing
+                                              AppSize.s4), // Add some spacing
                                       RichText(
                                         text: TextSpan(
                                           text: course.nameOfTeacher,
@@ -133,24 +134,26 @@ class EnrollPage extends StatelessWidget {
                                       ),
                                     ],
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: AppPadding.p6,
                                   ),
                                   Row(
                                     children: [
                                       RichText(
                                           text: TextSpan(
-                                            text: "\$${course.priceOfCourse}",
-                                            style: getHeadLineLarge(
-                                              fontSize: AppSize.s16,
-                                              color: ColorManager.SecondaryColorLogo,
-                                            ),
-                                          )),
-                                      SizedBox(
+                                        text: "\$${course.priceOfCourse}",
+                                        style: getHeadLineLarge(
+                                          fontSize: AppSize.s16,
+                                          color:
+                                              ColorManager.SecondaryColorLogo,
+                                        ),
+                                      )),
+                                      const SizedBox(
                                         width: AppSize.s60,
                                       ),
                                       IconManager.star,
-                                      SizedBox(width: 4), // Add some spacing
+                                      const SizedBox(
+                                          width: 4), // Add some spacing
                                       RichText(
                                         text: TextSpan(
                                           text: course.rate,
