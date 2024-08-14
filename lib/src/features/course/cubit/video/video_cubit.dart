@@ -1,8 +1,9 @@
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
-import 'package:dio/dio.dart';
 import 'package:flick_video_player/flick_video_player.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:learning_system/core/api/api_consumer.dart';
 import 'package:learning_system/core/errors/exceptions.dart';
@@ -22,8 +23,27 @@ class VideoCubit extends Cubit<VideoStates> {
   VideoDataModel? videoData;
   List<VideoDataModel> videoList = [];
 
-  selectVideo() {
-    emit(SelectdVideoState());
+  Future<File?> pickVideo() async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickVideo(source: ImageSource.gallery);
+
+    if (pickedFile != null) {
+      return File(pickedFile.path);
+    } else {
+      return null;
+    }
+  }
+
+  Future<File?> pickAndUploadVideo() async {
+    emit(LoadVideoLoadingState());
+    File? video = await pickVideo();
+    if (video != null) {
+      emit(LoadVideoSuccessState());
+      return video;
+    } else {
+      emit(LoadVideoFailureState());
+      return null;
+    }
   }
 
   displayVideo() {

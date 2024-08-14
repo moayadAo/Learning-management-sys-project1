@@ -6,6 +6,7 @@ import 'package:learning_system/core/cache/cache_helper.dart';
 import 'package:learning_system/core/services/service_locator.dart';
 import 'package:learning_system/core/utils/style_manager.dart';
 import 'package:learning_system/src/app.dart';
+import 'package:learning_system/src/features/course/cubit/article/article_cubit.dart';
 
 import 'package:learning_system/src/features/quiz/cubit/answer/answer_cubit.dart';
 import 'package:learning_system/src/features/quiz/cubit/create_quiz/create_quiz_cubit.dart';
@@ -36,6 +37,9 @@ void main() async {
     ),
     BlocProvider<VideoCubit>(
       create: (_) => VideoCubit(api: DioConsumer(dio: Dio())),
+    ),
+    BlocProvider<ArticleCubit>(
+      create: (_) => ArticleCubit(api: DioConsumer(dio: Dio())),
     )
   ], child: const EduBridgeApp()));
 }

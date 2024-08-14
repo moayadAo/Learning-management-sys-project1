@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:flutter/material.dart';
 import 'package:learning_system/core/api/api_consumer.dart';
 import 'package:learning_system/core/errors/exceptions.dart';
 import 'package:learning_system/core/helper/upload_file_to_api.dart';
@@ -9,11 +11,35 @@ import 'package:learning_system/src/features/course/cubit/article/article_states
 import 'package:learning_system/src/features/course/data/models/article/articel_model/article_data_model.dart';
 import 'package:learning_system/src/features/course/data/models/article/get_model/get_all_article_model.dart';
 import 'package:learning_system/src/features/course/data/models/article/get_model/get_article_model.dart';
-import 'package:learning_system/src/features/course/data/models/article/update_article/update_article_model.dart';
 
 class ArticleCubit extends Cubit<ArticleState> {
   ApiConsumer api;
+  String? id;
+  ArticleDataModel? article;
+
+  TextEditingController articleTitle = TextEditingController();
+
+  TextEditingController articleAuthor = TextEditingController();
+
+  TextEditingController articleCategory = TextEditingController();
+
   ArticleCubit({required this.api}) : super(InitialArticleState());
+
+  Future<File?> pickDocument() async {
+    emit(LoadArticleLoadingState());
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['pdf'], // Specify allowed file extensions
+    );
+
+    if (result != null) {
+      emit(LoadArticleSuccessState());
+      return File(result.files.single.path!);
+    } else {
+      emit(LoadArticleFailureState());
+      return null; // User canceled the picker
+    }
+  }
 
   craeteArticleApi({
     required String title,
@@ -32,7 +58,8 @@ class ArticleCubit extends Cubit<ArticleState> {
       });
 
       ///
-      //String articleId = GetArticleModel.fromJson(response).data.id;
+      // String articleId = GetArticleModel.fromJson(response).data.id;
+      id = GetArticleModel.fromJson(response).data.id;
       emit(CreateArticleSuccessState());
     } on ServerException catch (e) {
       emit(CreateArticleFailureState(message: e.errorModel.message!));
@@ -44,7 +71,7 @@ class ArticleCubit extends Cubit<ArticleState> {
       emit(GetArticleLoadingState());
       final response =
           await api.getApi(AppUrl.getUpdateDeleteArticle(articleId: articleId));
-      ArticleDataModel article = GetArticleModel.fromJson(response).data;
+      article = GetArticleModel.fromJson(response).data;
       emit(GetArticleSuccessState());
     } on ServerException catch (e) {
       emit(GetArticleFailureState(message: e.errorModel.message!));
@@ -99,5 +126,13 @@ class ArticleCubit extends Cubit<ArticleState> {
     } on ServerException catch (e) {
       emit(UpdateArticleFailureState(message: e.errorModel.message!));
     }
+  }
+
+  initForUpdatePage({required String id}) async {
+    await getArticleApi(articleId: id);
+    articleTitle.text = article!.title;
+    articleAuthor.text = article!.author;
+    articleCategory.text = article!.category;
+    emit(InitialArticleState());
   }
 }

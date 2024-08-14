@@ -352,7 +352,7 @@ class SignUpScreenUser extends StatelessWidget {
                             validator: (value) =>
                                 ValidatorManager().validatePassword(value!),
                             obscureText: true,
-                            suffixIcon: true,
+                            wantObscure: true,
                           ),
                         ),
                         const SizedBox(height: 20),
@@ -367,7 +367,7 @@ class SignUpScreenUser extends StatelessWidget {
                                 .validateConfirmPassword(
                                     value!, passwordController.text),
                             obscureText: true,
-                            suffixIcon: true,
+                            wantObscure: true,
                           ),
                         ),
                         const SizedBox(height: 20),

@@ -51,6 +51,11 @@ class AssetsManager {
   static const String createVideo4 = '$videoImagePath/create_video4.png';
   static const String createVideo5 = '$videoImagePath/create_video5.png ';
 
+  ///-----------------<Article>---------------------///
+  static const String articleImagePath = '${imagePath}/article';
+  static const String createArticle1 = '$articleImagePath/article_image1.png';
+  static const String createArticle2 = '$articleImagePath/article_image2.png';
+
   ///=================<<information>>=================///
   static const String notFound = '$informationPath/not_found.svg';
   static const String imageDefault = '$informationPath/image_default2.svg';
@@ -58,15 +63,11 @@ class AssetsManager {
   ///=================<<Svg>>=================///
 
   ///=================<<Lottie>>=================///
-///
+  ///
 
-///=================<<quiz>>=================///
+  ///=================<<quiz>>=================///
   static const String quizBackground = '$imagePath/quiz/quiz_background2.jpg';
   static const String quizIcon = '$imagePath/quiz/quiz.png';
 
-
   static const String logoOfCourse = '$imagePath/course/logo_of_course.png';
-
-
-
 }

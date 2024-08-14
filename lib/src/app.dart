@@ -4,13 +4,15 @@ import 'package:learning_system/src/features/auth/signup/view/choose_role.dart';
 import 'package:learning_system/src/features/auth/signup/view/sign_up_page_user.dart';
 import 'package:learning_system/src/features/auth/splash_page/view/splash_page.dart';
 import 'package:learning_system/src/features/auth/welcome/welcome.dart';
+import 'package:learning_system/src/features/course/presentation/article_screens/create_article_page.dart';
+import 'package:learning_system/src/features/course/presentation/article_screens/update_article.dart';
 import 'package:learning_system/src/features/course/presentation/course_page.dart';
 
 import 'package:learning_system/src/features/quiz/presentation/create_quize.dart';
 import 'package:learning_system/src/features/quiz/presentation/quiz_sccreen.dart';
 import 'package:learning_system/src/features/quiz/presentation/quiz_welcome.dart';
 
-import 'package:learning_system/src/features/course/presentation/create_video_page.dart';
+import 'package:learning_system/src/features/course/presentation/video_screens/create_video_page.dart';
 
 import 'package:learning_system/src/features/user/presentation/enroll_page.dart';
 import 'package:learning_system/src/features/user/presentation/finish_page.dart';
@@ -25,7 +27,7 @@ class EduBridgeApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: 'create_video_page', // Start from splash page
+      initialRoute: 'create_article_page', // Start from splash page
       routes: {
         'splash': (context) => const SplashPage(),
         'welcome': (context) => WelcomePage(),
@@ -39,6 +41,8 @@ class EduBridgeApp extends StatelessWidget {
         'enroll_course': (context) => EnrollPage(),
         'course_page': (context) => const CoursePage(),
         'create_video_page': (context) => CreateVideoPage(),
+        'create_article_page': (context) => CreateArticlePage(),
+        'update_article_page': (context) => UpdateArticlePage()
         // Add any additional routes here
       },
     );

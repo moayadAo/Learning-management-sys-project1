@@ -1,9 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:learning_system/core/helper/sizer_media_query.dart';
-import 'package:learning_system/core/utils/app_url.dart';
 import 'package:learning_system/core/utils/assets_manager.dart';
 import 'package:learning_system/core/utils/color_manager.dart';
 import 'package:learning_system/core/utils/font_manager.dart';
@@ -17,19 +15,9 @@ import 'package:learning_system/src/features/course/cubit/video/video_cubit.dart
 import 'package:learning_system/src/features/course/cubit/video/video_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-Future<File?> pickVideo() async {
-  final picker = ImagePicker();
-  final pickedFile = await picker.pickVideo(source: ImageSource.gallery);
-
-  if (pickedFile != null) {
-    return File(pickedFile.path);
-  } else {
-    return null;
-  }
-}
-
 class CreateVideoPage extends StatelessWidget {
   File? _videoFile;
+  bool _isSnackBarVisible = false;
   final nameController = TextEditingController();
 
   final durationController = TextEditingController();
@@ -37,26 +25,17 @@ class CreateVideoPage extends StatelessWidget {
   final descriptionController = TextEditingController();
 
   CreateVideoPage({super.key});
-  Future<void> _pickAndUploadVideo(BuildContext context) async {
-    File? video = await pickVideo();
-    if (video != null) {
-      // setState(() {
-      context.read<VideoCubit>().selectVideo();
-      _videoFile = video;
-      // });
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBarMessage(message: 'choose your video please')
-              .buildSnackBar(context));
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
     final _formKey = GlobalKey<FormState>();
     return BlocConsumer<VideoCubit, VideoStates>(
       listener: (context, state) {
-        // TODO: implement listener
+        if (state is LoadVideoFailureState) {
+          ScaffoldMessenger.of(context).showSnackBar(
+              SnackBarMessage(message: 'choose your video please')
+                  .buildSnackBar(context));
+        }
       },
       builder: (context, state) {
         return Scaffold(
@@ -83,36 +62,59 @@ class CreateVideoPage extends StatelessWidget {
                         const SizedBox(
                           height: AppPadding.p8,
                         ),
-                        ElevatedButton(
-                          onPressed: () {
-                            _pickAndUploadVideo(context);
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: ColorManager.primaryColorLogo,
-                            padding: const EdgeInsets.symmetric(
-                                vertical: AppPadding.p16),
-                            textStyle: getMediumStyle(fontSize: FontSize.s18),
-                          ),
-                          child: const Row(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons
-                                    .upload_file, // The icon you want to display
-                                color: ColorManager.errorDark, // Icon color
+                        state is LoadVideoLoadingState
+                            ? LoadingIndicator()
+                            : ElevatedButton(
+                                onPressed: () async {
+                                  _videoFile = await context
+                                      .read<VideoCubit>()
+                                      .pickAndUploadVideo();
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor:
+                                      state is LoadVideoSuccessState
+                                          ? ColorManager.lightGrey
+                                          : ColorManager.primaryColorLogo,
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: AppPadding.p16),
+                                  textStyle:
+                                      getMediumStyle(fontSize: FontSize.s18),
+                                ),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    state is LoadVideoSuccessState
+                                        ? const Icon(
+                                            Icons
+                                                .done_outline, // The icon you want to display
+                                            color: ColorManager
+                                                .white, // Icon color
+                                          )
+                                        : const Icon(
+                                            Icons
+                                                .upload_file, // The icon you want to display
+                                            color: ColorManager
+                                                .black, // Icon color
+                                          ),
+                                    const SizedBox(width: AppMargin.m6),
+                                    // Spacing between icon and text
+                                    state is LoadVideoSuccessState
+                                        ? const Text(
+                                            'Video Uploaded',
+                                            style: TextStyle(
+                                                color: ColorManager
+                                                    .whiteNiceButton),
+                                          )
+                                        : const Text(
+                                            'Upload Video',
+                                            style: TextStyle(
+                                                color: ColorManager
+                                                    .blackColorLogo),
+                                          ),
+                                  ],
+                                ),
                               ),
-                              SizedBox(
-                                  width: AppMargin
-                                      .m6), // Spacing between icon and text
-                              Text(
-                                'Upload Video',
-                                style: TextStyle(
-                                    color: ColorManager.blackColorLogo),
-                              ),
-                            ],
-                          ),
-                        ),
                         const SizedBox(height: AppPadding.p35),
                         TextFiledApp(
                           hintText: 'Enter video name',
@@ -146,7 +148,8 @@ class CreateVideoPage extends StatelessWidget {
                                 ? Text('success')
                                 : ElevatedButton(
                                     onPressed: () {
-                                      if (_formKey.currentState!.validate()) {
+                                      if (_formKey.currentState!.validate() &&
+                                          _videoFile != null) {
                                         context.read<VideoCubit>().createVideo(
                                             name: nameController.text,
                                             duration: int.parse(
@@ -154,6 +157,21 @@ class CreateVideoPage extends StatelessWidget {
                                             video: _videoFile!,
                                             description:
                                                 descriptionController.text);
+                                      } else {
+                                        if (!_isSnackBarVisible) {
+                                          _isSnackBarVisible = true;
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                                SnackBarMessage(
+                                                        message:
+                                                            'choose your video please')
+                                                    .buildSnackBar(context),
+                                              )
+                                              .closed
+                                              .then((reason) {
+                                            _isSnackBarVisible = false;
+                                          });
+                                        }
                                       }
                                     },
                                     style: ElevatedButton.styleFrom(
