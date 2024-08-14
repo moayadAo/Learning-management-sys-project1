@@ -11,6 +11,8 @@ class IconManager {
   static const bars = FaIcon(FontAwesomeIcons.bars);
   static const homeOutLine = FaIcon(FontAwesomeIcons.home);
   static const arrowLeft = FaIcon(FontAwesomeIcons.arrowLeft);
+  static const arrowRight = FaIcon(FontAwesomeIcons.arrowRight,color: Colors.white,);
+
   static const user = FaIcon(
     FontAwesomeIcons.user,
     size: 14,
@@ -32,6 +34,11 @@ class IconManager {
   static const calender = FaIcon(FontAwesomeIcons.calendar);
   static const email = FaIcon(FontAwesomeIcons.envelope);
   static const search = FaIcon(FontAwesomeIcons.search);
+  static const add = FaIcon(FontAwesomeIcons.add,color: Colors.white,);
+  static const plus = FaIcon(FontAwesomeIcons.plusSquare,size: 70,color: ColorManager.grayDark,);
+  static const minPlus = FaIcon(FontAwesomeIcons.plusSquare,size: 50,color: ColorManager.grayDark,);
+
+
   static const notification = FaIcon(
     FontAwesomeIcons.bell,
     size: 30,
@@ -64,4 +71,16 @@ class IconManager {
 
   // Material Icons
   static const play = Icon(Icons.play_arrow);
+
+  static const a = FaIcon(FontAwesomeIcons.a);
+  static const b = FaIcon(FontAwesomeIcons.b);
+
+  static const c = FaIcon(FontAwesomeIcons.c);
+  static const d = FaIcon(FontAwesomeIcons.d);
+  static const titleQuiz = FaIcon(FontAwesomeIcons.fileLines);
+  static const correct = FaIcon(FontAwesomeIcons.check);
+
+
+
+
 }

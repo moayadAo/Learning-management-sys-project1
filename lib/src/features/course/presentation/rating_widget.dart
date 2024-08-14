@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:learning_system/src/features/course/mm/cubit/rating_cubit.dart';
 import '../../../../core/utils/color_manager.dart';
 import '../../../../core/utils/style_manager.dart';
 import '../../../../core/utils/values_manager.dart';
-import '../cubit/rating_cubit.dart';
 
 class RatingWidgetCourse extends StatelessWidget {
   final bool hasPurchasedCourse; // أضف هذا المتغير

@@ -6,8 +6,13 @@ import 'package:learning_system/core/cache/cache_helper.dart';
 import 'package:learning_system/core/services/service_locator.dart';
 import 'package:learning_system/core/utils/style_manager.dart';
 import 'package:learning_system/src/app.dart';
-import 'package:learning_system/src/features/course/cubit/rating_cubit.dart';
+import 'package:learning_system/src/features/course/mm/cubit/add_coure/add_course_cubit.dart';
+import 'package:learning_system/src/features/course/mm/cubit/rating_cubit.dart';
+import 'package:learning_system/src/features/quiz/cubit/answer/answer_cubit.dart';
+import 'package:learning_system/src/features/quiz/cubit/create_quiz/create_quiz_cubit.dart';
+import 'package:learning_system/src/features/quiz/cubit/cubit_quiz.dart';
 import 'package:learning_system/src/features/user/cubit/user_cubit.dart';
+import 'package:learning_system/src/features/video/cubit/video_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,6 +24,19 @@ void main() async {
     ),
     BlocProvider<RatingCubit>(
       create: (_) => RatingCubit(),
+    ),
+    BlocProvider<QuizCubit>(
+      create: (_) => QuizCubit(),
+    ),
+    BlocProvider<AnswerCubit>(create: (_) => AnswerCubit()),
+    BlocProvider<CreateQuizCubit>(
+      create: (_) => CreateQuizCubit(),
+    ),
+    BlocProvider<AddCourseCubit>(
+      create: (_) => AddCourseCubit(),
+    ),
+    BlocProvider<VideoCubit>(
+      create: (_) => VideoCubit(),
     ),
   ], child: const EduBridgeApp()));
 }

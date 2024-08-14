@@ -27,6 +27,8 @@ class ColorManager {
 
   static const Color jewelry  = Color(0xFFEED127);
   static const Color buttonColor  = Color(0xFFFFEBF0);
+  static const Color yellow  = Color(0xFFF9E85A);
+
 
 
 
