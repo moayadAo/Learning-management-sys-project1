@@ -58,4 +58,15 @@ class AssetsManager {
   ///=================<<Svg>>=================///
 
   ///=================<<Lottie>>=================///
+///
+
+///=================<<quiz>>=================///
+  static const String quizBackground = '$imagePath/quiz/quiz_background2.jpg';
+  static const String quizIcon = '$imagePath/quiz/quiz.png';
+
+
+  static const String logoOfCourse = '$imagePath/course/logo_of_course.png';
+
+
+
 }

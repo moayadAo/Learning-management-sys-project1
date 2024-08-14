@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:learning_system/src/features/course/mm/cubit/rating_cubit.dart';
 
-import '../cubit/rating_cubit.dart';
 
 
 class RatingResultPage extends StatelessWidget {
