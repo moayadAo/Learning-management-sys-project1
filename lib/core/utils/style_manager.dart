@@ -1,6 +1,9 @@
 //Function To Get Text Style
 
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'color_manager.dart';
 import 'font_manager.dart';
 
@@ -26,7 +29,7 @@ TextStyle _getTextStyle(
     Color? color,
     double? letterSpacing}) {
   return TextStyle(
-      fontFamily: FontManager.fontFamilyPoppins,
+      fontFamily: FontManager.fontFamilyRobotoCondensed,
       fontSize: fontSize,
       decoration: TextDecoration.none,
       letterSpacing: letterSpacing,
@@ -152,3 +155,7 @@ TextStyle getMoreOrLess({
 }) {
   return TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: color);
 }
+
+
+TextStyle latoFont(){
+  return  GoogleFonts.getFont('assets/google_font/RobotoCondensed-Italic-VariableFont_wght.ttf');}

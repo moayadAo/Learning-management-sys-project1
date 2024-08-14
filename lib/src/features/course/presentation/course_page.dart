@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:learning_system/core/utils/font_manager.dart';
 import 'package:learning_system/core/widgets/custom_button/custom_button.dart';
 
 import 'package:learning_system/core/widgets/sliver_app_bar/sliver_app_bar.dart';
+import 'package:learning_system/src/features/course/cubit/course/course_cubit.dart';
+import 'package:learning_system/src/features/course/cubit/course/course_state.dart';
 import 'package:learning_system/src/features/course/presentation/rating_widget.dart';
 import 'package:readmore/readmore.dart';
 
@@ -16,12 +20,15 @@ class CoursePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
+      body: BlocBuilder<CourseCubit, CourseState>(
+  builder: (context, state) {
+    return CustomScrollView(
         slivers: [
           SliverAppBarWidget(
+
             text: "Course Info ",
             background: Container(
-                //color: ColorManager.SecondaryColorLogo,
+                color: ColorManager.SecondaryColorLogo,
                 ),
             expandedHeight: AppSize.s200,
           ),
@@ -42,7 +49,7 @@ class CoursePage extends StatelessWidget {
                             text: TextSpan(
                               text: "Programming ",
                               style: getSemiBoldStyle(
-                                  fontSize: 20, color: ColorManager.black),
+                                  fontSize: FontSize.s26, color: ColorManager.black),
                             ),
                           ),
                           const SizedBox(
@@ -52,7 +59,7 @@ class CoursePage extends StatelessWidget {
                             text: TextSpan(
                               text: "duration",
                               style: getTitleMeduim(
-                                  fontSize: AppSize.s14,
+                                  fontSize: FontSize.s18,
                                   color: ColorManager.grayLight),
                             ),
                           ),
@@ -62,8 +69,8 @@ class CoursePage extends StatelessWidget {
                           text: TextSpan(
                         text: "\$150",
                         style: getHeadLineLarge(
-                          fontSize: AppSize.s20,
-                          color: ColorManager.SecondaryColorLogo,
+                          fontSize: FontSize.s26,
+                          color: ColorManager.redBright,
                         ),
                       )),
                     ],
@@ -78,7 +85,7 @@ class CoursePage extends StatelessWidget {
                         text: TextSpan(
                           text: "About this course",
                           style: getBoldStyle(
-                              fontSize: AppSize.s18, color: ColorManager.black),
+                              fontSize: FontSize.s24, color: ColorManager.black),
                         ),
                       ),
                       const SizedBox(
@@ -95,7 +102,7 @@ class CoursePage extends StatelessWidget {
                         moreStyle: getMoreOrLess(
                             color: ColorManager.SecondaryColorLogo),
                         style: getTitleMeduim(
-                            fontSize: AppSize.s10,
+                            fontSize: FontSize.s16,
                             color: ColorManager.grayLight),
                       ),
                       const SizedBox(
@@ -105,7 +112,7 @@ class CoursePage extends StatelessWidget {
                         text: TextSpan(
                           text: "What you'll learn ",
                           style: getBoldStyle(
-                              fontSize: AppSize.s18, color: ColorManager.black),
+                              fontSize: FontSize.s24, color: ColorManager.black),
                         ),
                       ),
                       const SizedBox(
@@ -124,7 +131,7 @@ class CoursePage extends StatelessWidget {
                               color: ColorManager.SecondaryColorLogo),
                           lessStyle:
                               getMoreOrLess(color: ColorManager.redBright),
-                          style: getRegularStyle(fontSize: AppSize.s12)),
+                          style: getRegularStyle(fontSize: FontSize.s16)),
                     ],
                   ),
                 ],
@@ -148,64 +155,180 @@ class CoursePage extends StatelessWidget {
           ),
           SliverList(
             delegate: SliverChildBuilderDelegate(
-              (context, index) {
+                  (context, index) {
                 return Padding(
                   padding: const EdgeInsets.symmetric(
                       horizontal: AppPadding.p12, vertical: AppPadding.p8),
                   child: Container(
                     decoration: BoxDecoration(
-                        // color: ColorManager.mediumViolet,
                         borderRadius: BorderRadius.circular(15),
                         border: Border.all(color: ColorManager.grey)),
-                    child: InkWell(
-                      onTap: () {},
-                      child: ListTile(
-                        enabled: true,
-                        autofocus: true,
-                        leading: RichText(
-                          text: TextSpan(
-                            text: "${index + 1}",
-                            style: getBodyLargeStyle(
-                                fontSize: AppSize.s20,
-                                color: ColorManager.grayLight),
-                          ),
+                    child: ListTile(
+                      enabled: true,
+                      autofocus: true,
+                      leading: RichText(
+                        text: TextSpan(
+                          text: "${index + 1}",
+                          style: getBodyLargeStyle(
+                              fontSize: AppSize.s20,
+                              color: ColorManager.grayLight),
                         ),
-                        trailing: InkWell(
-                          onTap: () {},
-                          child: CircleAvatar(
-                            backgroundColor: ColorManager.SecondaryColorLogo,
-                            child: Icon(
-                              Icons.play_arrow,
-                              color: ColorManager.white,
-                            ),
-                          ),
+                      ),
+                      trailing: CircleAvatar(
+                        backgroundColor: ColorManager.SecondaryColorLogo,
+                        child: Icon(
+                          Icons.play_arrow,
+                          color: ColorManager.white,
                         ),
-                        title: RichText(
-                          text: TextSpan(
-                            text: "name Of Course",
-                            style: getRegularStyle(
-                                fontSize: AppSize.s20,
-                                color: ColorManager.black),
-                          ),
+                      ),
+                      title: RichText(
+                        text: TextSpan(
+                          text: "name Of Course",
+                          style: getRegularStyle(
+                              fontSize: AppSize.s20,
+                              color: ColorManager.black),
                         ),
-                        subtitle: RichText(
-                          text: TextSpan(
-                            text: "duration",
-                            style: getTitleMeduim(
-                                fontSize: AppSize.s14,
-                                color: ColorManager.SecondaryColorLogo),
-                          ),
+                      ),
+                      subtitle: RichText(
+                        text: TextSpan(
+                          text: "duration",
+                          style: getTitleMeduim(
+                              fontSize: AppSize.s14,
+                              color: ColorManager.SecondaryColorLogo),
                         ),
                       ),
                     ),
                   ),
                 );
               },
-              childCount: 5, // حدد عدد العناصر هنا
+              childCount: context.watch<CourseCubit>().isExpanded
+                  ? context.watch<CourseCubit>().totalItems
+                  : 3, // Show 4 items or all
             ),
           ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: Center(
+                child: MaterialButton(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                  splashColor: Colors.black,
+                  minWidth: MediaQuery.of(context).size.width * 0.88,
+                  height: MediaQuery.of(context).size.height / 15,
+                  color: ColorManager.black,
+                  child: Text(
+                    '${context.watch<CourseCubit>().isExpanded ? 'Show Less' : 'Show More'}',
+                    style: TextStyle(fontSize: 15, color: Colors.white),
+                  ),
+                  onPressed: () {
+                    context.read<CourseCubit>().toggleList();
+                    },
+                ),
+              ),
+            ),
+
+          ),
+          SliverToBoxAdapter(
+            child:   Padding(
+              padding: const EdgeInsets.symmetric(
+                  horizontal: AppPadding.p16, vertical: AppPadding.p8),              child: RichText(
+                text: TextSpan(
+                  text: "Student Feedback ",
+                  style: getBoldStyle(
+                      fontSize: FontSize.s24, color: ColorManager.black),
+                ),
+              ),
+            ),
+
+          ),
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+                  (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: AppPadding.p12, vertical: AppPadding.p8),
+                  child:  Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(),
+                      borderRadius: BorderRadius.circular(2),
+                     // color: ColorManager.primary,
+                    ),
+
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child:Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle
+                            ),
+                            child: RichText(
+                              text: TextSpan(
+                                text: "Abd Alurhman Alrifai ",
+                                style: getBoldStyle(
+                                    fontSize: 20, color: ColorManager.black),
+                              ),
+                            ),
+                          ),
+                          RatingWidgetCourse(
+                            hasPurchasedCourse: false,
+                          ),
+
+                          Container(
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle
+                            ),
+                            child: RichText(
+                              text: TextSpan(
+                                text: "This App is very important ! ",
+                                style: getRegularStyle(
+                                    fontSize: 20, color: ColorManager.black),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              },
+              childCount: context.watch<CourseCubit>().isExpanded
+                  ? context.watch<CourseCubit>().totalItems
+                  : 3, // Show 4 items or all
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: Center(
+                child: MaterialButton(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                  splashColor: Colors.black,
+                  minWidth: MediaQuery.of(context).size.width * 0.88,
+                  height: MediaQuery.of(context).size.height / 15,
+                  color: ColorManager.black,
+                  child: Text(
+                    '${context.watch<CourseCubit>().isExpanded ? 'Show Less' : 'Show More'}',
+                    style: TextStyle(fontSize: 15, color: Colors.white),
+                  ),
+                  onPressed: () {
+                    context.read<CourseCubit>().toggleList();
+                  },
+                ),
+              ),
+            ),
+
+          ),
         ],
-      ),
+      );
+  },
+),
       bottomNavigationBar: 1 == 3
           ? const SizedBox() // or any other widget for the 'true' case
           : BottomAppBar(

@@ -60,3 +60,8 @@ class UpdateCourseFailureState extends CourseState {
   String message;
   UpdateCourseFailureState({required this.message});
 }
+/////////////////////////////////////
+class IsExpanded extends CourseState {}
+class IsNotExpanded extends CourseState {}
+
+
