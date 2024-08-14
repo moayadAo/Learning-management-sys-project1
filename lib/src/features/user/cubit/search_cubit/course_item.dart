@@ -1,4 +1,3 @@
-import 'dart:ui';
 
 class CourseItem {
   String image;

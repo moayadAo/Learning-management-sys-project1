@@ -24,6 +24,7 @@ class TextFiledApp extends StatefulWidget {
       this.minLine = 1,
       this.fillColor = ColorManager.textFieldColor,
       this.textFieldHintColor = ColorManager.textFieldHintColor,
+      this.requiredField = false,
       this.helperText});
 
   final TextInputAction textInputAction;
@@ -35,6 +36,7 @@ class TextFiledApp extends StatefulWidget {
   final bool suffixIcon;
   final bool autofocus;
   final bool readOnly;
+  final bool requiredField;
   bool obscureText;
   final String? Function(String?)? validator;
   final Function(String)? onChanged;
@@ -64,7 +66,9 @@ class _TextFiledAppState extends State<TextFiledApp> {
       autofocus: widget.autofocus,
       validator: widget.validator ??
           (String? val) {
-            if (val!.trim().isEmpty) return 'Field is required*';
+            if (val!.trim().isEmpty && widget.requiredField) {
+              return 'Field is required*';
+            }
             return null;
           },
       onChanged: widget.onChanged,

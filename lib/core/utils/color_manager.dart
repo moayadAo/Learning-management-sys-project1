@@ -59,6 +59,7 @@ class ColorManager {
   static const blueLightButton = Color(0xFF83c5be);
   static const blueLight2Button = Color(0xFFa9def9);
   static const pinkButton = Color(0xFFff99c8);
+  static const yellow = Color(0xFFF9E85A);
 
   ///--- Scaffold BackGround
   static const scaffoldBackgroundLight = Color(0xffFAFAFA);

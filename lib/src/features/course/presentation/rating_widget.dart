@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:learning_system/src/features/course/mm/cubit/rating_cubit.dart';
 import '../../../../core/utils/color_manager.dart';
 import '../../../../core/utils/style_manager.dart';
 import '../../../../core/utils/values_manager.dart';
+import '../cubit/rate/rating_cubit.dart';
 
 class RatingWidgetCourse extends StatelessWidget {
   final bool hasPurchasedCourse; // أضف هذا المتغير
@@ -28,31 +28,31 @@ class RatingWidgetCourse extends StatelessWidget {
             Card(),
             hasPurchasedCourse
                 ? RatingBar.builder(
-              initialRating: rating,
-              minRating: 1,
-              direction: Axis.horizontal,
-              allowHalfRating: true,
-              itemCount: 5,
-              itemSize: AppSize.s24,
-              itemPadding: EdgeInsets.symmetric(horizontal: 0.0),
-              itemBuilder: (context, _) => const Icon(
-                Icons.star,
-                color: ColorManager.primaryColorLogo,
-              ),
-              onRatingUpdate: (newRating) {
-                context.read<RatingCubit>().updateRating(newRating);
-              },
-            )
+                    initialRating: rating,
+                    minRating: 1,
+                    direction: Axis.horizontal,
+                    allowHalfRating: true,
+                    itemCount: 5,
+                    itemSize: AppSize.s24,
+                    itemPadding: EdgeInsets.symmetric(horizontal: 0.0),
+                    itemBuilder: (context, _) => const Icon(
+                      Icons.star,
+                      color: ColorManager.primaryColorLogo,
+                    ),
+                    onRatingUpdate: (newRating) {
+                      context.read<RatingCubit>().updateRating(newRating);
+                    },
+                  )
                 : RatingBarIndicator(
-              rating: rating,
-              itemBuilder: (context, _) => const Icon(
-                Icons.star,
-                color: ColorManager.primaryColorLogo,
-              ),
-              itemCount: 5,
-              itemSize: AppSize.s24,
-              direction: Axis.horizontal,
-            ),
+                    rating: rating,
+                    itemBuilder: (context, _) => const Icon(
+                      Icons.star,
+                      color: ColorManager.primaryColorLogo,
+                    ),
+                    itemCount: 5,
+                    itemSize: AppSize.s24,
+                    direction: Axis.horizontal,
+                  ),
           ],
         );
       },

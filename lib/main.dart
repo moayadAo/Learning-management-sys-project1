@@ -6,13 +6,17 @@ import 'package:learning_system/core/cache/cache_helper.dart';
 import 'package:learning_system/core/services/service_locator.dart';
 import 'package:learning_system/core/utils/style_manager.dart';
 import 'package:learning_system/src/app.dart';
+
 import 'package:learning_system/src/features/course/mm/cubit/add_coure/add_course_cubit.dart';
-import 'package:learning_system/src/features/course/mm/cubit/rating_cubit.dart';
+
 import 'package:learning_system/src/features/quiz/cubit/answer/answer_cubit.dart';
 import 'package:learning_system/src/features/quiz/cubit/create_quiz/create_quiz_cubit.dart';
 import 'package:learning_system/src/features/quiz/cubit/cubit_quiz.dart';
+
+import 'package:learning_system/src/features/course/cubit/rate/rating_cubit.dart';
+import 'package:learning_system/src/features/course/cubit/video/video_cubit.dart';
+
 import 'package:learning_system/src/features/user/cubit/user_cubit.dart';
-import 'package:learning_system/src/features/video/cubit/video_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,7 +40,7 @@ void main() async {
       create: (_) => AddCourseCubit(),
     ),
     BlocProvider<VideoCubit>(
-      create: (_) => VideoCubit(),
-    ),
+      create: (_) => VideoCubit(api: DioConsumer(dio: Dio())),
+    )
   ], child: const EduBridgeApp()));
 }

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:learning_system/core/widgets/custom_button/custom_button.dart';
 
 import 'package:learning_system/core/widgets/sliver_app_bar/sliver_app_bar.dart';
 import 'package:learning_system/src/features/course/presentation/rating_widget.dart';
-import 'package:learning_system/src/features/user/cubit/search_cubit/course_item.dart';
 import 'package:readmore/readmore.dart';
 
 import '../../../../core/utils/color_manager.dart';

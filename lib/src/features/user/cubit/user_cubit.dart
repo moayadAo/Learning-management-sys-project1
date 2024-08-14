@@ -6,7 +6,7 @@ import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:learning_system/core/api/api_consumer.dart';
 import 'package:learning_system/core/cache/cache_helper.dart';
 import 'package:learning_system/core/errors/exceptions.dart';
-import 'package:learning_system/core/helper/upload_image_to_api.dart';
+import 'package:learning_system/core/helper/upload_file_to_api.dart';
 import 'package:learning_system/core/services/service_locator.dart';
 import 'package:learning_system/core/utils/app_string.dart';
 import 'package:learning_system/core/utils/app_url.dart';
