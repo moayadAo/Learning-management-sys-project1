@@ -57,18 +57,18 @@ class DioConsumer extends ApiConsumer {
   }
 
   @override
-  Future patch(
-    String url, {
-    data,
-    Map<String, dynamic>? queryParameters,
-    bool isFormData = false,
-  }) async {
+  Future patch(String url,
+      {data,
+      Map<String, dynamic>? queryParameters,
+      bool isFormData = false,
+      bool isFormUrlEncoded = false}) async {
     try {
-      final response = await dio.patch(
-        url,
-        data: isFormData ? FormData.fromMap(data) : data,
-        queryParameters: queryParameters,
-      );
+      final response = await dio.patch(url,
+          data: isFormData ? FormData.fromMap(data) : data,
+          queryParameters: queryParameters,
+          options: isFormUrlEncoded
+              ? Options(contentType: Headers.formUrlEncodedContentType)
+              : null);
       return response.data;
     } on DioException catch (e) {
       HandleDioException(e);

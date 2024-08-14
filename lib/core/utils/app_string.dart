@@ -20,4 +20,5 @@ class AppRoute {
   static const wishListScreen = "wish_list_page";
   static const enrollCourseScreen = "enroll_course";
   static const coursePageScreen = "course_page";
+  static const createVideoPage = "create_video_page";
 }

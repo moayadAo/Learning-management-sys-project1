@@ -6,12 +6,11 @@ abstract class ApiConsumer {
     bool isFormData = false,
   });
 
-  Future<dynamic> post(
-    String url, {
-    dynamic data,
-    Map<String, dynamic>? queryParameters,
-    bool isFormData = false,
-  });
+  Future<dynamic> post(String url,
+      {dynamic data,
+      Map<String, dynamic>? queryParameters,
+      bool isFormData = false,
+      bool isFormUrlEncoded = false});
 
   Future<dynamic> delete(
     String url, {
@@ -19,12 +18,11 @@ abstract class ApiConsumer {
     Map<String, dynamic>? queryParameters,
   });
 
-  Future<dynamic> patch(
-    String url, {
-    dynamic data,
-    Map<String, dynamic>? queryParameters,
-    bool isFormData = false,
-  });
+  Future<dynamic> patch(String url,
+      {dynamic data,
+      Map<String, dynamic>? queryParameters,
+      bool isFormData = false,
+      bool isFormUrlEncoded = false});
 
   Future<dynamic> put(
     String url, {

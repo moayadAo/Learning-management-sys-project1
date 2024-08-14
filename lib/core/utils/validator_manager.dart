@@ -8,9 +8,9 @@ class ValidatorManager {
 
   final RegularExpressions regExp = RegularExpressions();
 
-  String? validateName(String value) {
+  String? validateName(String value, {String? message}) {
     if (value.isEmpty) {
-      return 'Please enter your name';
+      return message ?? 'Please enter your name';
     }
     return null;
   }

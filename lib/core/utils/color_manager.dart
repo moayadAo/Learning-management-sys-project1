@@ -25,15 +25,12 @@ class ColorManager {
   static const Color white = Color(0xffffffff);
   static const Color black = Color(0xFF000000);
 
-  static const Color jewelry  = Color(0xFFEED127);
-  static const Color buttonColor  = Color(0xFFFFEBF0);
-
-
+  static const Color jewelry = Color(0xFFEED127);
+  static const Color buttonColor = Color(0xFFFFEBF0);
 
   static const Color primaryColorLogo = Color(0xFFFFC604);
   static const Color SecondaryColorLogo = Color(0xFF45a1b8);
   static const Color blackColorLogo = Color(0xFF3D3839);
-
 
   static const appBarColor = Color(0xffFAFAFA);
   // static const appBarColor = Color(0xffF3F3F3);
@@ -51,6 +48,17 @@ class ColorManager {
   static const skyBlue = Color(0xffB6DEFF);
   // static const darkGrey = Color(0xff827D89);
   // static const lightGrey = Color(0xffEFEEF0);
+
+  /// ---------------<button>----------------
+  static const violetButton = Color(0xFF8338ec);
+  static const violet3Button = Color(0xFF7209b7);
+  static const violet2Button = Color(0xFFb5179e);
+  static const greenLightButton = Color(0xFFa1ff0a);
+  static const redButton = Color(0xFFff006e);
+  static const whiteNiceButton = Color(0xFFfdfcdc);
+  static const blueLightButton = Color(0xFF83c5be);
+  static const blueLight2Button = Color(0xFFa9def9);
+  static const pinkButton = Color(0xFFff99c8);
 
   ///--- Scaffold BackGround
   static const scaffoldBackgroundLight = Color(0xffFAFAFA);

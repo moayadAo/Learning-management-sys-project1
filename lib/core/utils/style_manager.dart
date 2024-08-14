@@ -121,7 +121,7 @@ TextStyle getMediumStyle(
     {double? fontSize = FontSize.s16, Color? color, double? letterSpacing}) {
   return _getTextStyle(
       fontSize: fontSize,
-      fontWeight: FontWegihtManager.medium,
+      fontWeight: FontWegihtManager.regular,
       color: color,
       letterSpacing: letterSpacing);
 }
@@ -144,8 +144,11 @@ TextStyle getPoppinsStyle(
       fontWeight: fontWeight,
       color: color);
 }
+
 ///headlineLarge = using in head line in page it is express about
-TextStyle getMoreOrLess(
-    {double? fontSize, Color? color,}) {
+TextStyle getMoreOrLess({
+  double? fontSize,
+  Color? color,
+}) {
   return TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: color);
 }

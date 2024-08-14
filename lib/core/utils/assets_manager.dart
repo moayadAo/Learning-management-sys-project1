@@ -43,6 +43,14 @@ class AssetsManager {
   static const String welcome2 = '$imagePath/welcome2.png';
   static const String welcome3 = '$imagePath/welcome3.png';
 
+  ///-----------------<Video>---------------------///
+  static const String videoImagePath = '${imagePath}/video';
+  static const String createVideo1 = '$videoImagePath/create_video1.png';
+  static const String createVideo2 = '$videoImagePath/create_video2.png';
+  static const String createVideo3 = '$videoImagePath/create_video3.png';
+  static const String createVideo4 = '$videoImagePath/create_video4.png';
+  static const String createVideo5 = '$videoImagePath/create_video5.png ';
+
   ///=================<<information>>=================///
   static const String notFound = '$informationPath/not_found.svg';
   static const String imageDefault = '$informationPath/image_default2.svg';
