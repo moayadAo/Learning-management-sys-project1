@@ -4,7 +4,6 @@ import 'package:learning_system/src/features/auth/signup/view/choose_role.dart';
 import 'package:learning_system/src/features/auth/signup/view/sign_up_page_user.dart';
 import 'package:learning_system/src/features/auth/splash_page/view/splash_page.dart';
 import 'package:learning_system/src/features/auth/welcome/welcome.dart';
-import 'package:learning_system/src/features/course/presentation/add_course/add_course.dart';
 import 'package:learning_system/src/features/course/presentation/course_page.dart';
 
 import 'package:learning_system/src/features/quiz/presentation/create_quize.dart';

@@ -13,6 +13,15 @@ class CreateVideoFailureState extends VideoStates {
   CreateVideoFailureState({required this.message});
 }
 
+class LoadingVideoState extends VideoStates {}
+
+class SuccessVideoState extends VideoStates {}
+
+class ErrorVideoState extends VideoStates {
+  String message;
+  ErrorVideoState({required this.message});
+}
+
 class GetAllVideoLoadingState extends VideoStates {}
 
 class GetAllVideoSuccessState extends VideoStates {}

@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
+import 'package:flick_video_player/flick_video_player.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:learning_system/core/api/api_consumer.dart';
 import 'package:learning_system/core/errors/exceptions.dart';
@@ -11,15 +12,33 @@ import 'package:learning_system/src/features/course/cubit/video/video_states.dar
 import 'package:learning_system/src/features/course/data/models/video/get_model/get_all_video_course.dart';
 import 'package:learning_system/src/features/course/data/models/video/get_model/get_video_model.dart';
 import 'package:learning_system/src/features/course/data/models/video/video_model/video_data_model.dart';
+import 'package:video_player/video_player.dart';
 
 class VideoCubit extends Cubit<VideoStates> {
   ApiConsumer api;
+  late FlickManager flickManager;
+
   VideoCubit({required this.api}) : super(InitialVideoState());
   VideoDataModel? videoData;
   List<VideoDataModel> videoList = [];
 
   selectVideo() {
     emit(SelectdVideoState());
+  }
+
+  displayVideo() {
+    emit(LoadingVideoState());
+    try {
+      flickManager = FlickManager(
+          videoPlayerController: VideoPlayerController.networkUrl(
+        Uri.parse(
+            "https://mazwai.com/videvo_files/video/free/2015-11/small_watermarked/9th-may_preview.webm"),
+      ));
+      emit(SuccessVideoState());
+    } on ServerException catch (e) {
+      //should
+      emit(ErrorVideoState(message: e.errorModel.message!));
+    }
   }
 
   createVideo({
@@ -107,5 +126,29 @@ class VideoCubit extends Cubit<VideoStates> {
       emit(UpdateVideoFailureState(message: e.errorModel.message!));
     }
   }
+
+  /// abd pick video
+//   Future<List<File>?> pickMultipleVideos() async {
+// emit(LoadingUploadVideoState());
+//     FilePickerResult? result = await FilePicker.platform.pickFiles(
+//       type: FileType.video,
+//       allowMultiple: true,
+//     );
+//     if (result != null) {
+//       List<File> list = result.paths.map((path) => File(path!)).toList();
+//       // Calculate the total size
+//       int totalSizeInBytes = list.fold(0, (sum, file) => sum + file.lengthSync());
+//       double num =(totalSizeInBytes / (1024 * 1024)) ;
+//       double num2 =num*100;
+//       int num3 = num2.round();
+//        totalSizeInMB =num3/100;
+//       print("____________________________________________________________________________________________________________________Total Size: $totalSizeInMB MB");
+//       emit(SuccessUploadVideoState());
+//       return list;
+//     }else{
+//       emit(ErrorUploadVideoState());
+//     return null;
+//   }}
 }
-/// note Video was a XFile and the methode upload to video also take XFile i convert to FIle 
+
+/// note Video was a XFile and the methode upload to video also take XFile i convert to FIle
