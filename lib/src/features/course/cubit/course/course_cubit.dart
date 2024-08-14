@@ -12,6 +12,17 @@ import 'package:learning_system/src/features/course/data/models/course/get_users
 import 'package:learning_system/src/features/course/data/models/rate/rate_model.dart';
 
 class CourseCubit extends Cubit<CourseState> {
+
+  ///for test
+
+  final int totalItems = 20;
+  bool isExpanded = false;
+
+  void toggleList() {
+    isExpanded = !isExpanded;
+    emit(isExpanded ? IsExpanded() : IsNotExpanded());
+  }
+/////////////////////////////////////////////////////////
   ApiConsumer api;
   CourseDataModel? course;
   List<CourseDataModel> listCourse = [];

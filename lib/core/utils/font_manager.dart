@@ -5,6 +5,8 @@ class FontManager {
   static const fontFamilyEN = '';
   static const fontFamilyAR = '';
   static const fontFamilyPoppins = "Poppins";
+  static const fontFamilyRobotoCondensed = "RobotoCondensed";
+
 }
 
 //**** Font Weghit Every Font ****//
