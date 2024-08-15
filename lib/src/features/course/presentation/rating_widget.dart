@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:learning_system/core/utils/font_manager.dart';
 import '../../../../core/utils/color_manager.dart';
 import '../../../../core/utils/style_manager.dart';
 import '../../../../core/utils/values_manager.dart';
@@ -22,7 +23,7 @@ class RatingWidgetCourse extends StatelessWidget {
               text: TextSpan(
                 text: "Rate :",
                 style: getBoldStyle(
-                    fontSize: AppSize.s18, color: ColorManager.black),
+                    fontSize: FontSize.s16, color: ColorManager.black),
               ),
             ),
             Card(),
@@ -33,7 +34,7 @@ class RatingWidgetCourse extends StatelessWidget {
                     direction: Axis.horizontal,
                     allowHalfRating: true,
                     itemCount: 5,
-                    itemSize: AppSize.s24,
+                    itemSize: AppSize.s20,
                     itemPadding: EdgeInsets.symmetric(horizontal: 0.0),
                     itemBuilder: (context, _) => const Icon(
                       Icons.star,

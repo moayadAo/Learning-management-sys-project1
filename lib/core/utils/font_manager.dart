@@ -6,6 +6,8 @@ class FontManager {
   static const fontFamilyAR = '';
   static const fontFamilyPoppins = "Poppins";
   static const fontFamilyRobotoCondensed = "RobotoCondensed";
+  static const fontFamilyIBMPlexSans = "IBM Plex Sans";
+
 
 }
 

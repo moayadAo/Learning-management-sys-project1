@@ -10,22 +10,22 @@ import '../../utils/values_manager.dart';
 class CustomButton extends StatelessWidget {
   final void Function() onPressed ;
   final String text;
-
-  CustomButton({super.key,required this.onPressed, required this.text});
+Color color;
+  CustomButton({super.key,required this.onPressed, required this.text,required this.color});
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: AppSize.s240,
+      width: AppSize.s280+40,
       height:AppSize.s60,
       child: ElevatedButton(
 
         style: ElevatedButton.styleFrom(
           foregroundColor: ColorManager.black,
-          backgroundColor: ColorManager.SecondaryColorLogo,
+          backgroundColor: color,
           padding: EdgeInsets.symmetric(
               horizontal: AppPadding.p20, vertical: AppPadding.p12), // Text and icon color
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15), // Rounded corners
+            borderRadius: BorderRadius.circular(10), // Rounded corners
           ),
           elevation: 5, // Elevation for shadow effect
         ),
