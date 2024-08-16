@@ -6,7 +6,9 @@ import 'package:learning_system/src/features/auth/splash_page/view/splash_page.d
 import 'package:learning_system/src/features/auth/welcome/welcome.dart';
 import 'package:learning_system/src/features/course/presentation/article_screens/create_article_page.dart';
 import 'package:learning_system/src/features/course/presentation/article_screens/update_article.dart';
+import 'package:learning_system/src/features/course/presentation/course/create_course.dart';
 import 'package:learning_system/src/features/course/presentation/course_page.dart';
+import 'package:learning_system/src/features/course/presentation/video_screens/update_video.dart';
 
 import 'package:learning_system/src/features/quiz/presentation/create_quize.dart';
 import 'package:learning_system/src/features/quiz/presentation/quiz_sccreen.dart';
@@ -27,7 +29,7 @@ class EduBridgeApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: 'create_article_page', // Start from splash page
+      initialRoute: 'create_quiz_page', // Start from splash page
       routes: {
         'splash': (context) => const SplashPage(),
         'welcome': (context) => WelcomePage(),
@@ -42,7 +44,10 @@ class EduBridgeApp extends StatelessWidget {
         'course_page': (context) => const CoursePage(),
         'create_video_page': (context) => CreateVideoPage(),
         'create_article_page': (context) => CreateArticlePage(),
-        'update_article_page': (context) => UpdateArticlePage()
+        'update_article_page': (context) => UpdateArticlePage(),
+        'update_video_page': (context) => UpdateVideoPage(),
+        'create_course_page': (context) => CreateCoursePage(),
+        'create_quiz_page': (context) => CreateQuiz(),
         // Add any additional routes here
       },
     );

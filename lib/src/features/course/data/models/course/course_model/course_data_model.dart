@@ -11,6 +11,7 @@ class CourseDataModel {
   List<String> teachersId;
   @JsonKey(name: '_id')
   String id;
+  String status;
   String name;
   double? rate;
   double? cost;
@@ -33,6 +34,7 @@ class CourseDataModel {
 
   CourseDataModel({
     required this.id,
+    required this.status,
     required this.name,
     this.rate,
     this.ratings,

@@ -6,11 +6,13 @@ part 'quiz_data_model.g.dart';
 class QuizDataModel {
   @JsonKey(name: '_id')
   String id;
+  int order;
   String name;
   @JsonKey(name: 'qustions')
   List<QuestionDataModel> questions;
   int? mark;
   QuizDataModel({
+    required this.order,
     required this.name,
     required this.id,
     required this.questions,

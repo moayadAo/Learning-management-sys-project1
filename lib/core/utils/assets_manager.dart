@@ -51,6 +51,10 @@ class AssetsManager {
   static const String createVideo4 = '$videoImagePath/create_video4.png';
   static const String createVideo5 = '$videoImagePath/create_video5.png ';
 
+  ///-----------------<Course>---------------------///
+  static const String courseImagePath = '${imagePath}/course';
+  static const String createCourse = '$courseImagePath/createCourse3.png';
+
   ///-----------------<Article>---------------------///
   static const String articleImagePath = '${imagePath}/article';
   static const String createArticle1 = '$articleImagePath/article_image1.png';

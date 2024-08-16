@@ -2,15 +2,19 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:learning_system/core/helper/sizer_media_query.dart';
+import 'package:learning_system/core/utils/app_string.dart';
 import 'package:learning_system/core/utils/assets_manager.dart';
 import 'package:learning_system/core/utils/color_manager.dart';
 import 'package:learning_system/core/utils/font_manager.dart';
 import 'package:learning_system/core/utils/style_manager.dart';
 import 'package:learning_system/core/utils/validator_manager.dart';
 import 'package:learning_system/core/utils/values_manager.dart';
+import 'package:learning_system/core/widgets/dialog/dialog.dart';
 import 'package:learning_system/core/widgets/loading_indicator.dart';
 import 'package:learning_system/core/widgets/snack_bar.dart';
 import 'package:learning_system/core/widgets/textfield_app.dart';
+import 'package:learning_system/core/widgets/white_blue_button.dart';
+import 'package:learning_system/src/features/course/cubit/course/course_cubit.dart';
 import 'package:learning_system/src/features/course/cubit/video/video_cubit.dart';
 import 'package:learning_system/src/features/course/cubit/video/video_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -141,22 +145,64 @@ class CreateVideoPage extends StatelessWidget {
                               message: 'please enter duration of video'),
                           keyboardType: TextInputType.number,
                         ),
+                        const SizedBox(height: AppPadding.p20),
+                        TextFiledApp(
+                          controller: context.read<VideoCubit>().videoOrder,
+                          hintText: 'Enter Order of video in course',
+                          iconData: Icons.arrow_outward_rounded,
+                          validator: (p0) => ValidatorManager().validateName(
+                              p0!,
+                              message: 'please enter order of video'),
+                          keyboardType: TextInputType.number,
+                        ),
                         const SizedBox(height: AppPadding.p32),
                         state is CreateVideoLoadingState
                             ? LoadingIndicator()
                             : state is CreateVideoSuccessState
-                                ? Text('success')
+                                ? Text('sda')
                                 : ElevatedButton(
                                     onPressed: () {
                                       if (_formKey.currentState!.validate() &&
                                           _videoFile != null) {
-                                        context.read<VideoCubit>().createVideo(
-                                            name: nameController.text,
-                                            duration: int.parse(
-                                                durationController.text),
-                                            video: _videoFile!,
-                                            description:
-                                                descriptionController.text);
+                                        if (!context
+                                            .read<CourseCubit>()
+                                            .order
+                                            .contains(int.parse(context
+                                                .read<VideoCubit>()
+                                                .videoOrder
+                                                .text
+                                                .trim()))) {
+                                          context
+                                              .read<VideoCubit>()
+                                              .createVideo(
+                                                  order: int.parse(context
+                                                      .read<VideoCubit>()
+                                                      .videoOrder
+                                                      .text
+                                                      .trim()),
+                                                  name: nameController.text,
+                                                  duration: int.parse(
+                                                      durationController.text),
+                                                  video: _videoFile!,
+                                                  description:
+                                                      descriptionController
+                                                          .text);
+                                        } else {
+                                          if (!_isSnackBarVisible) {
+                                            _isSnackBarVisible = true;
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                                  SnackBarMessage(
+                                                          message:
+                                                              'choose the order is revrsed')
+                                                      .buildSnackBar(context),
+                                                )
+                                                .closed
+                                                .then((reason) {
+                                              _isSnackBarVisible = false;
+                                            });
+                                          }
+                                        }
                                       } else {
                                         if (!_isSnackBarVisible) {
                                           _isSnackBarVisible = true;
@@ -203,6 +249,18 @@ class CreateVideoPage extends StatelessWidget {
                                       ],
                                     ),
                                   ),
+                        const SizedBox(height: AppPadding.p20),
+                        WhiteBlueButton(
+                          height: 50,
+                          label: 'cancel',
+                          isBlue: false,
+                          colorbut: ColorManager.redBright,
+                          width: 50,
+                          onPressed: () {
+                            Navigator.pop(context);
+                            context.read<VideoCubit>().resetVideoAfterCreate();
+                          },
+                        )
                       ],
                     ),
                   ),
@@ -213,5 +271,25 @@ class CreateVideoPage extends StatelessWidget {
         );
       },
     );
+  }
+
+  void _showSuccessDialog(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      showConfirm(
+        title: 'Video Create Done',
+        context: context,
+        confirm: () {
+          context
+              .read<CourseCubit>()
+              .videoId
+              .add(context.read<VideoCubit>().id!);
+          context.read<CourseCubit>().order.add(
+              int.parse(context.read<VideoCubit>().videoOrder.text.trim()));
+          context.read<VideoCubit>().resetVideoAfterCreate();
+          Navigator.pop(context);
+          Navigator.pop(context);
+        },
+      );
+    });
   }
 }

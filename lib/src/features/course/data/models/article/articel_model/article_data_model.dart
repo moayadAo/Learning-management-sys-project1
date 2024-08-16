@@ -5,6 +5,7 @@ part 'article_data_model.g.dart';
 class ArticleDataModel {
   @JsonKey(name: '_id')
   String id;
+  int order;
   String title;
   @JsonKey(name: 'path_file')
   String pathFile;
@@ -14,6 +15,7 @@ class ArticleDataModel {
 
   ArticleDataModel(
       {required this.id,
+      required this.order,
       required this.author,
       required this.category,
       required this.pathFile,

@@ -9,6 +9,7 @@ part of 'video_data_model.dart';
 VideoDataModel _$VideoDataModelFromJson(Map<String, dynamic> json) =>
     VideoDataModel(
       id: json['_id'] as String,
+      order: (json['order'] as num).toInt(),
       name: json['name'] as String,
       duration: (json['duration'] as num).toInt(),
       pathVideo: json['name_video'] as String,
@@ -18,6 +19,7 @@ VideoDataModel _$VideoDataModelFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$VideoDataModelToJson(VideoDataModel instance) =>
     <String, dynamic>{
       '_id': instance.id,
+      'order': instance.order,
       'name': instance.name,
       'description': instance.description,
       'duration': instance.duration,

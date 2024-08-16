@@ -18,6 +18,7 @@ class ArticleCubit extends Cubit<ArticleState> {
   ArticleDataModel? article;
 
   TextEditingController articleTitle = TextEditingController();
+  TextEditingController articleOrder = TextEditingController();
 
   TextEditingController articleAuthor = TextEditingController();
 
@@ -44,6 +45,7 @@ class ArticleCubit extends Cubit<ArticleState> {
   craeteArticleApi({
     required String title,
     required File pathFile,
+    required int order,
     String? author,
     String? category,
   }) async {
@@ -52,6 +54,7 @@ class ArticleCubit extends Cubit<ArticleState> {
       final response =
           await api.post(AppUrl.createArticle, isFormData: true, data: {
         ApiKey.articleTitle: title,
+        ApiKey.order: order,
         ApiKey.articlePathFile: await uploadDocumentToApi(pathFile),
         ApiKey.articleAuthor: author ?? '',
         ApiKey.articleCategory: category ?? '',
@@ -133,6 +136,15 @@ class ArticleCubit extends Cubit<ArticleState> {
     articleTitle.text = article!.title;
     articleAuthor.text = article!.author;
     articleCategory.text = article!.category;
+    emit(InitialArticleState());
+  }
+
+  resetArticleAfterCreate() {
+    articleOrder = TextEditingController();
+    articleAuthor = TextEditingController();
+    articleCategory = TextEditingController();
+    articleTitle = TextEditingController();
+    id = '';
     emit(InitialArticleState());
   }
 }

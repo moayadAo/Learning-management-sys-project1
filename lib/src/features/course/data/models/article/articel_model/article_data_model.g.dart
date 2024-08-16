@@ -9,6 +9,7 @@ part of 'article_data_model.dart';
 ArticleDataModel _$ArticleDataModelFromJson(Map<String, dynamic> json) =>
     ArticleDataModel(
       id: json['_id'] as String,
+      order: (json['order'] as num).toInt(),
       author: json['author'] as String,
       category: json['category'] as String,
       pathFile: json['path_file'] as String,
@@ -21,6 +22,7 @@ ArticleDataModel _$ArticleDataModelFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$ArticleDataModelToJson(ArticleDataModel instance) =>
     <String, dynamic>{
       '_id': instance.id,
+      'order': instance.order,
       'title': instance.title,
       'path_file': instance.pathFile,
       'author': instance.author,

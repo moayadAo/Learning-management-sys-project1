@@ -5,6 +5,7 @@ part 'video_data_model.g.dart';
 class VideoDataModel {
   @JsonKey(name: '_id')
   String id;
+  int order;
   String name;
   String? description;
   int duration;
@@ -12,6 +13,7 @@ class VideoDataModel {
   String pathVideo;
   VideoDataModel({
     required this.id,
+    required this.order,
     required this.name,
     required this.duration,
     required this.pathVideo,

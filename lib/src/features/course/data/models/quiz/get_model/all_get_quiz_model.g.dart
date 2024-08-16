@@ -8,9 +8,7 @@ part of 'all_get_quiz_model.dart';
 
 AllGetQuizModel _$AllGetQuizModelFromJson(Map<String, dynamic> json) =>
     AllGetQuizModel(
-      data: (json['data'] as List<dynamic>)
-          .map((e) => QuizDataModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      data: GetAllHelperData.fromJson(json['data'] as Map<String, dynamic>),
       status: json['status'] as String,
     );
 

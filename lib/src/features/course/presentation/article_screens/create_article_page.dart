@@ -10,11 +10,14 @@ import 'package:learning_system/core/utils/font_manager.dart';
 import 'package:learning_system/core/utils/style_manager.dart';
 import 'package:learning_system/core/utils/validator_manager.dart';
 import 'package:learning_system/core/utils/values_manager.dart';
+import 'package:learning_system/core/widgets/dialog/dialog.dart';
 import 'package:learning_system/core/widgets/loading_indicator.dart';
 import 'package:learning_system/core/widgets/snack_bar.dart';
 import 'package:learning_system/core/widgets/textfield_app.dart';
+import 'package:learning_system/core/widgets/white_blue_button.dart';
 import 'package:learning_system/src/features/course/cubit/article/article_cubit.dart';
 import 'package:learning_system/src/features/course/cubit/article/article_states.dart';
+import 'package:learning_system/src/features/course/cubit/course/course_cubit.dart';
 
 class CreateArticlePage extends StatelessWidget {
   CreateArticlePage({super.key});
@@ -133,31 +136,91 @@ class CreateArticlePage extends StatelessWidget {
                           hintText: 'Enter Article Author',
                           iconData: Icons.edit_document,
                         ),
+                        const SizedBox(height: AppPadding.p20),
+                        TextFiledApp(
+                          controller: context.read<ArticleCubit>().articleOrder,
+                          hintText: 'Enter Article order in course',
+                          iconData: Icons.arrow_outward_rounded,
+                          validator: (p0) => ValidatorManager().validateName(
+                              p0!,
+                              message: 'please enter order of video'),
+                          keyboardType: TextInputType.number,
+                        ),
                         const SizedBox(height: AppPadding.p32),
                         state is CreateArticleLoadingState
                             ? LoadingIndicator()
                             : state is CreateArticleSuccessState
-                                ? Text('success')
+                                ? showConfirm(
+                                    title: 'Article Create Done',
+                                    context: context,
+                                    confirm: () {
+                                      context.read<CourseCubit>().articleId.add(
+                                          context.read<ArticleCubit>().id!);
+
+                                      context.read<CourseCubit>().order.add(
+                                          int.parse(context
+                                              .read<ArticleCubit>()
+                                              .articleOrder
+                                              .text
+                                              .trim()));
+                                      context
+                                          .read<ArticleCubit>()
+                                          .resetArticleAfterCreate();
+                                      Navigator.pop(context);
+                                      Navigator.pop(context);
+                                    })
                                 : ElevatedButton(
                                     onPressed: () {
                                       if (_formKey.currentState!.validate() &&
                                           _articleFile != null) {
-                                        context
-                                            .read<ArticleCubit>()
-                                            .craeteArticleApi(
-                                                title: context
-                                                    .read<ArticleCubit>()
-                                                    .articleTitle
-                                                    .text,
-                                                pathFile: _articleFile!,
-                                                author: context
-                                                    .read<ArticleCubit>()
-                                                    .articleAuthor
-                                                    .text,
-                                                category: context
-                                                    .read<ArticleCubit>()
-                                                    .articleCategory
-                                                    .text);
+                                        if (!context
+                                            .read<CourseCubit>()
+                                            .order
+                                            .contains(int.parse(context
+                                                .read<ArticleCubit>()
+                                                .articleOrder
+                                                .text
+                                                .trim()))) {
+                                          context
+                                              .read<ArticleCubit>()
+                                              .craeteArticleApi(
+                                                  order:
+                                                      int.parse(
+                                                          context
+                                                              .read<
+                                                                  ArticleCubit>()
+                                                              .articleOrder
+                                                              .text
+                                                              .trim()),
+                                                  title: context
+                                                      .read<ArticleCubit>()
+                                                      .articleTitle
+                                                      .text,
+                                                  pathFile: _articleFile!,
+                                                  author: context
+                                                      .read<ArticleCubit>()
+                                                      .articleAuthor
+                                                      .text,
+                                                  category: context
+                                                      .read<ArticleCubit>()
+                                                      .articleCategory
+                                                      .text);
+                                        } else {
+                                          if (!_isSnackBarVisible) {
+                                            _isSnackBarVisible = true;
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                                  SnackBarMessage(
+                                                          message:
+                                                              'choose the order is revrsed')
+                                                      .buildSnackBar(context),
+                                                )
+                                                .closed
+                                                .then((reason) {
+                                              _isSnackBarVisible = false;
+                                            });
+                                          }
+                                        }
                                       } else {
                                         if (!_isSnackBarVisible) {
                                           _isSnackBarVisible = true;
@@ -204,18 +267,20 @@ class CreateArticlePage extends StatelessWidget {
                                       ],
                                     ),
                                   ),
-
-                        ///delete
-                        TextButton(
-                            onPressed: () async {
-                              await context
-                                  .read<ArticleCubit>()
-                                  .initForUpdatePage(
-                                      id: context.read<ArticleCubit>().id!);
-                              Navigator.pushNamed(
-                                  context, AppRoute.updateArticlePage);
-                            },
-                            child: Text('update'))
+                        const SizedBox(height: AppPadding.p20),
+                        WhiteBlueButton(
+                          height: 50,
+                          label: 'cancel',
+                          isBlue: false,
+                          colorbut: ColorManager.redBright,
+                          width: 50,
+                          onPressed: () {
+                            Navigator.pop(context);
+                            context
+                                .read<ArticleCubit>()
+                                .resetArticleAfterCreate();
+                          },
+                        )
                       ],
                     ),
                   ),
