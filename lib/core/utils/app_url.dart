@@ -1,4 +1,4 @@
-const baseUrl = "http://192.168.1.6:8080/";
+const baseUrl = "http://192.168.43.224:8080/";
 const baseServ = "https://ptc.yorkacademy.uk/";
 // const baseUrl = "${baseServ}api/";
 const storageUrl = "${baseServ}storage/";

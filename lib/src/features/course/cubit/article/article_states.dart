@@ -38,6 +38,12 @@ class DeleteArticleFailureState extends ArticleState {
   DeleteArticleFailureState({required this.message});
 }
 
+class LoadArticleLoadingState extends ArticleState {}
+
+class LoadArticleSuccessState extends ArticleState {}
+
+class LoadArticleFailureState extends ArticleState {}
+
 class UpdateArticleLoadingState extends ArticleState {}
 
 class UpdateArticleSuccessState extends ArticleState {}

@@ -37,7 +37,7 @@ class AppRoute {
   ////article
 
   static const articleDetails ="article_details" ;
-
-
+  static const createArticlePage = "create_article_page";
+  static const updateArticlePage = "update_article_page";
 
 }

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:learning_system/core/utils/app_string.dart';
 import 'package:learning_system/core/utils/assets_manager.dart';
 import 'package:learning_system/core/utils/color_manager.dart';
 import 'package:learning_system/core/utils/style_manager.dart';
 import 'package:learning_system/core/utils/values_manager.dart';
+import 'package:learning_system/src/features/article/cubit/pdf_cubit.dart';
 
 
 class QuizWelcome extends StatelessWidget {
@@ -48,7 +51,8 @@ class QuizWelcome extends StatelessWidget {
                   style: TextStyle(fontSize: 15, color: Colors.white),
                 ),
                 onPressed: () {
-                  Navigator.pushNamed(context, "quiz_page");
+                  Navigator.pushNamed(context, AppRoute.fileViewWidget);
+                  context.read<FileViewCubit>().loadPdf("https://drive.google.com/uc?export=download&id=1xxvwYFCH1x_vilvOMwUsKduqJIB7UeXv");
                 },
               ),
             ),

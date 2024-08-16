@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:learning_system/core/utils/color_manager.dart';
 import 'package:learning_system/core/utils/values_manager.dart';
 
-
-
 class SearchTextField extends StatelessWidget {
-   SearchTextField({super.key,required this.onChanged,required this.iconClosePressed});
+  SearchTextField({
+    super.key,
+    required this.onChanged,
+    required this.iconClosePressed,
+  });
   void Function(String) onChanged;
   void Function() iconClosePressed;
   @override
@@ -15,24 +17,18 @@ class SearchTextField extends StatelessWidget {
       decoration: InputDecoration(
         enabled: true,
         isDense: true,
-        contentPadding:const EdgeInsets.all(AppPadding.p16),
-        focusedBorder:const  OutlineInputBorder(
-          borderRadius:
-          BorderRadius.all(Radius.circular(25)),
-          borderSide: BorderSide(
-              width: 1, color: ColorManager.white),
+        contentPadding: const EdgeInsets.all(AppPadding.p16),
+        focusedBorder: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(25)),
+          borderSide: BorderSide(width: 1, color: ColorManager.white),
         ),
         disabledBorder: const OutlineInputBorder(
-          borderRadius:
-          BorderRadius.all(Radius.circular(4)),
-          borderSide:
-          BorderSide(width: 1, color: Colors.black),
+          borderRadius: BorderRadius.all(Radius.circular(4)),
+          borderSide: BorderSide(width: 1, color: Colors.black),
         ),
-        border:const  OutlineInputBorder(
-          borderRadius:
-          BorderRadius.all(Radius.circular(25)),
-          borderSide:
-          BorderSide(width: 1, color: Colors.black),
+        border: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(25)),
+          borderSide: BorderSide(width: 1, color: Colors.black),
         ),
         prefixIconConstraints: BoxConstraints(),
         prefixIcon: Container(
@@ -42,10 +38,8 @@ class SearchTextField extends StatelessWidget {
         filled: true,
         fillColor: ColorManager.white,
         hintText: '   Search...',
-        suffixIcon: IconButton(
-          icon: Icon(Icons.clear),
-          onPressed:iconClosePressed
-        ),
+        suffixIcon:
+            IconButton(icon: Icon(Icons.clear), onPressed: iconClosePressed),
       ),
     );
   }

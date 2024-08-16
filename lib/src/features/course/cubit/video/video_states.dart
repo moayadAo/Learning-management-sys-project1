@@ -2,7 +2,11 @@ abstract class VideoStates {}
 
 class InitialVideoState extends VideoStates {}
 
-class SelectdVideoState extends VideoStates {}
+class LoadVideoLoadingState extends VideoStates {}
+
+class LoadVideoSuccessState extends VideoStates {}
+
+class LoadVideoFailureState extends VideoStates {}
 
 class CreateVideoLoadingState extends VideoStates {}
 

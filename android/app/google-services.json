@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "45990512936",
+    "project_id": "lms7-92a1e",
+    "storage_bucket": "lms7-92a1e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:45990512936:android:283dc95b42cd47642fe81d",
+        "android_client_info": {
+          "package_name": "com.example.learning_system"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDmezzYdaJCMZdayMl3DZKAAa_Ke7io3kc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

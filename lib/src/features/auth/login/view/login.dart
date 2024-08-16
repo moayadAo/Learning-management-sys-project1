@@ -104,7 +104,7 @@ class LoginPage extends StatelessWidget {
                               .validatePassword(value!),
                           controller: passwordController,
                           obscureText: true,
-                          suffixIcon: true,
+                          wantObscure: true,
                           hintText: 'Enter Your Password',
                         ),
                       ),
