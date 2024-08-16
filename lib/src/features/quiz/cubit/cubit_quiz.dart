@@ -105,7 +105,8 @@ class QuizCubit extends Cubit<QuizState> {
     try {
       emit(GetAllLoadingQuizState());
       final response = await api.getApi(AppUrl.getAllQuiz(courseId: id));
-      List<QuizDataModel> listQuiz = AllGetQuizModel.fromJson(response).data;
+      List<QuizDataModel> listQuiz =
+          AllGetQuizModel.fromJson(response).data.quiz;
       emit(GetAllSuccessQuizState());
     } on ServerException catch (e) {
       emit(GetAllFailureQuizState(massage: e.errorModel.message!));
