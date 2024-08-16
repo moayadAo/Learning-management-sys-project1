@@ -29,7 +29,7 @@ TextStyle _getTextStyle(
     Color? color,
     double? letterSpacing}) {
   return TextStyle(
-      fontFamily: FontManager.fontFamilyRobotoCondensed,
+      fontFamily: FontManager.fontFamilyIBMPlexSans,
       fontSize: fontSize,
       decoration: TextDecoration.none,
       letterSpacing: letterSpacing,

@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:learning_system/core/utils/app_string.dart';
+import 'package:learning_system/core/widgets/new_search/search_textfield.dart';
+import 'package:learning_system/src/features/user/cubit/search_cubit/course_item.dart';
+import 'package:learning_system/src/features/user/cubit/search_cubit/search_cubit.dart';
+import 'package:learning_system/src/features/user/cubit/search_cubit/search_state.dart';
 
 import '../../../../core/utils/color_manager.dart';
 import '../../../../core/utils/icon_manager.dart';
 import '../../../../core/utils/style_manager.dart';
 import '../../../../core/utils/values_manager.dart';
-import 'package:learning_system/core/widgets/new_search/search_textfield.dart';
-import '../cubit/search_cubit/course_item.dart';
-import '../cubit/search_cubit/search_cubit.dart';
-import '../cubit/search_cubit/search_state.dart';
 
-class WishListPage extends StatelessWidget {
-  WishListPage({super.key});
+class CoursesTeacher extends StatelessWidget {
+  CoursesTeacher({super.key});
   final List<CourseItem> course = CourseItem.courseItem;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => SearchCubit(course),
+      create: (context) => SearchCubit(course), // توفير قائمة الدورات هنا
       child: Scaffold(
         body: CustomScrollView(
           slivers: [
@@ -29,14 +29,14 @@ class WishListPage extends StatelessWidget {
                   Navigator.pop(context);
                 },
               ),
-              backgroundColor: ColorManager.primaryColorLogo,
+              backgroundColor: ColorManager.SecondaryColorLogo,
               expandedHeight: AppSize.s160,
               floating: true,
               pinned: true,
               snap: false,
               title: RichText(
                 text: TextSpan(
-                  text: "Wish List ",
+                  text: "Enroll Course",
                   style: getBoldStyle(fontSize: 25, color: ColorManager.white),
                 ),
               ),
@@ -64,7 +64,7 @@ class WishListPage extends StatelessWidget {
               builder: (context, state) {
                 return SliverList(
                   delegate: SliverChildBuilderDelegate(
-                    (context, index) {
+                        (context, index) {
                       final course = state.filteredCourses[index];
                       return InkWell(
                         onTap: () {
@@ -74,8 +74,8 @@ class WishListPage extends StatelessWidget {
                         child: Container(
                           height: AppSize.s130,
                           width:
-                              AppSize.s100 * 2.6, // Adjust the width as needed
-                          margin: EdgeInsets.all(8),
+                          AppSize.s100 * 2.6, // Adjust the width as needed
+                          margin: const EdgeInsets.all(8),
                           decoration: BoxDecoration(
                             color: ColorManager.white,
                             border: Border.all(),
@@ -100,7 +100,7 @@ class WishListPage extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: AppSize.s40,
                               ),
                               Column(
@@ -115,15 +115,15 @@ class WishListPage extends StatelessWidget {
                                           color: ColorManager.black),
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: AppSize.s10,
                                   ),
                                   Row(
                                     children: [
                                       IconManager.user,
-                                      SizedBox(
+                                      const SizedBox(
                                           width:
-                                              AppSize.s4), // Add some spacing
+                                          AppSize.s4), // Add some spacing
                                       RichText(
                                         text: TextSpan(
                                           text: course.nameOfTeacher,
@@ -134,25 +134,26 @@ class WishListPage extends StatelessWidget {
                                       ),
                                     ],
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: AppPadding.p6,
                                   ),
                                   Row(
                                     children: [
                                       RichText(
                                           text: TextSpan(
-                                        text: "\$${course.priceOfCourse}",
-                                        style: getHeadLineLarge(
-                                          fontSize: AppSize.s16,
-                                          color:
+                                            text: "\$${course.priceOfCourse}",
+                                            style: getHeadLineLarge(
+                                              fontSize: AppSize.s16,
+                                              color:
                                               ColorManager.SecondaryColorLogo,
-                                        ),
-                                      )),
-                                      SizedBox(
+                                            ),
+                                          )),
+                                      const SizedBox(
                                         width: AppSize.s60,
                                       ),
                                       IconManager.star,
-                                      SizedBox(width: 4), // Add some spacing
+                                      const SizedBox(
+                                          width: 4), // Add some spacing
                                       RichText(
                                         text: TextSpan(
                                           text: course.rate,

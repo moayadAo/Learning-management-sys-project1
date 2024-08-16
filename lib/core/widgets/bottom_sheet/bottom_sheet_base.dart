@@ -9,6 +9,7 @@ Future<dynamic> bottomSheetBase(
     Widget? action,
     Widget? divider}) {
   return showModalBottomSheet(
+
       context: context,
       backgroundColor: ColorManager.white,
       isScrollControlled: true,

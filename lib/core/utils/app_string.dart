@@ -22,11 +22,19 @@ class AppRoute {
   static const enrollCourseScreen = "enroll_course";
   static const coursePageScreen = "course_page";
   static const createVideoPage = "create_video_page";
-  static const createQuizPage = "create_quiz_page";
+  static const followCoursePage = "follow_course_page";
+  static const fileViewWidget = "file_view_widget";
+  static const welcomeQuiz = "welcome_quiz";
+  static const teacherProfile = "teacher_profile";
+  static const teacherCv = "teacher_cv";
+  static const teacherCourses = "teacher_courses";
+  static const messagesTeacher = "messagesTeacher";
+  static const getAllTeacherScreen = "getAllTeacherScreen";
 
+  ////article
+
+  static const articleDetails = "article_details";
   static const createArticlePage = "create_article_page";
   static const updateArticlePage = "update_article_page";
   static const updateVideoPage = "update_video_page";
-
-  static const followCoursePage = "follow_course_page";
 }

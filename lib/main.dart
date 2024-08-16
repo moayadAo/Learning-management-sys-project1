@@ -8,6 +8,9 @@ import 'package:learning_system/core/services/service_locator.dart';
 import 'package:learning_system/firebase_options.dart';
 import 'package:learning_system/my_firebase.dart';
 import 'package:learning_system/src/app.dart';
+import 'package:learning_system/src/features/article/cubit/pdf_cubit.dart';
+import 'package:learning_system/src/features/course/cubit/course/course_cubit.dart';
+import 'package:learning_system/src/features/course/presentation/follow_course/cubit/follow_course_cubit.dart';
 import 'package:learning_system/src/features/course/cubit/article/article_cubit.dart';
 import 'package:learning_system/src/features/course/cubit/course/course_cubit.dart';
 
@@ -17,6 +20,8 @@ import 'package:learning_system/src/features/quiz/cubit/create_quiz/create_quiz_
 import 'package:learning_system/src/features/course/cubit/rate/rating_cubit.dart';
 import 'package:learning_system/src/features/course/cubit/video/video_cubit.dart';
 import 'package:learning_system/src/features/quiz/cubit/cubit_quiz.dart';
+import 'package:learning_system/src/features/teacher/cubit/teacher_cubit.dart';
+import 'package:learning_system/src/features/teacher/presentation/teacher_cv.dart';
 
 import 'package:learning_system/src/features/user/cubit/user_cubit.dart';
 
@@ -53,11 +58,31 @@ void main() async {
         BlocProvider<VideoCubit>(
           create: (_) => VideoCubit(api: DioConsumer(dio: Dio())),
         ),
+        BlocProvider<CreateQuizCubit>(
+          create: (_) => CreateQuizCubit(),
+        ),
+
+        BlocProvider<FollowCourseCubit>(
+          create: (_) => FollowCourseCubit(),
+        ),
+        BlocProvider<CourseCubit>(
+          create: (_) => CourseCubit(api: DioConsumer(dio: Dio())),
+        ),
+        BlocProvider<FileViewCubit>(
+          create: (_) => FileViewCubit(),
+        ),
+        BlocProvider<TeacherCubit>(
+          create: (_) => TeacherCubit(),
+        ),
+
+        ),
         BlocProvider<ArticleCubit>(
           create: (_) => ArticleCubit(api: DioConsumer(dio: Dio())),
         )
       ],
       child: const EduBridgeApp(),
-    ),
-  );
+    ));
+
+
+
 }
