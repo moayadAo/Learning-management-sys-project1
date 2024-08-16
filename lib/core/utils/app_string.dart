@@ -30,6 +30,18 @@ class AppRoute {
   static const teacherCourses = "teacher_courses";
   static const messagesTeacher = "messagesTeacher";
   static const getAllTeacherScreen = "getAllTeacherScreen";
+  static const institutePage = "institute_page";
+  static const homePage = "home_page";
+  static const scholarshipStudentsPage = "scholarshipStudentsPage";
+  static const institutionStudentsPage = "institutionStudentsPage";
+  static const payStudentPage = "payStudentPage";
+  static const scholarshipsRequestsPage = "scholarshipsRequestsPage";
+  static const teacherRequest = "teacherRequest";
+  static const createQuiz = "createQuiz";
+  static const addScholarshipsPage = "addScholarshipsPage";
+  static const editInfoTeacher = "editInfoTeacher";
+  static const scholarshipsPage = "scholarshipsPage";
+
   static const createQuizPage = "create_quiz_page";
 
   ////article
@@ -37,5 +49,4 @@ class AppRoute {
   static const articleDetails = "article_details";
   static const createArticlePage = "create_article_page";
   static const updateArticlePage = "update_article_page";
-  static const updateVideoPage = "update_video_page";
 }
