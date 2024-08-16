@@ -40,6 +40,9 @@ class CreateVideoPage extends StatelessWidget {
               SnackBarMessage(message: 'choose your video please')
                   .buildSnackBar(context));
         }
+        if (state is CreateVideoSuccessState) {
+          _showSuccessDialog(context);
+        }
       },
       builder: (context, state) {
         return Scaffold(
@@ -158,97 +161,90 @@ class CreateVideoPage extends StatelessWidget {
                         const SizedBox(height: AppPadding.p32),
                         state is CreateVideoLoadingState
                             ? LoadingIndicator()
-                            : state is CreateVideoSuccessState
-                                ? Text('sda')
-                                : ElevatedButton(
-                                    onPressed: () {
-                                      if (_formKey.currentState!.validate() &&
-                                          _videoFile != null) {
-                                        if (!context
-                                            .read<CourseCubit>()
-                                            .order
-                                            .contains(int.parse(context
-                                                .read<VideoCubit>()
-                                                .videoOrder
-                                                .text
-                                                .trim()))) {
-                                          context
+                            : ElevatedButton(
+                                onPressed: () {
+                                  if (_formKey.currentState!.validate() &&
+                                      _videoFile != null) {
+                                    if (!context
+                                        .read<CourseCubit>()
+                                        .order
+                                        .contains(int.parse(context
+                                            .read<VideoCubit>()
+                                            .videoOrder
+                                            .text
+                                            .trim()))) {
+                                      context.read<VideoCubit>().createVideo(
+                                          order: int.parse(context
                                               .read<VideoCubit>()
-                                              .createVideo(
-                                                  order: int.parse(context
-                                                      .read<VideoCubit>()
-                                                      .videoOrder
-                                                      .text
-                                                      .trim()),
-                                                  name: nameController.text,
-                                                  duration: int.parse(
-                                                      durationController.text),
-                                                  video: _videoFile!,
-                                                  description:
-                                                      descriptionController
-                                                          .text);
-                                        } else {
-                                          if (!_isSnackBarVisible) {
-                                            _isSnackBarVisible = true;
-                                            ScaffoldMessenger.of(context)
-                                                .showSnackBar(
-                                                  SnackBarMessage(
-                                                          message:
-                                                              'choose the order is revrsed')
-                                                      .buildSnackBar(context),
-                                                )
-                                                .closed
-                                                .then((reason) {
-                                              _isSnackBarVisible = false;
-                                            });
-                                          }
-                                        }
-                                      } else {
-                                        if (!_isSnackBarVisible) {
-                                          _isSnackBarVisible = true;
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(
-                                                SnackBarMessage(
-                                                        message:
-                                                            'choose your video please')
-                                                    .buildSnackBar(context),
-                                              )
-                                              .closed
-                                              .then((reason) {
-                                            _isSnackBarVisible = false;
-                                          });
-                                        }
+                                              .videoOrder
+                                              .text
+                                              .trim()),
+                                          name: nameController.text,
+                                          duration: int.parse(
+                                              durationController.text),
+                                          video: _videoFile!,
+                                          description:
+                                              descriptionController.text);
+                                    } else {
+                                      if (!_isSnackBarVisible) {
+                                        _isSnackBarVisible = true;
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                              SnackBarMessage(
+                                                      message:
+                                                          'choose the order is revrsed')
+                                                  .buildSnackBar(context),
+                                            )
+                                            .closed
+                                            .then((reason) {
+                                          _isSnackBarVisible = false;
+                                        });
                                       }
-                                    },
-                                    style: ElevatedButton.styleFrom(
-                                        backgroundColor:
-                                            ColorManager.blueLightButton,
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical: AppPadding.p16),
-                                        textStyle: const TextStyle(
-                                            fontSize: FontSize.s18,
-                                            color: ColorManager.blackColorLogo,
-                                            fontWeight:
-                                                FontWegihtManager.regular),
-                                        iconColor: ColorManager.white),
-                                    child: const Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Icon(
-                                          Icons
-                                              .celebration_rounded, // The icon you want to display
-                                        ),
-                                        SizedBox(
-                                            width: AppMargin
-                                                .m6), // Spacing between icon and text
-                                        Text(
-                                          'Create Video',
-                                        ),
-                                      ],
+                                    }
+                                  } else {
+                                    if (!_isSnackBarVisible) {
+                                      _isSnackBarVisible = true;
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                            SnackBarMessage(
+                                                    message:
+                                                        'choose your video please')
+                                                .buildSnackBar(context),
+                                          )
+                                          .closed
+                                          .then((reason) {
+                                        _isSnackBarVisible = false;
+                                      });
+                                    }
+                                  }
+                                },
+                                style: ElevatedButton.styleFrom(
+                                    backgroundColor:
+                                        ColorManager.blueLightButton,
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: AppPadding.p16),
+                                    textStyle: const TextStyle(
+                                        fontSize: FontSize.s18,
+                                        color: ColorManager.blackColorLogo,
+                                        fontWeight: FontWegihtManager.regular),
+                                    iconColor: ColorManager.white),
+                                child: const Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons
+                                          .celebration_rounded, // The icon you want to display
                                     ),
-                                  ),
+                                    SizedBox(
+                                        width: AppMargin
+                                            .m6), // Spacing between icon and text
+                                    Text(
+                                      'Create Video',
+                                    ),
+                                  ],
+                                ),
+                              ),
                         const SizedBox(height: AppPadding.p20),
                         WhiteBlueButton(
                           height: 50,

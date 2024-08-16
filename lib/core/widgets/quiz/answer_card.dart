@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:learning_system/core/utils/color_manager.dart';
-import 'package:learning_system/src/features/quiz/cubit/cubit_quiz.dart';
-import 'package:learning_system/src/features/quiz/cubit/quiz_state.dart';
-
+import 'package:learning_system/src/features/quiz/cubit/quiz/cubit_quiz.dart';
+import 'package:learning_system/src/features/quiz/cubit/quiz/quiz_state.dart';
 
 class AnswerCard extends StatelessWidget {
   const AnswerCard(
@@ -26,15 +25,19 @@ class AnswerCard extends StatelessWidget {
         child: selectedAnswerIndex != null
             // if one option is chosen
             ? Container(
-               // height: 70,
+                // height: 70,
                 padding: const EdgeInsets.all(16.0),
                 decoration: BoxDecoration(
-                  color:
-                  isSelected ? ColorManager.SecondaryColorLogo :ColorManager.yellow,
-                  borderRadius: BorderRadius.only(topRight: Radius.circular(30),bottomLeft:Radius.circular(30)  ),
+                  color: isSelected
+                      ? ColorManager.SecondaryColorLogo
+                      : ColorManager.yellow,
+                  borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(30),
+                      bottomLeft: Radius.circular(30)),
                   border: Border.all(
-                    color:
-                        isSelected ? ColorManager.primaryColorLogo :ColorManager.black,
+                    color: isSelected
+                        ? ColorManager.primaryColorLogo
+                        : ColorManager.black,
                   ),
                 ),
                 child: Row(
@@ -58,11 +61,13 @@ class AnswerCard extends StatelessWidget {
               )
             // If no option is selected
             : Container(
-              //  height: 70,
+                //  height: 70,
                 padding: const EdgeInsets.all(16.0),
                 decoration: BoxDecoration(
                   color: ColorManager.yellow,
-                  borderRadius: BorderRadius.only(topRight: Radius.circular(30),bottomLeft:Radius.circular(30)  ),
+                  borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(30),
+                      bottomLeft: Radius.circular(30)),
                   border: Border.all(
                     color: ColorManager.black,
                   ),

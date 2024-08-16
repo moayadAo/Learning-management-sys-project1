@@ -1,4 +1,6 @@
-const baseUrl = "http://192.168.1.5:8080/";
+import 'package:learning_system/core/data/models/quiz_model/quiz_model.dart';
+
+const baseUrl = "http://192.168.43.224:8080/";
 const baseServ = "https://ptc.yorkacademy.uk/";
 // const baseUrl = "${baseServ}api/";
 const storageUrl = "${baseServ}storage/";
@@ -75,6 +77,49 @@ class AppUrl {
   static String getAllQuiz({required String courseId}) {
     return '$quizUrl/all/$courseId';
   }
+
+  ///<------------------------<<Question>>----------------------------------------->
+  static const questionUrl = '${courseUrl}quize/question';
+  static const createQuestion = '$questionUrl/';
+  static String getUpdateDeleteQuestion({required String quesId}) {
+    return '$questionUrl/$quesId';
+  }
+
+  static String getAllQuestion({required String quizId}) {
+    return '$questionUrl/\all/$quizId';
+  }
+
+  ///-----------------------<<Instute>>-------------------------->
+  static const baseInstitute = '$baseUrl/institute';
+  static const addInstitute = baseInstitute;
+  static const loginInstitute = '$baseInstitute/login';
+  static const rejectTeacherInstitute = '$baseInstitute/rejectTeacher';
+  static const addMyStudentInstitute = '$baseInstitute/addMyStudent';
+  static const acceptScholarshipInstitute = '$baseInstitute/acceptStudent';
+  static String acceptScholarshipInstituteById({required String id}) {
+    return '$acceptScholarshipInstitute/$id';
+  }
+
+  static const updateInstitute = baseInstitute;
+  static const getAllInstitute = '$baseInstitute/all';
+  static const getInstituteProfile = '$baseInstitute/profile';
+  static String getInstituteProfileById({required String id}) {
+    return '$getInstituteProfile/$id';
+  }
+
+  static const getTeachertoInstituteRequists = '$baseInstitute/teacherRequists';
+  static const acceptTeacherInstitute = '$baseInstitute/acceptTeacher';
+  static const getMyTeachersInstitute = '$baseInstitute/getMyTeachers';
+  static const scholarshipRequestsInstitute =
+      '$baseInstitute/ScholarshipRequest';
+  static String scholarshipRequestsInstituteById({required String id}) {
+    return '$scholarshipRequestsInstitute/$id';
+  }
+
+  static const removeScholarshipStudentInstitute =
+      '$baseInstitute/removeStudentScholarship';
+  static const deleteMyStudentInstitute = '$baseInstitute/deletMyStudent';
+  static const removepaidStudentInstitute = '$baseInstitute/deletePaidStudent';
 }
 
 class ApiKey {
@@ -124,6 +169,11 @@ class ApiKey {
   static const quizName = 'name';
   static const quizQustions = 'qustions';
   static const quizMark = 'mark';
+
+  ///-----------------------<<quiz>>-------------------------->
+  static const questionTitle = 'question';
+  static const questionAnswers = ' answers';
+  static const questionCorrectAnswer = 'true_answer';
   //// public
   static const order = 'order';
 }

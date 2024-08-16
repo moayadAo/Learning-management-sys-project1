@@ -87,7 +87,7 @@ class DioConsumer extends ApiConsumer {
           queryParameters: queryParameters,
           options: isFormUrlEncoded
               ? Options(contentType: Headers.formUrlEncodedContentType)
-              : null);
+              : Options(contentType: Headers.jsonContentType));
       return response.data;
     } on DioException catch (e) {
       HandleDioException(e);

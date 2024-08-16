@@ -33,6 +33,9 @@ class CreateArticlePage extends StatelessWidget {
               SnackBarMessage(message: 'choose your article please')
                   .buildSnackBar(context));
         }
+        if (state is CreateArticleSuccessState) {
+          _showSuccessDialog(context);
+        }
       },
       builder: (context, state) {
         return Scaffold(
@@ -149,124 +152,103 @@ class CreateArticlePage extends StatelessWidget {
                         const SizedBox(height: AppPadding.p32),
                         state is CreateArticleLoadingState
                             ? LoadingIndicator()
-                            : state is CreateArticleSuccessState
-                                ? showConfirm(
-                                    title: 'Article Create Done',
-                                    context: context,
-                                    confirm: () {
-                                      context.read<CourseCubit>().articleId.add(
-                                          context.read<ArticleCubit>().id!);
-
-                                      context.read<CourseCubit>().order.add(
-                                          int.parse(context
-                                              .read<ArticleCubit>()
-                                              .articleOrder
-                                              .text
-                                              .trim()));
+                            : ElevatedButton(
+                                onPressed: () {
+                                  if (_formKey.currentState!.validate() &&
+                                      _articleFile != null) {
+                                    if (!context
+                                        .read<CourseCubit>()
+                                        .order
+                                        .contains(int.parse(context
+                                            .read<ArticleCubit>()
+                                            .articleOrder
+                                            .text
+                                            .trim()))) {
                                       context
                                           .read<ArticleCubit>()
-                                          .resetArticleAfterCreate();
-                                      Navigator.pop(context);
-                                      Navigator.pop(context);
-                                    })
-                                : ElevatedButton(
-                                    onPressed: () {
-                                      if (_formKey.currentState!.validate() &&
-                                          _articleFile != null) {
-                                        if (!context
-                                            .read<CourseCubit>()
-                                            .order
-                                            .contains(int.parse(context
-                                                .read<ArticleCubit>()
-                                                .articleOrder
-                                                .text
-                                                .trim()))) {
-                                          context
-                                              .read<ArticleCubit>()
-                                              .craeteArticleApi(
-                                                  order:
-                                                      int.parse(
+                                          .craeteArticleApi(
+                                              order:
+                                                  int
+                                                      .parse(
                                                           context
                                                               .read<
                                                                   ArticleCubit>()
                                                               .articleOrder
                                                               .text
                                                               .trim()),
-                                                  title: context
-                                                      .read<ArticleCubit>()
-                                                      .articleTitle
-                                                      .text,
-                                                  pathFile: _articleFile!,
-                                                  author: context
-                                                      .read<ArticleCubit>()
-                                                      .articleAuthor
-                                                      .text,
-                                                  category: context
-                                                      .read<ArticleCubit>()
-                                                      .articleCategory
-                                                      .text);
-                                        } else {
-                                          if (!_isSnackBarVisible) {
-                                            _isSnackBarVisible = true;
-                                            ScaffoldMessenger.of(context)
-                                                .showSnackBar(
-                                                  SnackBarMessage(
-                                                          message:
-                                                              'choose the order is revrsed')
-                                                      .buildSnackBar(context),
-                                                )
-                                                .closed
-                                                .then((reason) {
-                                              _isSnackBarVisible = false;
-                                            });
-                                          }
-                                        }
-                                      } else {
-                                        if (!_isSnackBarVisible) {
-                                          _isSnackBarVisible = true;
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(
-                                                SnackBarMessage(
-                                                        message:
-                                                            'choose your article please')
-                                                    .buildSnackBar(context),
-                                              )
-                                              .closed
-                                              .then((reason) {
-                                            _isSnackBarVisible = false;
-                                          });
-                                        }
+                                              title: context
+                                                  .read<ArticleCubit>()
+                                                  .articleTitle
+                                                  .text,
+                                              pathFile: _articleFile!,
+                                              author: context
+                                                  .read<ArticleCubit>()
+                                                  .articleAuthor
+                                                  .text,
+                                              category: context
+                                                  .read<ArticleCubit>()
+                                                  .articleCategory
+                                                  .text);
+                                    } else {
+                                      if (!_isSnackBarVisible) {
+                                        _isSnackBarVisible = true;
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                              SnackBarMessage(
+                                                      message:
+                                                          'choose the order is revrsed')
+                                                  .buildSnackBar(context),
+                                            )
+                                            .closed
+                                            .then((reason) {
+                                          _isSnackBarVisible = false;
+                                        });
                                       }
-                                    },
-                                    style: ElevatedButton.styleFrom(
-                                        backgroundColor:
-                                            ColorManager.blueLightButton,
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical: AppPadding.p16),
-                                        textStyle: const TextStyle(
-                                            fontSize: FontSize.s18,
-                                            color: ColorManager.blackColorLogo,
-                                            fontWeight:
-                                                FontWegihtManager.regular),
-                                        iconColor: ColorManager.white),
-                                    child: const Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Icon(
-                                          Icons
-                                              .celebration_rounded, // The icon you want to display
-                                        ),
-                                        SizedBox(
-                                            width: AppMargin
-                                                .m6), // Spacing between icon and text
-                                        Text(
-                                          'Create Article',
-                                        ),
-                                      ],
+                                    }
+                                  } else {
+                                    if (!_isSnackBarVisible) {
+                                      _isSnackBarVisible = true;
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                            SnackBarMessage(
+                                                    message:
+                                                        'choose your article please')
+                                                .buildSnackBar(context),
+                                          )
+                                          .closed
+                                          .then((reason) {
+                                        _isSnackBarVisible = false;
+                                      });
+                                    }
+                                  }
+                                },
+                                style: ElevatedButton.styleFrom(
+                                    backgroundColor:
+                                        ColorManager.blueLightButton,
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: AppPadding.p16),
+                                    textStyle: const TextStyle(
+                                        fontSize: FontSize.s18,
+                                        color: ColorManager.blackColorLogo,
+                                        fontWeight: FontWegihtManager.regular),
+                                    iconColor: ColorManager.white),
+                                child: const Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons
+                                          .celebration_rounded, // The icon you want to display
                                     ),
-                                  ),
+                                    SizedBox(
+                                        width: AppMargin
+                                            .m6), // Spacing between icon and text
+                                    Text(
+                                      'Create Article',
+                                    ),
+                                  ],
+                                ),
+                              ),
                         const SizedBox(height: AppPadding.p20),
                         WhiteBlueButton(
                           height: 50,
@@ -291,5 +273,25 @@ class CreateArticlePage extends StatelessWidget {
         );
       },
     );
+  }
+
+  void _showSuccessDialog(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      showConfirm(
+          title: 'Article Create Done',
+          context: context,
+          confirm: () {
+            context
+                .read<CourseCubit>()
+                .articleId
+                .add(context.read<ArticleCubit>().id!);
+
+            context.read<CourseCubit>().order.add(int.parse(
+                context.read<ArticleCubit>().articleOrder.text.trim()));
+            context.read<ArticleCubit>().resetArticleAfterCreate();
+            Navigator.pop(context);
+            Navigator.pop(context);
+          });
+    });
   }
 }

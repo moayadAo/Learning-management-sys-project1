@@ -3,13 +3,13 @@ import 'package:learning_system/src/features/course/data/models/question/questio
 part 'get_all_questions.g.dart';
 
 @JsonSerializable()
-class GetAllQuestions {
+class GetAllQuestionsModel {
   String status;
   List<QuestionDataModel> data;
 
-  GetAllQuestions({required this.data, required this.status});
+  GetAllQuestionsModel({required this.data, required this.status});
 
-  factory GetAllQuestions.fromJson(Map<String, dynamic> json) =>
-      _$GetAllQuestionsFromJson(json);
-  Map<String, dynamic> toJson() => _$GetAllQuestionsToJson(this);
+  factory GetAllQuestionsModel.fromJson(Map<String, dynamic> json) =>
+      _$GetAllQuestionsModelFromJson(json);
+  Map<String, dynamic> toJson() => _$GetAllQuestionsModelToJson(this);
 }

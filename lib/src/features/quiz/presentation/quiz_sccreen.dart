@@ -9,8 +9,8 @@ import 'package:learning_system/core/widgets/quiz/answer_card.dart';
 import 'package:learning_system/core/widgets/quiz/next_button.dart';
 import 'package:learning_system/src/features/quiz/cubit/answer/answer_cubit.dart';
 import 'package:learning_system/src/features/quiz/cubit/answer/answer_state.dart';
-import 'package:learning_system/src/features/quiz/cubit/cubit_quiz.dart';
-import 'package:learning_system/src/features/quiz/cubit/quiz_state.dart';
+import 'package:learning_system/src/features/quiz/cubit/quiz/cubit_quiz.dart';
+import 'package:learning_system/src/features/quiz/cubit/quiz/quiz_state.dart';
 import 'package:learning_system/src/features/quiz/presentation/quiz_result.dart';
 
 class QuizScreen extends StatefulWidget {
@@ -89,7 +89,7 @@ class _QuizScreenState extends State<QuizScreen> {
                     },
                   ),
                 ),
-               /* SliverToBoxAdapter(
+                /* SliverToBoxAdapter(
                   child: BlocBuilder<AnswerCubit, AnswerState>(
                       builder: (context, state) {
                     if (state is WrongAnswerState) {

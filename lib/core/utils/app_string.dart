@@ -30,6 +30,7 @@ class AppRoute {
   static const teacherCourses = "teacher_courses";
   static const messagesTeacher = "messagesTeacher";
   static const getAllTeacherScreen = "getAllTeacherScreen";
+  static const createQuizPage = "create_quiz_page";
 
   ////article
 

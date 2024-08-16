@@ -11,14 +11,14 @@ QuestionDataModel _$QuestionDataModelFromJson(Map<String, dynamic> json) =>
       answers:
           (json['answers'] as List<dynamic>).map((e) => e as String).toList(),
       correctAnswer: json['true_answer'] as String,
-      questionTitle: json['qustion'] as String,
+      questionTitle: json['question'] as String,
       id: json['_id'] as String,
     );
 
 Map<String, dynamic> _$QuestionDataModelToJson(QuestionDataModel instance) =>
     <String, dynamic>{
       '_id': instance.id,
-      'qustion': instance.questionTitle,
+      'question': instance.questionTitle,
       'answers': instance.answers,
       'true_answer': instance.correctAnswer,
     };

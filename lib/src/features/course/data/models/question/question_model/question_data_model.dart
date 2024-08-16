@@ -5,7 +5,7 @@ part 'question_data_model.g.dart';
 class QuestionDataModel {
   @JsonKey(name: '_id')
   String id;
-  @JsonKey(name: 'qustion')
+  @JsonKey(name: 'question')
   String questionTitle;
   List<String> answers;
   @JsonKey(name: 'true_answer')

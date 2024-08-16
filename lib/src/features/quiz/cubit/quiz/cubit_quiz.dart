@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,12 +10,18 @@ import 'package:learning_system/core/errors/exceptions.dart';
 import 'package:learning_system/core/utils/app_url.dart';
 import 'package:learning_system/src/features/course/data/models/quiz/get_model/all_get_quiz_model.dart';
 import 'package:learning_system/src/features/course/data/models/quiz/get_model/get_quiz_model.dart';
+import 'package:learning_system/src/features/course/data/models/quiz/post_quiz/post_model_quiz.dart';
 import 'package:learning_system/src/features/course/data/models/quiz/quiz_model/quiz_data_model.dart';
 import 'package:learning_system/src/features/quiz/cubit/answer/answer_cubit.dart';
-import 'package:learning_system/src/features/quiz/cubit/quiz_state.dart';
+import 'package:learning_system/src/features/quiz/cubit/quiz/quiz_state.dart';
 
 class QuizCubit extends Cubit<QuizState> {
   ApiConsumer api;
+  List<String> questionIds = [];
+  String? id;
+
+  TextEditingController titleQuiz = TextEditingController();
+  TextEditingController quizOrder = TextEditingController();
 
   int? selectedAnswerIndex;
   int questionIndex = 0;
@@ -56,14 +65,18 @@ class QuizCubit extends Cubit<QuizState> {
   createQuiz(
       {required String name,
       required List<String> questionId,
+      required int order,
       int? mark}) async {
     try {
       emit(CreateLoadingQuizState());
       final response = await api.post(AppUrl.createQuizUrl, data: {
         ApiKey.quizName: name,
+        'order': order,
         ApiKey.quizQustions: questionId,
         ApiKey.quizMark: mark ?? 100
       });
+      id = QuizModel.fromJson(response).data.id;
+
       emit(CreateSuccessQuizState());
     } on ServerException catch (e) {
       emit(CreateFailureQuizState(massage: e.errorModel.message!));
@@ -121,5 +134,13 @@ class QuizCubit extends Cubit<QuizState> {
     } on ServerException catch (e) {
       emit(DeleteFailureQuizState(massage: e.errorModel.message!));
     }
+  }
+
+  resetQuizAfterUpdate() {
+    titleQuiz = TextEditingController();
+    quizOrder = TextEditingController();
+    questionIds = [];
+    id = '';
+    emit(InitialQuizState());
   }
 }

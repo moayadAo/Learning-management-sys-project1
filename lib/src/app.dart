@@ -40,7 +40,7 @@ class EduBridgeApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
 
-      initialRoute: 'create_quiz_page', // Start from splash page
+      initialRoute: 'create_course_page', // Start from splash page
 
       routes: {
         'splash': (context) => const SplashPage(),
@@ -78,6 +78,7 @@ class EduBridgeApp extends StatelessWidget {
         'update_video_page': (context) => UpdateVideoPage(),
         'create_course_page': (context) => CreateCoursePage(),
         'create_quiz_page': (context) => CreateQuiz(),
+
         // Add any additional routes here
       },
     );

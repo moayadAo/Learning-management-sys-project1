@@ -90,7 +90,7 @@ class CreateCoursePage extends StatelessWidget {
                         TextFiledApp(
                           controller: cubit.courseCost,
                           hintText: 'Enter course cost',
-                          iconData: Icons.description,
+                          iconData: Icons.wallet,
                           validator: (p0) => ValidatorManager()
                               .validateName(p0!, message: 'please enter cost'),
                           keyboardType: TextInputType.number,
@@ -127,7 +127,7 @@ class CreateCoursePage extends StatelessWidget {
                         TextFiledApp(
                           controller: cubit.courseCategories,
                           hintText: 'Enter course categories ',
-                          iconData: Icons.leaderboard_rounded,
+                          iconData: Icons.category,
                         ),
                         const SizedBox(height: AppPadding.p20),
                         TextFiledApp(
@@ -159,6 +159,18 @@ class CreateCoursePage extends StatelessWidget {
                                 context, AppRoute.createArticlePage);
                           },
                         ),
+                        const SizedBox(height: AppPadding.p20),
+                        WhiteBlueButton(
+                          height: AppSize.s50,
+                          label: "Create Quiz",
+                          isBlue: false,
+                          colorbut: ColorManager.jewelry,
+                          colorText: ColorManager.white,
+                          onPressed: () {
+                            Navigator.pushNamed(
+                                context, AppRoute.createQuizPage);
+                          },
+                        ),
                         const SizedBox(height: AppPadding.p32),
                         WhiteBlueButton(
                           height: AppSize.s50,
@@ -176,15 +188,14 @@ class CreateCoursePage extends StatelessWidget {
                                     double.parse(cubit.courseCost.text.trim()),
                                 duration:
                                     int.parse(cubit.courseDuration.text.trim()),
-                                language: cubit.courseDuration.text
-                                    .split(RegExp(r'[,\s]+')),
+                                language: cubit.courseLanguage.text,
                                 educationLevel: cubit.courseEducationLevel.text,
                                 articleIds: cubit.articleId,
                                 categories: cubit.courseCategories.text,
                                 quizIds: cubit.quizId,
                                 whatYouWillLearn:
                                     cubit.courseWhatYouWillLearn.text,
-                                // image: _image,
+                                image: _image,
                                 videoIds: cubit.videoId,
                               );
                             }

@@ -5,8 +5,8 @@ import 'package:learning_system/core/utils/values_manager.dart';
 
 class SnackBarMessage {
   final String message;
-
-  SnackBarMessage({required this.message});
+  Color? color;
+  SnackBarMessage({required this.message, this.color});
 
   SnackBar buildSnackBar(BuildContext context) {
     return SnackBar(
@@ -14,7 +14,7 @@ class SnackBarMessage {
         message,
         style: getBodyMeduimOrSmall(
           isMeduim: true,
-          color: ColorManager.redBright,
+          color: color ?? ColorManager.redBright,
         ),
         textDirection: TextDirection.rtl,
         textAlign: TextAlign.center,

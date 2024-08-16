@@ -48,7 +48,7 @@ class CourseCubit extends Cubit<CourseState> {
       {required String name,
       required double cost,
       required int duration,
-      required List<String> language,
+      required String language,
       required String educationLevel,
       String? categories,
       List<String>? plan,
@@ -58,23 +58,30 @@ class CourseCubit extends Cubit<CourseState> {
       String? institutionId,
       String? whatYouWillLearn,
       XFile? image}) async {
+    final Map<String, dynamic> data = {
+      ApiKey.courseName: name,
+      ApiKey.courseCost: cost,
+      ApiKey.courseDuration: duration,
+      ApiKey.courseLanguage: language.split(RegExp(r'[ ,]+')),
+      ApiKey.courseEducationLevel: educationLevel,
+      ApiKey.courseCategories: categories ?? '',
+      ApiKey.coursePlan: plan ?? [],
+      ApiKey.courseVideo: videoIds ?? [],
+      ApiKey.courseArticle: articleIds ?? [],
+      ApiKey.courseQuiz: quizIds ?? [],
+      ApiKey.courseWhatYouWillLearn: whatYouWillLearn ?? '',
+    };
+
+    if (institutionId != null) {
+      data[ApiKey.courseInstituteId] = institutionId;
+    }
+
+    if (image != null) {
+      data[ApiKey.courseImage] = await uploadImageToApi(image);
+    }
     try {
       emit(CreateCourseLoadingState());
-      final response = await api.post(AppUrl.createCourse, data: {
-        ApiKey.courseName: name,
-        ApiKey.courseCost: cost,
-        ApiKey.courseDuration: duration,
-        ApiKey.courseLanguage: language,
-        ApiKey.courseEducationLevel: educationLevel,
-        ApiKey.courseCategories: categories ?? '',
-        ApiKey.coursePlan: plan ?? [],
-        ApiKey.courseVideo: videoIds ?? [],
-        ApiKey.courseArticle: articleIds ?? [],
-        ApiKey.courseQuiz: quizIds ?? [],
-        ApiKey.courseInstituteId: institutionId ?? '',
-        ApiKey.courseWhatYouWillLearn: whatYouWillLearn ?? '',
-        ApiKey.courseImage: image != null ? await uploadImageToApi(image) : '',
-      });
+      final response = await api.post(AppUrl.createCourse, data: data);
       emit(CreateCourseSuccessState());
     } on ServerException catch (e) {
       emit(CreateCourseFailureState(errMessage: e.errorModel.message!));
