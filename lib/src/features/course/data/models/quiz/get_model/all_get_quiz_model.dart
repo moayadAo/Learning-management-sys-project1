@@ -1,11 +1,11 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:learning_system/src/features/course/data/models/quiz/quiz_model/quiz_data_model.dart';
+import 'package:learning_system/src/features/course/data/models/quiz/get_model/get_all_helper_data.dart';
 part 'all_get_quiz_model.g.dart';
 
 @JsonSerializable()
 class AllGetQuizModel {
   String status;
-  List<QuizDataModel> data;
+  GetAllHelperData data;
 
   AllGetQuizModel({required this.data, required this.status});
 

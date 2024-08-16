@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:flick_video_player/flick_video_player.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
@@ -16,8 +17,13 @@ import 'package:learning_system/src/features/course/data/models/video/video_mode
 import 'package:video_player/video_player.dart';
 
 class VideoCubit extends Cubit<VideoStates> {
+  TextEditingController videoName = TextEditingController();
+  TextEditingController videoDescription = TextEditingController();
+  TextEditingController videoDuration = TextEditingController();
+  TextEditingController videoOrder = TextEditingController();
   ApiConsumer api;
   late FlickManager flickManager;
+  String? id;
 
   VideoCubit({required this.api}) : super(InitialVideoState());
   VideoDataModel? videoData;
@@ -64,6 +70,7 @@ class VideoCubit extends Cubit<VideoStates> {
   createVideo({
     required String name,
     required int duration,
+    required int order,
     String? description,
     required File video,
   }) async {
@@ -73,6 +80,7 @@ class VideoCubit extends Cubit<VideoStates> {
           data: {
             ApiKey.videoName: name,
             ApiKey.videoDuration: duration,
+            ApiKey.order: order,
             ApiKey.videoDescription: description ?? '',
             ApiKey.videoPathFile: await uploadVideoToApi(video),
           },
@@ -80,6 +88,7 @@ class VideoCubit extends Cubit<VideoStates> {
 
       ///remove comment if u want Video ID
       // String videoId = GetVideoModel.fromJson(response).data.id;
+      id = GetVideoModel.fromJson(response).data.id;
 
       emit(CreateVideoSuccessState());
     } on ServerException catch (e) {
@@ -145,6 +154,22 @@ class VideoCubit extends Cubit<VideoStates> {
     } on ServerException catch (e) {
       emit(UpdateVideoFailureState(message: e.errorModel.message!));
     }
+  }
+
+  initForUpdatePage({required String id}) async {
+    await getVideoApi(videoId: id);
+    videoName.text = videoData!.name;
+    videoDescription.text = videoData!.description ?? '';
+    videoDuration.text = '${videoData!.duration}';
+    emit(InitialVideoState());
+  }
+
+  resetVideoAfterCreate() {
+    videoDuration = TextEditingController();
+    videoDescription = TextEditingController();
+    videoName = TextEditingController();
+    id = '';
+    emit(InitialVideoState());
   }
 
   /// abd pick video

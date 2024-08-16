@@ -17,13 +17,13 @@ import 'package:learning_system/src/features/auth/splash_page/view/splash_page.d
 import 'package:learning_system/src/features/auth/welcome/welcome.dart';
 import 'package:learning_system/src/features/course/presentation/article_screens/create_article_page.dart';
 import 'package:learning_system/src/features/course/presentation/article_screens/update_article.dart';
+import 'package:learning_system/src/features/course/presentation/course/create_course.dart';
 import 'package:learning_system/src/features/course/presentation/course_page.dart';
+import 'package:learning_system/src/features/course/presentation/video_screens/update_video.dart';
 import 'package:learning_system/src/features/course/presentation/follow_course/follow_course.dart';
 
 import 'package:learning_system/src/features/quiz/presentation/create_quize.dart';
-import 'package:learning_system/src/features/quiz/presentation/quiz_sccreen.dart';
 import 'package:learning_system/src/features/quiz/presentation/quiz_welcome.dart';
-
 
 import 'package:learning_system/src/features/teacher/presentation/courses_teacher.dart';
 import 'package:learning_system/src/features/teacher/presentation/edit_info/edit_info_teacher.dart';
@@ -34,13 +34,11 @@ import 'package:learning_system/src/features/teacher/presentation/teacher_profil
 
 import 'package:learning_system/src/features/course/presentation/video_screens/create_video_page.dart';
 
-
 import 'package:learning_system/src/features/user/presentation/enroll_page.dart';
 import 'package:learning_system/src/features/user/presentation/finish_page.dart';
 import 'package:learning_system/src/features/user/presentation/profile_user.dart';
 import 'package:learning_system/src/features/user/presentation/progress_page.dart';
 import 'package:learning_system/src/features/user/presentation/wish_list_page.dart';
-
 
 class EduBridgeApp extends StatelessWidget {
   const EduBridgeApp({super.key});
@@ -49,47 +47,45 @@ class EduBridgeApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-// Start from splash page
 
-      initialRoute: AppRoute.scholarshipsPage, // Start from splash page
+      // You mentioned to start from scholarshipsPage but the initial route is set to 'AppRoute.scholarshipsPage' which should be a string if it refers to the name.
+      initialRoute: 'scholarshipsPage',
 
       routes: {
         'splash': (context) => const SplashPage(),
-        'welcome': (context) => WelcomePage(),
-        'signup_user': (context) => SignUpScreenUser(),
-        'login': (context) => LoginPage(),
+        'welcome': (context) =>  WelcomePage(),
+        'signup_user': (context) =>  SignUpScreenUser(),
+        'login': (context) =>  LoginPage(),
         'role': (context) => const ChooseRoleScreen(),
         'profile': (context) => const ProfileUser(),
+
         ///*****************************Course
         'course_page': (context) => const CoursePage(),
-        'create_video_page': (context) => CreateVideoPage(),
-        'follow_course_page' : (context)=> const FollowCoursePage(),
-        'enroll_course': (context) => EnrollPage(),
-        'progress_course': (context) => ProgressPage(),
-        'finish_course': (context) => FinishPage(),
-        'wish_list_page': (context) => WishListPage(),
-
+        'create_video_page': (context) =>  CreateVideoPage(),
+        'follow_course_page': (context) => const FollowCoursePage(),
+        'enroll_course': (context) =>  EnrollPage(),
+        'progress_course': (context) =>  ProgressPage(),
+        'finish_course': (context) =>  FinishPage(),
+        'wish_list_page': (context) =>  WishListPage(),
 
         ///********************************Quiz
-        'welcome_quiz' : (context)=> const QuizWelcome(),
-        'createQuiz' : (context)=> const CreateQuiz(),
+        'welcome_quiz': (context) => const QuizWelcome(),
 
         ///********************************Article
-        'file_view_widget' : (context)=>const FileViewWidget(),
-        'article_details' : (context)=> const ArticleDetails(),
+        'article_details': (context) => const ArticleDetails(),
 
         ///**********************************teacher
-        'teacher_profile'  :(context) => const TeacherProfile(),
-        'teacher_cv' : (context)=> const TeacherCv(),
-        'teacher_courses' : (context)=> CoursesTeacher(),
-        'messagesTeacher' : (context)=>const  MessagesTeacher(),
-        'getAllTeacherScreen' : (context)=> const  GetAllTeacherScreen(),
+        'teacher_profile': (context) => const TeacherProfile(),
+        'teacher_cv': (context) => const TeacherCv(),
+        'teacher_courses': (context) =>  CoursesTeacher(),
+        'messagesTeacher': (context) => const MessagesTeacher(),
+        'getAllTeacherScreen': (context) => const GetAllTeacherScreen(),
 
-        'create_article_page': (context) => CreateArticlePage(),
-        'update_article_page': (context) => UpdateArticlePage(),
+        'create_article_page': (context) =>  CreateArticlePage(),
+        'update_article_page': (context) =>  UpdateArticlePage(),
 
         ///********************************Institute
-        'institute_page': (context) =>const  InstitutePage(),
+        'institute_page': (context) => const InstitutePage(),
         'scholarshipStudentsPage': (context) => const ScholarshipStudentsPage(),
         'institutionStudentsPage': (context) => const InstitutionStudentsPage(),
         'payStudentPage': (context) => const PayStudentPage(),
@@ -98,17 +94,11 @@ class EduBridgeApp extends StatelessWidget {
         'addScholarshipsPage': (context) =>  AddScholarshipsPage(),
         'scholarshipsPage': (context) =>  ScholarshipsPage(),
 
-
         'editInfoTeacher': (context) =>  EditInfoTeacher(),
 
-
-
-
-
-
-
-
-        // Add any additional routes here
+        'update_video_page': (context) =>  UpdateVideoPage(),
+        'create_course_page': (context) =>  CreateCoursePage(),
+        'create_quiz_page': (context) => const CreateQuiz(),
       },
     );
   }

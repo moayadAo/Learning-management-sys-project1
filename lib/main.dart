@@ -12,6 +12,8 @@ import 'package:learning_system/src/features/article/cubit/pdf_cubit.dart';
 import 'package:learning_system/src/features/course/cubit/article/article_cubit.dart';
 import 'package:learning_system/src/features/course/cubit/course/course_cubit.dart';
 import 'package:learning_system/src/features/course/presentation/follow_course/cubit/follow_course_cubit.dart';
+import 'package:learning_system/src/features/course/cubit/article/article_cubit.dart';
+import 'package:learning_system/src/features/course/cubit/course/course_cubit.dart';
 
 import 'package:learning_system/src/features/quiz/cubit/answer/answer_cubit.dart';
 import 'package:learning_system/src/features/quiz/cubit/create_quiz/create_quiz_cubit.dart';
@@ -40,6 +42,9 @@ void main() async {
       providers: [
         BlocProvider<UserCubit>(
           create: (_) => UserCubit(api: DioConsumer(dio: Dio())),
+        ),
+        BlocProvider<CourseCubit>(
+          create: (_) => CourseCubit(api: DioConsumer(dio: Dio())),
         ),
         BlocProvider<RatingCubit>(
           create: (_) => RatingCubit(),
@@ -75,6 +80,10 @@ void main() async {
         ),
 
 
+        ),
+        BlocProvider<ArticleCubit>(
+          create: (_) => ArticleCubit(api: DioConsumer(dio: Dio())),
+        )
       ],
       child: const EduBridgeApp(),
     ));

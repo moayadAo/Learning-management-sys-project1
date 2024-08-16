@@ -6,6 +6,7 @@ class AppString {
   static const userIdCacheKey = 'userId';
   static const roleCacheKey = 'role';
   static const token = 'token';
+  static const cacheFireBaseToken = 'token';
 }
 
 class AppRoute {
@@ -40,20 +41,6 @@ class AppRoute {
   static const addScholarshipsPage = "addScholarshipsPage";
   static const editInfoTeacher = "editInfoTeacher";
   static const scholarshipsPage = "scholarshipsPage";
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   ////article
 

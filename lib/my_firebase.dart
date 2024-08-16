@@ -4,6 +4,9 @@ import 'dart:developer';
 import 'package:firebase_messaging/firebase_messaging.dart';
 // import 'package:get_storage/get_storage.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:learning_system/core/cache/cache_helper.dart';
+import 'package:learning_system/core/services/service_locator.dart';
+import 'package:learning_system/core/utils/app_string.dart';
 
 class FireNotificationConfig {
   final FirebaseMessaging _firebasemessaging = FirebaseMessaging.instance;
@@ -20,6 +23,8 @@ class FireNotificationConfig {
     await _firebasemessaging.requestPermission();
     final myFCMToken = await _firebasemessaging.getToken();
     // GetStorage().write('fire_token', myFCMToken);
+    getIt<CacheHelper>()
+        .saveData(key: AppString.cacheFireBaseToken, value: myFCMToken);
     log(myFCMToken.toString());
 
     setupInteractedMessage();

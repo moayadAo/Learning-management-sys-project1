@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:learning_system/core/api/api_consumer.dart';
 import 'package:learning_system/core/errors/exceptions.dart';
@@ -12,7 +13,7 @@ import 'package:learning_system/src/features/course/data/models/course/get_users
 import 'package:learning_system/src/features/course/data/models/rate/rate_model.dart';
 
 class CourseCubit extends Cubit<CourseState> {
-
+  ///delete test
   ///for test
 
   final int totalItems = 20;
@@ -22,10 +23,25 @@ class CourseCubit extends Cubit<CourseState> {
     isExpanded = !isExpanded;
     emit(isExpanded ? IsExpanded() : IsNotExpanded());
   }
+
 /////////////////////////////////////////////////////////
+//
   ApiConsumer api;
   CourseDataModel? course;
   List<CourseDataModel> listCourse = [];
+  List<String> videoId = [];
+  List<String> articleId = [];
+  List<String> quizId = [];
+  Set<int> order = <int>{};
+
+  TextEditingController courseName = TextEditingController();
+  TextEditingController courseCost = TextEditingController();
+  TextEditingController courseDuration = TextEditingController();
+  TextEditingController courseLanguage = TextEditingController();
+  TextEditingController courseEducationLevel = TextEditingController();
+  TextEditingController courseCategories = TextEditingController();
+  TextEditingController courseWhatYouWillLearn = TextEditingController();
+
   CourseCubit({required this.api}) : super(InitialCourseState());
 
   createCourse(
@@ -36,8 +52,9 @@ class CourseCubit extends Cubit<CourseState> {
       required String educationLevel,
       String? categories,
       List<String>? plan,
-      required List<String> videoIds,
-      required List<String> articleIds,
+      List<String>? videoIds,
+      List<String>? articleIds,
+      List<String>? quizIds,
       String? institutionId,
       String? whatYouWillLearn,
       XFile? image}) async {
@@ -51,8 +68,9 @@ class CourseCubit extends Cubit<CourseState> {
         ApiKey.courseEducationLevel: educationLevel,
         ApiKey.courseCategories: categories ?? '',
         ApiKey.coursePlan: plan ?? [],
-        ApiKey.courseVideo: videoIds,
-        ApiKey.courseArticle: articleIds,
+        ApiKey.courseVideo: videoIds ?? [],
+        ApiKey.courseArticle: articleIds ?? [],
+        ApiKey.courseQuiz: quizIds ?? [],
         ApiKey.courseInstituteId: institutionId ?? '',
         ApiKey.courseWhatYouWillLearn: whatYouWillLearn ?? '',
         ApiKey.courseImage: image != null ? await uploadImageToApi(image) : '',

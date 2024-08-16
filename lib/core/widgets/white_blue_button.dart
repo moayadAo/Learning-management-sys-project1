@@ -10,6 +10,8 @@ class WhiteBlueButton extends StatelessWidget {
       this.onPressed,
       required this.height,
       this.width,
+      this.colorbut,
+      this.colorText,
       required this.label,
       required this.isBlue});
 
@@ -18,12 +20,14 @@ class WhiteBlueButton extends StatelessWidget {
   final bool isBlue;
   final double? width;
   final double height;
+  final Color? colorbut;
+  final Color? colorText;
 
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
       onPressed: onPressed,
-      color: isBlue ? ColorManager.primary : ColorManager.white,
+      color: isBlue ? ColorManager.primary : colorbut ?? ColorManager.white,
       minWidth: width,
       height: height,
       shape: RoundedRectangleBorder(
@@ -35,7 +39,8 @@ class WhiteBlueButton extends StatelessWidget {
         label,
         style: getLabelSmall(
           fontSize: FontSize.s16,
-          color: isBlue ? ColorManager.white : ColorManager.primary,
+          color:
+              isBlue ? ColorManager.white : colorText ?? ColorManager.primary,
         ),
       ),
     );

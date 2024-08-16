@@ -9,6 +9,7 @@ part of 'course_data_model.dart';
 CourseDataModel _$CourseDataModelFromJson(Map<String, dynamic> json) =>
     CourseDataModel(
       id: json['_id'] as String,
+      status: json['status'] as String,
       name: json['name'] as String,
       rate: (json['rate'] as num?)?.toDouble(),
       ratings: (json['ratings'] as List<dynamic>?)
@@ -42,6 +43,7 @@ Map<String, dynamic> _$CourseDataModelToJson(CourseDataModel instance) =>
     <String, dynamic>{
       'Teacher_ID': instance.teachersId,
       '_id': instance.id,
+      'status': instance.status,
       'name': instance.name,
       'rate': instance.rate,
       'cost': instance.cost,

@@ -1,4 +1,4 @@
-const baseUrl = "http://192.168.43.224:8080/";
+const baseUrl = "http://192.168.1.5:8080/";
 const baseServ = "https://ptc.yorkacademy.uk/";
 // const baseUrl = "${baseServ}api/";
 const storageUrl = "${baseServ}storage/";
@@ -100,8 +100,9 @@ class ApiKey {
   static const coursePlan = 'plan';
   static const courseVideo = 'video';
   static const courseArticle = 'article';
+  static const courseQuiz = 'quiz';
   static const courseWhatYouWillLearn = 'what_you_will_learn';
-  static const courseImage = 'Image';
+  static const courseImage = 'image';
   static const courseInstituteId = 'instituteId';
 
   ///-----------------------<<video>>-------------------------->
@@ -123,6 +124,8 @@ class ApiKey {
   static const quizName = 'name';
   static const quizQustions = 'qustions';
   static const quizMark = 'mark';
+  //// public
+  static const order = 'order';
 }
 
 class QueryPrametersApi {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:learning_system/core/widgets/white_blue_button.dart';
 
 import '../../utils/color_manager.dart';
 import '../../utils/values_manager.dart';
@@ -19,8 +20,7 @@ class DialogWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return
-      Material(
+    return Material(
       color: Colors.transparent,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -54,4 +54,24 @@ class DialogWidget extends StatelessWidget {
   }
 }
 
-
+showConfirm(
+    {required BuildContext context,
+    required VoidCallback confirm,
+    String? title}) {
+  return showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return DialogWidget(
+          mainAxisAlignment: MainAxisAlignment.center,
+          topWidget: title != null ? Text(title) : null,
+          bottomWidget: WhiteBlueButton(
+            height: 50,
+            label: 'ok',
+            isBlue: false,
+            colorbut: ColorManager.greenLightButton,
+            onPressed: confirm,
+          ),
+        );
+      });
+}
