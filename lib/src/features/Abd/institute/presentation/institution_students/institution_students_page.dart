@@ -6,8 +6,8 @@ import 'package:learning_system/core/utils/style_manager.dart';
 import 'package:learning_system/core/utils/values_manager.dart';
 import 'package:learning_system/core/widgets/list_tile_widget/list_tile_widget.dart';
 
-class GetAllTeacherScreen extends StatelessWidget {
-  const GetAllTeacherScreen({super.key});
+class InstitutionStudentsPage extends StatelessWidget {
+  const InstitutionStudentsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class GetAllTeacherScreen extends StatelessWidget {
             backgroundColor: ColorManager.SecondaryColorLogo,
             title: RichText(
               text: TextSpan(
-                text: "Teachers",
+                text: "Institution students",
                 style: getSemiBoldStyle(
                     fontSize: FontSize.s24, color: ColorManager.white),
               ),
@@ -32,11 +32,11 @@ class GetAllTeacherScreen extends StatelessWidget {
                       horizontal: AppPadding.p12, vertical: AppPadding.p8),
                   child: ListTileWidget(
                     imageUrl:
-                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJxo2NFiYcR35GzCk5T3nxA7rGlSsXvIfJwg&s",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJxo2NFiYcR35GzCk5T3nxA7rGlSsXvIfJwg&s",
                     title: "title",
                     subTitle: "subTitle",
                     onTap: () {
-                      Navigator.pushNamed(context, AppRoute.teacherProfile);
+                      Navigator.pushNamed(context, AppRoute.profileScreen);
                     },
                     decade: '18/8/2020 ',
                   ));

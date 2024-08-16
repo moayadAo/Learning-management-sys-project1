@@ -5,18 +5,19 @@ import 'package:learning_system/core/utils/style_manager.dart';
 import 'package:learning_system/core/utils/values_manager.dart';
 
 class ListTileWidget extends StatelessWidget {
-  const ListTileWidget({
-    super.key,
-    required this.imageUrl,
-    required this.title,
-    required this.subTitle,
-    required this.onTap,
-  });
+  const ListTileWidget(
+      {super.key,
+      required this.imageUrl,
+      required this.title,
+      required this.subTitle,
+      required this.onTap,
+      this.decade});
 
   final String imageUrl;
   final String title;
   final String subTitle;
   final void Function()? onTap;
+  final String? decade;
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +30,9 @@ class ListTileWidget extends StatelessWidget {
           child: ClipOval(
             child: Image.network(
               imageUrl,
-              fit: BoxFit.cover,  // Ensures the image covers the entire circle
-              width: AppSize.s200, // The width and height of the CircleAvatar should match
+              fit: BoxFit.cover, // Ensures the image covers the entire circle
+              width: AppSize
+                  .s200, // The width and height of the CircleAvatar should match
               height: AppSize.s200, // its radius * 2 to avoid any distortion
             ),
           ),
@@ -44,14 +46,24 @@ class ListTileWidget extends StatelessWidget {
             ),
           ),
         ),
-        subtitle: RichText(
-          text: TextSpan(
-            text: subTitle,
-            style: getRegularStyle(
-              fontSize: FontSize.s16,
-              color: ColorManager.black,
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Card(),
+            RichText(
+              text: TextSpan(
+                text: subTitle,
+                style: getTitleMeduim(color: ColorManager.black),
+              ),
             ),
-          ),
+            Card(),
+            RichText(
+              text: TextSpan(
+                text: decade,
+                style: getLabelSmall(color: ColorManager.grayLight),
+              ),
+            )
+          ],
         ),
       ),
     );

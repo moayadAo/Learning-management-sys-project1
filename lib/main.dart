@@ -9,6 +9,7 @@ import 'package:learning_system/firebase_options.dart';
 import 'package:learning_system/my_firebase.dart';
 import 'package:learning_system/src/app.dart';
 import 'package:learning_system/src/features/article/cubit/pdf_cubit.dart';
+import 'package:learning_system/src/features/course/cubit/article/article_cubit.dart';
 import 'package:learning_system/src/features/course/cubit/course/course_cubit.dart';
 import 'package:learning_system/src/features/course/presentation/follow_course/cubit/follow_course_cubit.dart';
 
@@ -69,6 +70,10 @@ void main() async {
         BlocProvider<TeacherCubit>(
           create: (_) => TeacherCubit(),
         ),
+        BlocProvider<ArticleCubit>(
+          create: (_) => ArticleCubit(api:DioConsumer(dio: Dio()) ),
+        ),
+
 
       ],
       child: const EduBridgeApp(),

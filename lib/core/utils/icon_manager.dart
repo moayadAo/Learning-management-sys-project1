@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:learning_system/core/utils/color_manager.dart';
+import 'package:learning_system/core/utils/values_manager.dart';
 
 class IconManager {
   // FontAwesome icons
@@ -12,6 +13,18 @@ class IconManager {
   static const homeOutLine = FaIcon(FontAwesomeIcons.home);
   static const arrowLeft = FaIcon(FontAwesomeIcons.arrowLeft);
   static const arrowRight = FaIcon(FontAwesomeIcons.arrowRight,color: Colors.white,);
+  static const email = FaIcon(FontAwesomeIcons.envelope);
+  static const emailInstitute = FaIcon(FontAwesomeIcons.envelope,size: AppSize.s14,color: ColorManager.grayDark,);
+  static const location =Icon(Icons.location_on_outlined,size: AppSize.s14,color: ColorManager.grayDark,);
+  static const facebook = FaIcon(FontAwesomeIcons.facebook,size: AppSize.s14,color: ColorManager.primary,);
+  static const instagram = FaIcon(FontAwesomeIcons.instagram,size: AppSize.s14,color: ColorManager.redButton,);
+  static const book2 = FaIcon(FontAwesomeIcons.book,size: AppSize.s14,color: ColorManager.redButton,);
+
+
+  static const wallet = FaIcon(FontAwesomeIcons.wallet);
+  static const userLine = FaIcon(FontAwesomeIcons.usersLine);
+  static const grant = FaIcon(FontAwesomeIcons.gratipay);
+
 
   static const user = FaIcon(
     FontAwesomeIcons.user,
@@ -32,7 +45,6 @@ class IconManager {
   static const pencilSquare = FaIcon(FontAwesomeIcons.pencilSquare);
   static const picture = FaIcon(FontAwesomeIcons.photoFilm);
   static const calender = FaIcon(FontAwesomeIcons.calendar);
-  static const email = FaIcon(FontAwesomeIcons.envelope);
   static const search = FaIcon(FontAwesomeIcons.search);
   static const add = FaIcon(FontAwesomeIcons.add,color: Colors.white,);
   static const plus = FaIcon(FontAwesomeIcons.plusSquare,size: 70,color: ColorManager.grayDark,);

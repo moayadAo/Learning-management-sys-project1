@@ -26,12 +26,13 @@ class TextFormFieldWidget extends StatelessWidget {
         minLines: minLines,
         controller: controller,
         validator: (text) {
-          if (text == null) {
+          if (text == null || text.isEmpty) {
             return "Please enter your information";
           } else {
             return null;
           }
         },
+
         cursorColor: Colors.black,
         keyboardType: TextInputType.multiline,
         maxLines: null,

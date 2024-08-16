@@ -1,5 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:learning_system/core/utils/app_string.dart';
+import 'package:learning_system/src/features/Abd/institute/presentation/add_scholarships_page/add_scholarships_page.dart';
+import 'package:learning_system/src/features/Abd/institute/presentation/institute_page.dart';
+import 'package:learning_system/src/features/Abd/institute/presentation/institution_students/institution_students_page.dart';
+import 'package:learning_system/src/features/Abd/institute/presentation/pay_students/pay_student_page.dart';
+import 'package:learning_system/src/features/Abd/institute/presentation/scholarship_students/scholarship_students_page.dart';
+import 'package:learning_system/src/features/Abd/institute/presentation/scholarships_page/scholarships_page.dart';
+import 'package:learning_system/src/features/Abd/institute/presentation/scholarships_requests/scholarships_requests_page.dart';
+import 'package:learning_system/src/features/Abd/institute/presentation/teachers_request/teacher_request.dart';
 import 'package:learning_system/src/features/article/presentation/article_details.dart';
 import 'package:learning_system/src/features/article/presentation/article_page.dart';
 import 'package:learning_system/src/features/auth/login/view/login.dart';
@@ -18,6 +26,7 @@ import 'package:learning_system/src/features/quiz/presentation/quiz_welcome.dart
 
 
 import 'package:learning_system/src/features/teacher/presentation/courses_teacher.dart';
+import 'package:learning_system/src/features/teacher/presentation/edit_info/edit_info_teacher.dart';
 import 'package:learning_system/src/features/teacher/presentation/get_all_teacher_screen.dart';
 import 'package:learning_system/src/features/teacher/presentation/messages_teacher.dart';
 import 'package:learning_system/src/features/teacher/presentation/teacher_cv.dart';
@@ -32,6 +41,7 @@ import 'package:learning_system/src/features/user/presentation/profile_user.dart
 import 'package:learning_system/src/features/user/presentation/progress_page.dart';
 import 'package:learning_system/src/features/user/presentation/wish_list_page.dart';
 
+
 class EduBridgeApp extends StatelessWidget {
   const EduBridgeApp({super.key});
 
@@ -41,7 +51,7 @@ class EduBridgeApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
 // Start from splash page
 
-      initialRoute: 'create_article_page', // Start from splash page
+      initialRoute: AppRoute.scholarshipsPage, // Start from splash page
 
       routes: {
         'splash': (context) => const SplashPage(),
@@ -62,21 +72,41 @@ class EduBridgeApp extends StatelessWidget {
 
         ///********************************Quiz
         'welcome_quiz' : (context)=> const QuizWelcome(),
+        'createQuiz' : (context)=> const CreateQuiz(),
+
         ///********************************Article
         'file_view_widget' : (context)=>const FileViewWidget(),
         'article_details' : (context)=> const ArticleDetails(),
 
         ///**********************************teacher
-        'teacher_profile'  :(context) => TeacherProfile(),
-        'teacher_cv' : (context)=> TeacherCv(),
+        'teacher_profile'  :(context) => const TeacherProfile(),
+        'teacher_cv' : (context)=> const TeacherCv(),
         'teacher_courses' : (context)=> CoursesTeacher(),
-        'messagesTeacher' : (context)=> MessagesTeacher(),
-        'getAllTeacherScreen' : (context)=>  GetAllTeacherScreen(),
-
-
+        'messagesTeacher' : (context)=>const  MessagesTeacher(),
+        'getAllTeacherScreen' : (context)=> const  GetAllTeacherScreen(),
 
         'create_article_page': (context) => CreateArticlePage(),
-        'update_article_page': (context) => UpdateArticlePage()
+        'update_article_page': (context) => UpdateArticlePage(),
+
+        ///********************************Institute
+        'institute_page': (context) =>const  InstitutePage(),
+        'scholarshipStudentsPage': (context) => const ScholarshipStudentsPage(),
+        'institutionStudentsPage': (context) => const InstitutionStudentsPage(),
+        'payStudentPage': (context) => const PayStudentPage(),
+        'scholarshipsRequestsPage': (context) => const ScholarshipsRequestsPage(),
+        'teacherRequest': (context) => const TeacherRequest(),
+        'addScholarshipsPage': (context) =>  AddScholarshipsPage(),
+        'scholarshipsPage': (context) =>  ScholarshipsPage(),
+
+
+        'editInfoTeacher': (context) =>  EditInfoTeacher(),
+
+
+
+
+
+
+
 
         // Add any additional routes here
       },

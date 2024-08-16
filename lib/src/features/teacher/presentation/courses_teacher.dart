@@ -17,7 +17,7 @@ class CoursesTeacher extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => SearchCubit(course), // توفير قائمة الدورات هنا
+      create: (context) => SearchCubit(course),
       child: Scaffold(
         body: CustomScrollView(
           slivers: [
