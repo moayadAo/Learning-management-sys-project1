@@ -1,4 +1,3 @@
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,16 +5,12 @@ import 'package:image_picker/image_picker.dart';
 import 'package:learning_system/core/cubit_helper/image_cubit.dart';
 import 'package:learning_system/core/cubit_helper/image_state.dart';
 import 'package:learning_system/core/utils/color_manager.dart';
-import 'package:learning_system/core/utils/font_manager.dart';
-import 'package:learning_system/core/utils/style_manager.dart';
-import 'package:learning_system/core/utils/values_manager.dart';
 import 'package:learning_system/core/widgets/white_blue_button.dart';
 
 class ImagePickerButton extends StatelessWidget {
   final Function(XFile?) onImageSelected;
 
-  const ImagePickerButton({Key? key, required this.onImageSelected})
-      : super(key: key);
+  const ImagePickerButton({super.key, required this.onImageSelected});
 
   Future<void> _pickImage(BuildContext context) async {
     final pickedFile =

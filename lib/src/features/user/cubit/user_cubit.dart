@@ -12,6 +12,7 @@ import 'package:learning_system/core/utils/app_string.dart';
 import 'package:learning_system/core/utils/app_url.dart';
 import 'package:learning_system/src/features/auth/login/login_model.dart';
 import 'package:learning_system/src/features/auth/signup/model/signup_model.dart';
+import 'package:learning_system/src/features/teacher/data/models/sign_up_teacher_model.dart';
 import 'package:learning_system/src/features/user/cubit/user_states.dart';
 import 'package:flutter/material.dart';
 import 'package:learning_system/src/features/user/data/models/data_user_model.dart';
@@ -58,10 +59,37 @@ class UserCubit extends Cubit<UserStates> {
           ApiKey.password: signInPassword.text,
         },
       );
-
       user = LoginModel.fromJson(response);
       final decodedToken = JwtDecoder.decode(user!.token);
       getIt<CacheHelper>().saveData(key: AppString.token, value: user!.token);
+      getIt<CacheHelper>().saveData(
+          key: AppString.userIdCacheKey,
+          value: decodedToken[AppString.decodeTokenForId]);
+      getIt<CacheHelper>().saveData(
+          key: AppString.roleCacheKey,
+          value: decodedToken[AppString.decodeTokenForRole]);
+
+      emit(SignInSuccess());
+      getUser();
+    } on ServerException catch (e) {
+      emit(SignInFailure(errMessage: e.errorModel.message!));
+    }
+  }
+
+  loginTeacher() async {
+    try {
+      emit(SignInLoading());
+      final response = await api.post(
+        AppUrl.loginTeacher,
+        data: {
+          ApiKey.email: signInEmail.text,
+          ApiKey.password: signInPassword.text,
+        },
+      );
+      final teacher = SignUpTeacherModel.fromJson(response);
+      final decodedToken = JwtDecoder.decode(teacher.data!.token!);
+      getIt<CacheHelper>()
+          .saveData(key: AppString.token, value: teacher.data!.token);
       getIt<CacheHelper>().saveData(
           key: AppString.userIdCacheKey,
           value: decodedToken[AppString.decodeTokenForId]);

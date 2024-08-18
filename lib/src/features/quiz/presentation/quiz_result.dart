@@ -75,7 +75,7 @@ class ResultScreen extends StatelessWidget {
                 minWidth: MediaQuery.of(context).size.width * 0.88,
                 height: MediaQuery.of(context).size.height / 15,
                 color: ColorManager.SecondaryColorLogo,
-                child: Text(
+                child: const Text(
                   'Go To Home ',
                   style: TextStyle(fontSize: 15, color: Colors.white),
                 ),
@@ -84,7 +84,7 @@ class ResultScreen extends StatelessWidget {
                 },
               ),
             ),
-            SizedBox(height: 30,)
+            const SizedBox(height: 30,)
           ],
         ),
       ),

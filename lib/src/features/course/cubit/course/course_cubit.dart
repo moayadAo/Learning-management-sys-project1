@@ -7,9 +7,11 @@ import 'package:learning_system/core/helper/upload_file_to_api.dart';
 import 'package:learning_system/core/utils/app_url.dart';
 import 'package:learning_system/src/features/course/cubit/course/course_state.dart';
 import 'package:learning_system/src/features/course/data/models/course/course_model/course_data_model.dart';
-import 'package:learning_system/src/features/course/data/models/course/getAll/get_all_course_model.dart';
-import 'package:learning_system/src/features/course/data/models/course/get_response_course_model.dart';
 import 'package:learning_system/src/features/course/data/models/course/get_users_of_course.dart';
+import 'package:learning_system/src/features/course/data/models/course/new_model.dart/course_data_model_new.dart';
+import 'package:learning_system/src/features/course/data/models/course/new_model.dart/get/get_model_course_new.dart';
+import 'package:learning_system/src/features/course/data/models/course/new_model.dart/get/order_model.dart';
+import 'package:learning_system/src/features/course/data/models/course/new_model.dart/get_all/get_all_model.dart';
 import 'package:learning_system/src/features/course/data/models/rate/rate_model.dart';
 
 class CourseCubit extends Cubit<CourseState> {
@@ -28,11 +30,14 @@ class CourseCubit extends Cubit<CourseState> {
 //
   ApiConsumer api;
   CourseDataModel? course;
+  List<OrderModel>? courseOrder;
   List<CourseDataModel> listCourse = [];
+  List<CourseDataModelNewForGetAllApi> newListCourse = [];
   List<String> videoId = [];
   List<String> articleId = [];
   List<String> quizId = [];
   Set<int> order = <int>{};
+  String? courseId;
 
   TextEditingController courseName = TextEditingController();
   TextEditingController courseCost = TextEditingController();
@@ -62,7 +67,7 @@ class CourseCubit extends Cubit<CourseState> {
       ApiKey.courseName: name,
       ApiKey.courseCost: cost,
       ApiKey.courseDuration: duration,
-      ApiKey.courseLanguage: language.split(RegExp(r'[ ,]+')),
+      ApiKey.courseLanguage: language.split(RegExp(' ')),
       ApiKey.courseEducationLevel: educationLevel,
       ApiKey.courseCategories: categories ?? '',
       ApiKey.coursePlan: plan ?? [],
@@ -76,12 +81,16 @@ class CourseCubit extends Cubit<CourseState> {
       data[ApiKey.courseInstituteId] = institutionId;
     }
 
-    if (image != null) {
-      data[ApiKey.courseImage] = await uploadImageToApi(image);
-    }
+    // if (image != null) {
+    //   data[ApiKey.courseImage] = await uploadImageToApi(image);
+    // }
     try {
       emit(CreateCourseLoadingState());
-      final response = await api.post(AppUrl.createCourse, data: data);
+      final response =
+          await api.post(AppUrl.createCourse, data: data, isFormData: false);
+      CourseDataModelNewForGetAllApi co =
+          CourseDataModelNewForGetAllApi.fromJson(response['data']);
+      courseId = co.id;
       emit(CreateCourseSuccessState());
     } on ServerException catch (e) {
       emit(CreateCourseFailureState(errMessage: e.errorModel.message!));
@@ -92,7 +101,10 @@ class CourseCubit extends Cubit<CourseState> {
     try {
       emit(GetCourseLoadingState());
       final response = await api.getApi(AppUrl.getCourseUrl(courseId));
-      course = GetResponseCourseModel.fromJson(response).data.course;
+      // course = GetResponseCourseModel.fromJson(response).data.course;
+      final modelResponse = GetModelCourseNew.fromJson(response);
+      course = modelResponse.data.basic;
+      courseOrder = modelResponse.data.order;
       emit(GetCourseSuccessState());
     } on ServerException catch (e) {
       emit(GetCourseFailureState(errMessage: e.errorModel.message!));
@@ -107,23 +119,26 @@ class CourseCubit extends Cubit<CourseState> {
       int? costGreatThan}) async {
     try {
       final response = await api.getApi(AppUrl.courseUrl, queryParameters: {
-        QueryPrametersApi.getAllCouserLimit: limit,
-        QueryPrametersApi.getAllCouserPage: page,
-        QueryPrametersApi.getAllCouserSort: sortCostFromBiggerToSmall == true
-            ? '-cost'
-            : sortCostFromBiggerToSmall == false
-                ? 'cost'
-                : null,
-        QueryPrametersApi.getAllCouserFields:
-            fields == true ? 'name,cost,rate' : null,
-        QueryPrametersApi.getAllCouserCostGreaterThan: costGreatThan,
+        QueryPrametersApi.getAllCouserLimit: limit ?? 10,
+        // QueryPrametersApi.getAllCouserPage: page,
+        // QueryPrametersApi.getAllCouserSort: sortCostFromBiggerToSmall == true
+        //     ? '-cost'
+        //     : sortCostFromBiggerToSmall == false
+        //         ? 'cost'
+        //         : null,
+        // QueryPrametersApi.getAllCouserFields:
+        //     fields == true ? 'name,cost,rate' : null,
+        // QueryPrametersApi.getAllCouserCostGreaterThan: costGreatThan,
       });
-      GetAllCourseModel modelResponse = GetAllCourseModel.fromJson(response);
+      // GetAllCourseModel modelResponse = GetAllCourseModel.fromJson(response);
+      GetAllModelCourseNew modelResponse =
+          GetAllModelCourseNew.fromJson(response);
       int result = modelResponse.result;
       if (result == 0) {
         emit(GetAllCourseEmptyListState());
       } else {
-        listCourse = modelResponse.data.courses;
+        // listCourse = modelResponse.data.courses;
+        newListCourse = modelResponse.data.courses;
         emit(GetAllCourseSuccessState());
       }
     } on ServerException catch (e) {

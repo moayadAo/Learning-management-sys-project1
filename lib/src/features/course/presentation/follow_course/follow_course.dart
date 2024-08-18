@@ -26,7 +26,7 @@ class FollowCoursePage extends StatelessWidget {
         body: Column(
           children: [
             // First header that doesn't scroll
-            Container(
+            SizedBox(
               height: AppSize.s240,
               width: double.infinity,
               child: Stack(
@@ -36,19 +36,19 @@ class FollowCoursePage extends StatelessWidget {
                       return state is LoadingVideoState
                           ? LoadingIndicator()
                           : state is SuccessVideoState
-                          ? FlickVideoPlayer(
-                        flickManager:
-                        context.read<VideoCubit>().flickManager,
-                      )
-                          : Image(
-                        width: MediaQuery.of(context).size.width,
-                        image: AssetImage(
-                          AssetsManager.logoOfCourse,
-                        ),
-                      );
+                              ? FlickVideoPlayer(
+                                  flickManager:
+                                      context.read<VideoCubit>().flickManager,
+                                )
+                              : Image(
+                                  width: MediaQuery.of(context).size.width,
+                                  image: const AssetImage(
+                                    AssetsManager.logoOfCourse,
+                                  ),
+                                );
                     },
                   ),
-                  Positioned(
+                  const Positioned(
                     top: 16.0,
                     left: 16.0,
                     child: IconManager.arrowLeft,
@@ -89,7 +89,7 @@ class FollowCoursePage extends StatelessWidget {
                                       fontSize: 16, color: ColorManager.white),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: AppSize.s30,
                               ),
                               RichText(
@@ -107,15 +107,15 @@ class FollowCoursePage extends StatelessWidget {
                   ),
                   SliverList(
                     delegate: SliverChildBuilderDelegate(
-                          (BuildContext context, int index) {
+                      (BuildContext context, int index) {
                         return BlocBuilder<FollowCourseCubit,
                             FollowCourseState>(
                           builder: (context, state) {
                             return ListTile(
                               tileColor: context
-                                  .read<FollowCourseCubit>()
-                                  .selectedIndex ==
-                                  index
+                                          .read<FollowCourseCubit>()
+                                          .selectedIndex ==
+                                      index
                                   ? ColorManager.grayLight
                                   : Colors.white,
                               leading: RichText(
@@ -141,7 +141,7 @@ class FollowCoursePage extends StatelessWidget {
                                 ),
                               ),
                               onTap: () {
-                                context.read<VideoCubit>().displayVideo();
+                                context.read<VideoCubit>().displayVideo('');
                                 context
                                     .read<FollowCourseCubit>()
                                     .isSelectVideo(index);
@@ -164,107 +164,113 @@ class FollowCoursePage extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-            CustomButton(
-            color: ColorManager.mediumViolet,
-            onPressed: () {
-              showModalBottomSheet(
-                isScrollControlled: true,  // Important to handle the keyboard
-                context: context,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-                ),
-                builder: (BuildContext context) {
-                  return Padding(
-                    padding: EdgeInsets.only(
-                      bottom: MediaQuery.of(context).viewInsets.bottom,  // Handles keyboard
-                      left: AppSize.s16,
-                      right: AppSize.s16,
-                      top: AppSize.s20,
+              CustomButton(
+                color: ColorManager.mediumViolet,
+                onPressed: () {
+                  showModalBottomSheet(
+                    isScrollControlled:
+                        true, // Important to handle the keyboard
+                    context: context,
+                    shape: const RoundedRectangleBorder(
+                      borderRadius:
+                          BorderRadius.vertical(top: Radius.circular(20)),
                     ),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            clipBehavior: Clip.antiAlias,
-                            width: double.infinity,
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: AppPadding.p12, vertical: AppPadding.p12),
-                            decoration: const BoxDecoration(
-                                //color: Colors.white,
-                                borderRadius:
-                                BorderRadius.vertical(top: Radius.circular(24))),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                GestureDetector(
-                                  behavior: HitTestBehavior.opaque,
-                                  onTap: () =>  Navigator.of(context).pop(),
-                                  child: const Icon(
-                                    Icons.close,
-                                    size: 25,
-                                    color: ColorManager.mediumViolet,
-                                  ),
+                    builder: (BuildContext context) {
+                      return Padding(
+                        padding: EdgeInsets.only(
+                          bottom: MediaQuery.of(context)
+                              .viewInsets
+                              .bottom, // Handles keyboard
+                          left: AppSize.s16,
+                          right: AppSize.s16,
+                          top: AppSize.s20,
+                        ),
+                        child: SingleChildScrollView(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                clipBehavior: Clip.antiAlias,
+                                width: double.infinity,
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: AppPadding.p12,
+                                    vertical: AppPadding.p12),
+                                decoration: const BoxDecoration(
+                                    //color: Colors.white,
+                                    borderRadius: BorderRadius.vertical(
+                                        top: Radius.circular(24))),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    GestureDetector(
+                                      behavior: HitTestBehavior.opaque,
+                                      onTap: () => Navigator.of(context).pop(),
+                                      child: const Icon(
+                                        Icons.close,
+                                        size: 25,
+                                        color: ColorManager.mediumViolet,
+                                      ),
+                                    ),
+                                  ],
                                 ),
-
-                              ],
-                            ),
+                              ),
+                              RichText(
+                                text: TextSpan(
+                                  text: "Abd Alurhman Alrifai ",
+                                  style: getBoldStyle(
+                                      fontSize: FontSize.s16,
+                                      color: ColorManager.black),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: AppSize.s20,
+                              ),
+                              const RatingWidgetCourse(
+                                hasPurchasedCourse: true,
+                              ),
+                              const SizedBox(
+                                height: AppSize.s20,
+                              ),
+                              TextFiledApp(
+                                hintText: 'Enter your experience (optional)',
+                                iconData: Icons.star_border_purple500_outlined,
+                              ),
+                              const SizedBox(
+                                height: AppSize.s20,
+                              ),
+                              MaterialButton(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                splashColor: Colors.black,
+                                minWidth:
+                                    MediaQuery.of(context).size.width * 0.88,
+                                height: MediaQuery.of(context).size.height / 15,
+                                color: ColorManager.mediumViolet,
+                                child: const Text(
+                                  'Post your review',
+                                  style: TextStyle(
+                                      fontSize: 15, color: Colors.white),
+                                ),
+                                onPressed: () {
+                                  Navigator.of(context)
+                                      .pop(); // Close the bottom sheet after posting review
+                                },
+                              ),
+                              const SizedBox(
+                                height: AppSize.s30,
+                              )
+                            ],
                           ),
-
-                          RichText(
-                            text: TextSpan(
-                              text: "Abd Alurhman Alrifai ",
-                              style: getBoldStyle(
-                                  fontSize: FontSize.s16, color: ColorManager.black),
-                            ),
-                          ),
-                          SizedBox(
-                            height: AppSize.s20,
-                          ),
-                          RatingWidgetCourse(
-                            hasPurchasedCourse: true,
-                          ),
-                          SizedBox(
-                            height: AppSize.s20,
-                          ),
-                          TextFiledApp(
-                            hintText: 'Enter your experience (optional)',
-                            iconData: Icons.star_border_purple500_outlined,
-                          ),
-                          SizedBox(
-                            height: AppSize.s20,
-                          ),
-                          MaterialButton(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            splashColor: Colors.black,
-                            minWidth: MediaQuery.of(context).size.width * 0.88,
-                            height: MediaQuery.of(context).size.height / 15,
-                            color: ColorManager.mediumViolet,
-                            child: const Text(
-                              'Post your review',
-                              style: TextStyle(fontSize: 15, color: Colors.white),
-                            ),
-                            onPressed: () {
-                              Navigator.of(context).pop();  // Close the bottom sheet after posting review
-                            },
-                          ),
-                          SizedBox(height: AppSize.s30,)
-                        ],
-                      ),
-                    ),
+                        ),
+                      );
+                    },
                   );
                 },
-              );
-            },
-            text: "Rate this course !",
-          )
-
-
-
-          ],
+                text: "Rate this course !",
+              )
+            ],
           ),
         ),
       ),

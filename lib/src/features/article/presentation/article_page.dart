@@ -37,7 +37,7 @@ class FileViewWidget extends StatelessWidget {
       body: BlocBuilder<FileViewCubit, FileViewState>(
         builder: (context, state) {
           return state is FileViewLoading
-              ? Center(child: CircularProgressIndicator())
+              ? const Center(child: CircularProgressIndicator())
               : state is FileViewLoaded
               ? const PDF().cachedFromUrl(
             context.read<FileViewCubit>().pdfUrl,

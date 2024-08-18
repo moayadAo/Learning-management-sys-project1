@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:learning_system/core/utils/app_string.dart';
 import 'package:learning_system/core/utils/assets_manager.dart';
 import 'package:learning_system/core/utils/color_manager.dart';
 import 'package:learning_system/core/utils/style_manager.dart';
@@ -13,7 +14,6 @@ class ChooseRoleScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Stack(children: [
-          ArrowBack(),
           Column(children: [
             SizedBox(height: MediaQuery.of(context).size.height * 0.1),
             Text(
@@ -35,7 +35,9 @@ class ChooseRoleScreen extends StatelessWidget {
             const SizedBox(height: 20),
             roleWidget(
               title: 'Teacher',
-              tap: () {},
+              tap: () {
+                Navigator.pushNamed(context, AppRoute.signUpTeacher);
+              },
               description:
                   ' that mean you can add your courses and accsess to more student',
               image: AssetsManager.teacher3Role,

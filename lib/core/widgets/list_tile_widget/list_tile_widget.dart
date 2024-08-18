@@ -49,14 +49,14 @@ class ListTileWidget extends StatelessWidget {
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Card(),
+            const Card(),
             RichText(
               text: TextSpan(
                 text: subTitle,
                 style: getTitleMeduim(color: ColorManager.black),
               ),
             ),
-            Card(),
+            const Card(),
             RichText(
               text: TextSpan(
                 text: decade,

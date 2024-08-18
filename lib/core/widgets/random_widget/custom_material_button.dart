@@ -26,7 +26,7 @@ class CustomMaterialButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           foregroundColor: ColorManager.black,
           backgroundColor: color,
-          padding: EdgeInsets.symmetric(
+          padding: const EdgeInsets.symmetric(
               horizontal: AppPadding.p16, vertical: AppPadding.p6), // Text and icon color
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(6), // Rounded corners

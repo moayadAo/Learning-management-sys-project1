@@ -7,6 +7,7 @@ import 'package:learning_system/core/utils/color_manager.dart';
 import 'package:learning_system/core/utils/icon_manager.dart';
 import 'package:learning_system/core/utils/values_manager.dart';
 import 'package:learning_system/core/widgets/loading_indicator.dart';
+import 'package:learning_system/src/features/course/cubit/course/course_cubit.dart';
 import 'package:learning_system/src/features/user/cubit/user_cubit.dart';
 import 'package:learning_system/src/features/user/cubit/user_states.dart';
 import '../../../../core/utils/style_manager.dart';
@@ -119,20 +120,31 @@ class ProfileUser extends StatelessWidget {
                                         const EdgeInsets.all(AppPadding.p8),
                                     child: Row(
                                       children: [
-                                        const CircleAvatar(
+                                        CircleAvatar(
                                           radius: AppSize.s40,
-                                          backgroundImage: AssetImage(
-                                              AssetsManager
-                                                  .logoIMGWithoutBackground),
-                                          // backgroundImage: context
-                                          //             .read<UserCubit>()
-                                          //             .userModel!
-                                          //             .image ==
-                                          //         null
-                                          //     ? const AssetImage(AssetsManager
-                                          //         .logoIMGWithoutBackground)
-                                          //     : NetworkImage(
-                                          //         "${AppUrl.imageProfileUrl}${context.read<UserCubit>().userModel!.image!}"),
+                                          backgroundImage: context
+                                                      .read<UserCubit>()
+                                                      .userModel
+                                                      ?.image ==
+                                                  ''
+                                              ? null
+                                              : NetworkImage(
+                                                  "${AppUrl.imageProfileUrl}${context.read<UserCubit>().userModel!.image!}",
+                                                ) as ImageProvider,
+                                          // Optionally, you can add a background color if no image is available
+                                          backgroundColor: Colors.grey[200],
+                                          child: context
+                                                      .read<UserCubit>()
+                                                      .userModel
+                                                      ?.image ==
+                                                  ''
+                                              ? Icon(
+                                                  Icons
+                                                      .person, // Default icon when image is null
+                                                  size: AppSize.s40,
+                                                  color: Colors.grey[600],
+                                                )
+                                              : null, // No child when an image is available
                                         ),
                                         const SizedBox(width: 25),
                                         RichText(
@@ -179,7 +191,7 @@ class ProfileUser extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SliverToBoxAdapter(
+                        const SliverToBoxAdapter(
                           child: Divider(
                             height: 6,
                             thickness: 10,
@@ -192,16 +204,21 @@ class ProfileUser extends StatelessWidget {
                             physics: const NeverScrollableScrollPhysics(),
                             children: [
                               ListTile(
-                                title: Text('Progress Course '),
+                                title: const Text('Progress Course '),
                                 trailing: IconManager.angleRight,
-                                onTap: () {
+                                onTap: () async {
+                                  await context
+                                      .read<CourseCubit>()
+                                      .getAllCourse();
                                   Navigator.pushNamed(
-                                      context, AppRoute.progressCourseScreen);
+                                      context, AppRoute.browseCoursePage);
+                                  // Navigator.pushNamed(
+                                  //     context, AppRoute.progressCourseScreen);
                                 },
                               ),
                               const Divider(height: 6, thickness: 1),
                               ListTile(
-                                title: Text('Finish Course'),
+                                title: const Text('Finish Course'),
                                 trailing: IconManager.angleRight,
                                 onTap: () {
                                   Navigator.pushNamed(
@@ -210,7 +227,7 @@ class ProfileUser extends StatelessWidget {
                               ),
                               const Divider(height: 6, thickness: 1),
                               ListTile(
-                                title: Text('Enroll Course'),
+                                title: const Text('Enroll Course'),
                                 trailing: IconManager.angleRight,
                                 onTap: () {
                                   Navigator.pushNamed(
@@ -219,7 +236,7 @@ class ProfileUser extends StatelessWidget {
                               ),
                               const Divider(height: 6, thickness: 1),
                               ListTile(
-                                title: Text('Wish List'),
+                                title: const Text('Wish List'),
                                 trailing: IconManager.angleRight,
                                 onTap: () {
                                   Navigator.pushNamed(

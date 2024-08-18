@@ -1,7 +1,3 @@
-import 'dart:convert';
-import 'dart:developer';
-
-import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:learning_system/core/api/api_consumer.dart';
@@ -13,12 +9,14 @@ import 'package:learning_system/src/features/course/data/models/quiz/get_model/g
 import 'package:learning_system/src/features/course/data/models/quiz/post_quiz/post_model_quiz.dart';
 import 'package:learning_system/src/features/course/data/models/quiz/quiz_model/quiz_data_model.dart';
 import 'package:learning_system/src/features/quiz/cubit/answer/answer_cubit.dart';
+import 'package:learning_system/src/features/quiz/cubit/answer/answer_state.dart';
 import 'package:learning_system/src/features/quiz/cubit/quiz/quiz_state.dart';
 
 class QuizCubit extends Cubit<QuizState> {
   ApiConsumer api;
   List<String> questionIds = [];
   String? id;
+  QuizDataModel? quiz;
 
   TextEditingController titleQuiz = TextEditingController();
   TextEditingController quizOrder = TextEditingController();
@@ -32,13 +30,15 @@ class QuizCubit extends Cubit<QuizState> {
 
   void pickAnswer(int value) {
     selectedAnswerIndex = value;
-    final question = QuestionInfo.questions[questionIndex];
+    // final question = QuestionInfo.questions[questionIndex];
+    final question = quiz!.questions[questionIndex];
     emit(SelectAnswerState());
   }
 
   void isSubmit(BuildContext context) {
-    if (selectedAnswerIndex ==
-        QuestionInfo.questions[questionIndex].correctAnswerIndex) {
+    final int indexOfCorrectAnswer = quiz!.questions[questionIndex].answers
+        .indexOf(quiz!.questions[questionIndex].correctAnswer);
+    if (selectedAnswerIndex == indexOfCorrectAnswer) {
       score++;
       context.read<AnswerCubit>().correctAnswer();
     } else {
@@ -48,7 +48,7 @@ class QuizCubit extends Cubit<QuizState> {
   }
 
   void goToNextQuestion() {
-    if (questionIndex < QuestionInfo.questions.length - 1) {
+    if (questionIndex < quiz!.questions.length - 1) {
       emit(NextQuizState());
     } else {
       emit(FinishQuizState());
@@ -107,7 +107,7 @@ class QuizCubit extends Cubit<QuizState> {
     try {
       emit(GetLoadingQuizState());
       final response = await api.getApi(AppUrl.getUpdateDeleteQuiz(quizId: id));
-      QuizDataModel quiz = GetQuizModel.fromJson(response).data;
+      quiz = GetQuizModel.fromJson(response).data;
       emit(GetSuccessQuizState());
     } on ServerException catch (e) {
       emit(GetFailureQuizState(massage: e.errorModel.message!));

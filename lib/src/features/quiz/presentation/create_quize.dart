@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:learning_system/core/api/dio_consumer.dart';
 import 'package:learning_system/core/utils/assets_manager.dart';
@@ -25,6 +24,8 @@ import 'package:learning_system/src/features/quiz/cubit/quiz/quiz_state.dart';
 class CreateQuiz extends StatelessWidget {
   bool showQuestionForm = false;
   bool _isSnackBarVisible = false;
+
+  CreateQuiz({super.key});
 
   @override
   Widget build(BuildContext context) {

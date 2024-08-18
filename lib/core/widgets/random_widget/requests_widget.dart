@@ -3,7 +3,6 @@ import 'package:learning_system/core/utils/color_manager.dart';
 import 'package:learning_system/core/utils/font_manager.dart';
 import 'package:learning_system/core/utils/style_manager.dart';
 import 'package:learning_system/core/utils/values_manager.dart';
-import 'package:learning_system/core/widgets/custom_button/custom_button.dart';
 import 'package:learning_system/core/widgets/random_widget/custom_material_button.dart';
 
 class RequestsWidget extends StatelessWidget {
@@ -56,7 +55,7 @@ class RequestsWidget extends StatelessWidget {
                                 color: ColorManager.black),
                           ),
                         ),
-                        Card(),
+                        const Card(),
                         RichText(
                           text: TextSpan(
                             text: "request to follow you",
@@ -65,7 +64,7 @@ class RequestsWidget extends StatelessWidget {
                                 color: ColorManager.grayLight),
                           ),
                         ),
-                        SizedBox(height: AppPadding.p16,),
+                        const SizedBox(height: AppPadding.p16,),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [

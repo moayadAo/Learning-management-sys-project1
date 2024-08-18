@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:learning_system/core/helper/sizer_media_query.dart';
-import 'package:learning_system/core/utils/app_string.dart';
 import 'package:learning_system/core/utils/assets_manager.dart';
 import 'package:learning_system/core/utils/color_manager.dart';
 import 'package:learning_system/core/utils/font_manager.dart';
@@ -32,7 +31,7 @@ class CreateVideoPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _formKey = GlobalKey<FormState>();
+    final formKey = GlobalKey<FormState>();
     return BlocConsumer<VideoCubit, VideoStates>(
       listener: (context, state) {
         if (state is LoadVideoFailureState) {
@@ -62,7 +61,7 @@ class CreateVideoPage extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Form(
-                    key: _formKey,
+                    key: formKey,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
@@ -163,7 +162,7 @@ class CreateVideoPage extends StatelessWidget {
                             ? LoadingIndicator()
                             : ElevatedButton(
                                 onPressed: () {
-                                  if (_formKey.currentState!.validate() &&
+                                  if (formKey.currentState!.validate() &&
                                       _videoFile != null) {
                                     if (!context
                                         .read<CourseCubit>()

@@ -52,12 +52,12 @@ class VideoCubit extends Cubit<VideoStates> {
     }
   }
 
-  displayVideo() {
+  displayVideo(String? url) async {
     emit(LoadingVideoState());
     try {
       flickManager = FlickManager(
           videoPlayerController: VideoPlayerController.networkUrl(
-        Uri.parse(
+        Uri.parse('${AppUrl.videoUrlUpload}$url' ??
             "https://mazwai.com/videvo_files/video/free/2015-11/small_watermarked/9th-may_preview.webm"),
       ));
       emit(SuccessVideoState());

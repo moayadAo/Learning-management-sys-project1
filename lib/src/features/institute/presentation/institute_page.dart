@@ -1,13 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:learning_system/core/utils/app_string.dart';
-import 'package:learning_system/core/utils/assets_manager.dart';
 import 'package:learning_system/core/utils/color_manager.dart';
-import 'package:learning_system/core/utils/font_manager.dart';
-import 'package:learning_system/core/utils/icon_manager.dart';
-import 'package:learning_system/core/utils/style_manager.dart';
 import 'package:learning_system/core/utils/values_manager.dart';
-import 'package:learning_system/core/widgets/bottom_sheet/bottom_sheet_base.dart';
-import 'package:learning_system/core/widgets/custom_button/custom_button.dart';
 import 'package:learning_system/core/widgets/random_widget/custom_material_button.dart';
 import 'package:learning_system/src/features/institute/widget/profile_institute_widget.dart';
 

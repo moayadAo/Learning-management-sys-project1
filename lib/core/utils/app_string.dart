@@ -10,12 +10,14 @@ class AppString {
 }
 
 class AppRoute {
+  ///-------------------- user --------------------------///
   static const splashScreen = "splash";
   static const welcomeScreen = "welcome";
   static const signupUserScreen = "signup_user";
   static const loginScreen = "login";
   static const roleScreen = "role";
   static const profileScreen = "profile";
+
   static const progressCourseScreen = "progress_course";
   static const finishCourseScreen = "finish_course";
   static const wishListScreen = "wish_list_page";
@@ -43,10 +45,17 @@ class AppRoute {
   static const scholarshipsPage = "scholarshipsPage";
 
   static const createQuizPage = "create_quiz_page";
+  static const browseCoursePage = "browse_course_page";
+  static const detailCoursePage = "course_detail";
 
   ////article
 
   static const articleDetails = "article_details";
   static const createArticlePage = "create_article_page";
   static const updateArticlePage = "update_article_page";
+
+  static const signUpTeacher = "sign_up_teacher";
+  //-------------------<<quiz>>--------------------//
+
+  static const quizPage = "quiz_screen";
 }

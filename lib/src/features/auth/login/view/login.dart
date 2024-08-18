@@ -1,8 +1,10 @@
 import 'dart:developer';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:learning_system/core/cache/cache_helper.dart';
+import 'package:learning_system/core/services/service_locator.dart';
+import 'package:learning_system/core/utils/app_string.dart';
 import 'package:learning_system/core/utils/style_manager.dart';
 import 'package:learning_system/core/widgets/loading_indicator.dart';
 import 'package:learning_system/core/widgets/snack_bar.dart';
@@ -36,8 +38,13 @@ class LoginPage extends StatelessWidget {
                   .buildSnackBar(context));
         } else if (state is SignInSuccess) {
           // here should move to profile page and hit api get user
+          if (getIt<CacheHelper>().getData(key: AppString.decodeTokenForRole) ==
+              'user') {
+            Navigator.pushReplacementNamed(context, 'profile');
+          } else {
+            Navigator.pushReplacementNamed(context, AppRoute.teacherProfile);
+          }
           log('log in succesful');
-          Navigator.pushReplacementNamed(context, 'profile');
         }
       },
       builder: (context, state) {
@@ -134,7 +141,7 @@ class LoginPage extends StatelessWidget {
                                         color: ColorManager.primaryColorLogo,
                                       ),
                                       Text(
-                                        'Remember me',
+                                        'Teacher?',
                                         style: getBodyMeduimOrSmall(
                                             isMeduim: false,
                                             color: ColorManager.grey),
@@ -174,13 +181,25 @@ class LoginPage extends StatelessWidget {
                                         double.infinity, AppSize.s50)),
                                 onPressed: () {
                                   if (_formKey.currentState!.validate()) {
-                                    BlocProvider.of<UserCubit>(context)
-                                        .signInEmail
-                                        .text = emailController.text;
-                                    BlocProvider.of<UserCubit>(context)
-                                        .signInPassword
-                                        .text = passwordController.text;
-                                    BlocProvider.of<UserCubit>(context).login();
+                                    if (rememberMe) {
+                                      BlocProvider.of<UserCubit>(context)
+                                          .signInEmail
+                                          .text = emailController.text;
+                                      BlocProvider.of<UserCubit>(context)
+                                          .signInPassword
+                                          .text = passwordController.text;
+                                      BlocProvider.of<UserCubit>(context)
+                                          .loginTeacher();
+                                    } else {
+                                      BlocProvider.of<UserCubit>(context)
+                                          .signInEmail
+                                          .text = emailController.text;
+                                      BlocProvider.of<UserCubit>(context)
+                                          .signInPassword
+                                          .text = passwordController.text;
+                                      BlocProvider.of<UserCubit>(context)
+                                          .login();
+                                    }
                                   }
                                 },
                                 child: Text(

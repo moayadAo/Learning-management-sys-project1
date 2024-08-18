@@ -1,14 +1,17 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:learning_system/src/features/course/data/models/article/articel_model/article_data_model.dart';
+import 'package:learning_system/src/features/course/data/models/course/new_model.dart/get_all/teacher_id_model_new.dart';
 import 'package:learning_system/src/features/course/data/models/quiz/quiz_model/quiz_data_model.dart';
 import 'package:learning_system/src/features/course/data/models/rate/rate_model.dart';
 import 'package:learning_system/src/features/course/data/models/video/video_model/video_data_model.dart';
+
+import '../new_model.dart/get/instiute_mode.dart';
 part 'course_data_model.g.dart';
 
 @JsonSerializable()
 class CourseDataModel {
   @JsonKey(name: 'Teacher_ID')
-  List<String> teachersId;
+  List<TeacherIdModelNew> teachersId;
   @JsonKey(name: '_id')
   String id;
   String status;
@@ -25,10 +28,10 @@ class CourseDataModel {
   List<ArticleDataModel>? article;
   List<QuizDataModel>? quiz;
   @JsonKey(name: 'instituteId')
-  String? institutionId;
+  InstiutIdModel? institutionId;
   @JsonKey(name: 'what_you_will_learn')
   String? whatYouWillLearn;
-  @JsonKey(name: 'Image')
+  @JsonKey(name: 'image')
   String? courseImage;
   List<RateModel>? ratings;
 

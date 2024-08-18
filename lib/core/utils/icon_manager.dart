@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:learning_system/core/utils/color_manager.dart';
-import 'package:learning_system/core/utils/values_manager.dart';
 
 class IconManager {
   // FontAwesome icons
@@ -37,6 +36,12 @@ class IconManager {
     size: 20,
   );
   static const angleRight = FaIcon(FontAwesomeIcons.angleRight);
+  static const email = FaIcon(FontAwesomeIcons.envelope);
+  static const location = FaIcon(FontAwesomeIcons.locationDot);
+  static const facebook = FaIcon(FontAwesomeIcons.facebook);
+  static const book2 = FaIcon(FontAwesomeIcons.book);
+  static const instagram = FaIcon(FontAwesomeIcons.instagram);
+
   static const pencilSquare = FaIcon(FontAwesomeIcons.pencilSquare);
   static const picture = FaIcon(FontAwesomeIcons.photoFilm);
   static const calender = FaIcon(FontAwesomeIcons.calendar);

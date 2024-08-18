@@ -1,6 +1,4 @@
-import 'package:learning_system/core/data/models/quiz_model/quiz_model.dart';
-
-const baseUrl = "http://192.168.43.224:8080/";
+const baseUrl = "http://192.168.1.108:8080/";
 const baseServ = "https://ptc.yorkacademy.uk/";
 // const baseUrl = "${baseServ}api/";
 const storageUrl = "${baseServ}storage/";
@@ -15,18 +13,46 @@ class AppUrl {
   ///*******************************************************************************
   ///<------------------------------------------------------------------------------
   // static final getUser = "${baseUrl}";
-  static const loginUser = "${baseUrl}${user}login";
-  static const register = "${baseUrl}${user}";
+  static const loginUser = "$baseUrl${user}login";
+  static const loginTeacher = "${baseUrl}teacher/login";
+
+  static const register = "$baseUrl$user";
   static const logout = "${baseUrl}logout";
-  static const getProfile = '${baseUrl}${user}profile';
+  static const getProfile = '$baseUrl${user}profile';
 
   ///------------------------------------------------------------------------------>
 
+  //////-----------------------<<Teacher>>-------------------------->
+  static const baseTeacher = '${baseUrl}teacher';
+  static const getAllTeachers = '$baseTeacher/all';
+  static const getProfileTeacher = '$baseTeacher/profile';
+  static String getProfileTeacherById({required String id}) {
+    return '$getProfileTeacher/$id';
+  }
+
+  static const joinInstituteTeacher = '$baseTeacher/join';
+  static String joinInstituteTeacherById({required String id}) {
+    return '$joinInstituteTeacher/$id';
+  }
+
+  static const getMyInstituteTeacher = '$baseTeacher/myInstitutes';
+  static const getAllMessagesTeacher = '$baseTeacher/getAllMessage';
+  static const getMessageTeacher = '$baseTeacher/getMessage';
+  static String getMessageTeacherById({required String id}) {
+    return '$getMessageTeacher/$id';
+  }
+
+  // static const getMyPendingRequestTeacher
+
+  static const addTeacher = baseTeacher;
+
   ///<------------------------<<image profile>>---------------------------------->
-  static const imageProfileUrl = '${baseUrl}public\\';
+  static const imageProfileUrl = '${baseUrl}';
+  static const videoUrlUpload = '${baseUrl}video/';
+  static const articleUrlUpload = '${baseUrl}article/';
 
   ///<------------------------<<Course>>----------------------------------------->
-  static const courseUrl = '${baseUrl}${course}';
+  static const courseUrl = '$baseUrl$course';
   static const createCourse = courseUrl;
   static const getAllCourse = courseUrl;
   static String getCourseUrl(String id) {
@@ -53,14 +79,14 @@ class AppUrl {
   }
 
   static String getAllCourseVideo({required String courseId}) {
-    return '${videoUrl}/all/$courseId';
+    return '$videoUrl/all/$courseId';
   }
 
   ///<------------------------<<Article>>----------------------------------------->
   static const articleUrl = '$courseUrl$article';
   static const createArticle = articleUrl;
   static String getAllArticle({required String courseId}) {
-    return '${articleUrl}/all/$courseId';
+    return '$articleUrl/all/$courseId';
   }
 
   static String getUpdateDeleteArticle({required String articleId}) {
@@ -86,7 +112,7 @@ class AppUrl {
   }
 
   static String getAllQuestion({required String quizId}) {
-    return '$questionUrl/\all/$quizId';
+    return '$questionUrl/all/$quizId';
   }
 
   ///-----------------------<<Instute>>-------------------------->

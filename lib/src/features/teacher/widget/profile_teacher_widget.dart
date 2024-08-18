@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:learning_system/core/utils/app_string.dart';
-import 'package:learning_system/core/utils/assets_manager.dart';
 import 'package:learning_system/core/utils/color_manager.dart';
 import 'package:learning_system/core/utils/font_manager.dart';
 import 'package:learning_system/core/utils/icon_manager.dart';
@@ -9,37 +7,34 @@ import 'package:learning_system/core/utils/style_manager.dart';
 import 'package:learning_system/core/utils/values_manager.dart';
 import 'package:learning_system/core/widgets/bottom_sheet/bottom_sheet_base.dart';
 import 'package:learning_system/core/widgets/dialog/dialog.dart';
-import 'package:learning_system/src/features/teacher/cubit/teacher_cubit.dart';
 
 class ProfileTeacherWidget extends StatelessWidget {
-
- const  ProfileTeacherWidget(
+  const ProfileTeacherWidget(
       {super.key,
       required this.totalTeacherWallet,
-        required this.imageUrl,
-        required   this.email,
-        required  this.subject,
-        required  this.nameOfTeacher,
-        required this.onTapAccount1,
-        required  this.onTapAccount2,
-        required this.teacher,
-      required this.cvUrl
-      });
+      required this.imageUrl,
+      required this.email,
+      required this.subject,
+      required this.nameOfTeacher,
+      required this.onTapAccount1,
+      required this.onTapAccount2,
+      required this.teacher,
+      required this.cvUrl});
 
   final int totalTeacherWallet;
   final String imageUrl;
   final String email;
   final String subject;
-  final String nameOfTeacher ;
+  final String nameOfTeacher;
   final void Function()? onTapAccount1;
   final void Function()? onTapAccount2;
- final void Function() cvUrl;
+  final void Function() cvUrl;
 
- final bool teacher ;
+  final bool teacher;
 
   @override
   Widget build(BuildContext context) {
-    return  CustomScrollView(
+    return CustomScrollView(
       slivers: <Widget>[
         SliverAppBar(
           leading: IconButton(
@@ -63,8 +58,7 @@ class ProfileTeacherWidget extends StatelessWidget {
                         physics: const NeverScrollableScrollPhysics(),
                         children: [
                           ListTile(
-                            title:
-                            Text('Edit Name', style: getLightStyle()),
+                            title: Text('Edit Name', style: getLightStyle()),
                             trailing: IconManager.pencilSquare,
                             onTap: () {
                               // Handle tap
@@ -72,8 +66,7 @@ class ProfileTeacherWidget extends StatelessWidget {
                           ),
                           const Divider(height: 6, thickness: 1),
                           ListTile(
-                            title: Text('Edit Image',
-                                style: getLightStyle()),
+                            title: Text('Edit Image', style: getLightStyle()),
                             trailing: IconManager.picture,
                             onTap: () {
                               // Handle tap
@@ -81,8 +74,7 @@ class ProfileTeacherWidget extends StatelessWidget {
                           ),
                           const Divider(height: 6, thickness: 1),
                           ListTile(
-                            title:
-                            Text('Edit Age', style: getLightStyle()),
+                            title: Text('Edit Age', style: getLightStyle()),
                             trailing: IconManager.calender,
                             onTap: () {
                               // Handle tap
@@ -90,8 +82,7 @@ class ProfileTeacherWidget extends StatelessWidget {
                           ),
                           const Divider(height: 6, thickness: 1),
                           ListTile(
-                            title: Text('Edit Email',
-                                style: getLightStyle()),
+                            title: Text('Edit Email', style: getLightStyle()),
                             trailing: IconManager.email,
                             onTap: () {
                               // Handle tap
@@ -108,7 +99,9 @@ class ProfileTeacherWidget extends StatelessWidget {
             IconButton(
               color: ColorManager.white,
               icon: IconManager.homeOutLine,
-              onPressed: () {Navigator.pushNamed(context, AppRoute.homePage);},
+              onPressed: () {
+                Navigator.pushNamed(context, AppRoute.homePage);
+              },
             ),
           ],
           backgroundColor: ColorManager.SecondaryColorLogo,
@@ -122,10 +115,10 @@ class ProfileTeacherWidget extends StatelessWidget {
                   top: AppPadding.p70,
                   left: AppPadding.p20,
                   child: Padding(
-                    padding:  EdgeInsets.all(AppPadding.p8),
+                    padding: const EdgeInsets.all(AppPadding.p8),
                     child: Row(
                       children: [
-                         CircleAvatar(
+                        CircleAvatar(
                           radius: AppSize.s40,
                           backgroundImage: NetworkImage(imageUrl),
                           // backgroundImage: context
@@ -164,8 +157,7 @@ class ProfileTeacherWidget extends StatelessWidget {
                   text: TextSpan(
                     text: "Info",
                     style: getBoldStyle(
-                        fontSize: FontSize.s24,
-                        color: ColorManager.black),
+                        fontSize: FontSize.s24, color: ColorManager.black),
                   ),
                 ),
                 const SizedBox(height: AppPadding.p10),
@@ -173,14 +165,13 @@ class ProfileTeacherWidget extends StatelessWidget {
                   text: TextSpan(
                     text: "Email",
                     style: getTitleMeduim(
-                        color: ColorManager.black,
-                        fontSize: FontSize.s18),
+                        color: ColorManager.black, fontSize: FontSize.s18),
                   ),
                 ),
                 const SizedBox(height: AppPadding.p6),
                 Row(
                   children: [
-                    IconManager.emailInstitute,
+                    IconManager.email,
                     const Card(),
                     RichText(
                       text: TextSpan(
@@ -197,8 +188,7 @@ class ProfileTeacherWidget extends StatelessWidget {
                   text: TextSpan(
                     text: "Subject",
                     style: getTitleMeduim(
-                        color: ColorManager.black,
-                        fontSize: FontSize.s18),
+                        color: ColorManager.black, fontSize: FontSize.s18),
                   ),
                 ),
                 const SizedBox(height: AppPadding.p6),
@@ -221,20 +211,18 @@ class ProfileTeacherWidget extends StatelessWidget {
                   text: TextSpan(
                     text: "Accounts",
                     style: getTitleMeduim(
-                        color: ColorManager.black,
-                        fontSize: FontSize.s18),
+                        color: ColorManager.black, fontSize: FontSize.s18),
                   ),
                 ),
                 const SizedBox(height: AppPadding.p6),
                 InkWell(
-                  onTap:onTapAccount1,
+                  onTap: onTapAccount1,
                   child: Row(
                     children: [
                       RichText(
                         text: TextSpan(
                           text: "Facebook",
-                          style:
-                          getLabelSmall(color: ColorManager.primary),
+                          style: getLabelSmall(color: ColorManager.primary),
                         ),
                       ),
                       const Card(),
@@ -244,14 +232,13 @@ class ProfileTeacherWidget extends StatelessWidget {
                 ),
                 const SizedBox(height: AppPadding.p6),
                 InkWell(
-                  onTap:onTapAccount2,
+                  onTap: onTapAccount2,
                   child: Row(
                     children: [
                       RichText(
                         text: TextSpan(
                           text: "Instagram",
-                          style: getLabelSmall(
-                              color: ColorManager.redButton),
+                          style: getLabelSmall(color: ColorManager.redButton),
                         ),
                       ),
                       const Card(),
@@ -281,8 +268,7 @@ class ProfileTeacherWidget extends StatelessWidget {
                   text: TextSpan(
                     text: "CV",
                     style: getBoldStyle(
-                        fontSize: FontSize.s20,
-                        color: ColorManager.black),
+                        fontSize: FontSize.s20, color: ColorManager.black),
                   ),
                 ),
                 trailing: IconManager.angleRight,
@@ -294,88 +280,100 @@ class ProfileTeacherWidget extends StatelessWidget {
                   text: TextSpan(
                     text: "Courses",
                     style: getBoldStyle(
-                        fontSize: FontSize.s20,
-                        color: ColorManager.black),
+                        fontSize: FontSize.s20, color: ColorManager.black),
                   ),
                 ),
                 trailing: IconManager.angleRight,
                 onTap: () {
-                  Navigator.pushNamed(context, AppRoute.teacherCourses);
+                  Navigator.pushNamed(context, AppRoute.browseCoursePage);
                 },
               ),
               teacher
                   ? Column(
-                children: [
-                  const Divider(height: 6, thickness: 1),
-                  ListTile(
-                    title: RichText(
-                      text: TextSpan(
-                        text: "Wallet",
-                        style: getBoldStyle(
-                            fontSize: FontSize.s20,
-                            color: ColorManager.black),
-                      ),
-                    ),
-                    trailing: IconManager.angleRight,
-                    onTap: () {
-                      showDialog(context: context, builder: (context){
-                        return DialogWidget(
-                          topWidget: Row(
-                            children: [
-                              InkWell(onTap: (){
-                                Navigator.pop(context);
-                              },child: Icon(Icons.close,color: ColorManager.primary,))
-                            ],
+                      children: [
+                        const Divider(height: 6, thickness: 1),
+                        ListTile(
+                          title: RichText(
+                            text: TextSpan(
+                              text: "Wallet",
+                              style: getBoldStyle(
+                                  fontSize: FontSize.s20,
+                                  color: ColorManager.black),
+                            ),
                           ),
-                          contentWidget: Row(
-                            children: [
-                              RichText(
-                                text: TextSpan(
-                                  text: 'You have it in your wallet : ',
-                                  style: getBoldStyle(fontSize: FontSize.s20, color: ColorManager.primary),
-                                  children: [
-                                    TextSpan(
-                                      text: "$totalTeacherWallet",
-                                      style:const  TextStyle(
-                                        fontSize: FontSize.s20,
-                                        color: ColorManager.redBright, // Replace with your desired color
-                                      ),
+                          trailing: IconManager.angleRight,
+                          onTap: () {
+                            showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return DialogWidget(
+                                    topWidget: Row(
+                                      children: [
+                                        InkWell(
+                                            onTap: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: const Icon(
+                                              Icons.close,
+                                              color: ColorManager.primary,
+                                            ))
+                                      ],
                                     ),
-                                    TextSpan(
-                                      text: ' S.P',
-                                      style: getBoldStyle(fontSize: FontSize.s20, color: ColorManager.primary),
+                                    contentWidget: Row(
+                                      children: [
+                                        RichText(
+                                          text: TextSpan(
+                                            text:
+                                                'You have it in your wallet : ',
+                                            style: getBoldStyle(
+                                                fontSize: FontSize.s20,
+                                                color: ColorManager.primary),
+                                            children: [
+                                              TextSpan(
+                                                text: "$totalTeacherWallet",
+                                                style: const TextStyle(
+                                                  fontSize: FontSize.s20,
+                                                  color: ColorManager
+                                                      .redBright, // Replace with your desired color
+                                                ),
+                                              ),
+                                              TextSpan(
+                                                text: ' S.P',
+                                                style: getBoldStyle(
+                                                    fontSize: FontSize.s20,
+                                                    color:
+                                                        ColorManager.primary),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: AppSize.s50,
+                                        )
+                                      ],
                                     ),
-                                  ],
-                                ),
-                              ),
-                              const  SizedBox(height: AppSize.s50,)
-
-
-                            ],
+                                  );
+                                });
+                          },
+                        ),
+                        const Divider(height: 6, thickness: 1),
+                        ListTile(
+                          title: RichText(
+                            text: TextSpan(
+                              text: "Add Course ",
+                              style: getBoldStyle(
+                                  fontSize: FontSize.s20,
+                                  color: ColorManager.black),
+                            ),
                           ),
-                        );
-                      });
-                    },
-                  ),
-                  const Divider(height: 6, thickness: 1),
-                  ListTile(
-                    title: RichText(
-                      text: TextSpan(
-                        text: "Message",
-                        style: getBoldStyle(
-                            fontSize: FontSize.s20,
-                            color: ColorManager.black),
-                      ),
-                    ),
-                    trailing: IconManager.angleRight,
-                    onTap: () {
-                      Navigator.pushNamed(
-                          context, AppRoute.messagesTeacher);
-                    },
-                  ),
-                ],
-              )
-                  : SizedBox(),
+                          trailing: IconManager.angleRight,
+                          onTap: () {
+                            Navigator.pushNamed(context, 'create_course_page');
+                          },
+                        ),
+                      ],
+                    )
+                  : const SizedBox(),
               const Divider(height: 6, thickness: 1),
             ],
           ),

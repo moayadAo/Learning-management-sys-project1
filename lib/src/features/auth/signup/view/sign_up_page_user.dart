@@ -13,7 +13,6 @@ import 'package:learning_system/core/utils/values_manager.dart';
 import 'package:learning_system/core/widgets/loading_indicator.dart';
 import 'package:learning_system/core/widgets/textfield_app.dart';
 import 'package:learning_system/core/widgets/textfield_with_label.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:learning_system/src/features/auth/login/view/login.dart';
 import 'package:learning_system/src/features/user/cubit/user_cubit.dart';
@@ -49,34 +48,36 @@ class SignUpScreenUser extends StatelessWidget {
 
   XFile? _imagePick;
   final ImagePicker _picker = ImagePicker();
+
+  SignUpScreenUser({super.key});
   Future<void> _pickerFromGallery(
       BuildContext context, Function setState) async {
-    final _imageGallery = await _picker.pickImage(
+    final imageGallery = await _picker.pickImage(
       source: ImageSource.gallery,
     );
-    if (_imageGallery != null) {
+    if (imageGallery != null) {
       // setState(() {
-      _imagePick = XFile(_imageGallery.path);
+      _imagePick = XFile(imageGallery.path);
       context.read<UserCubit>().uploadProfilePic(_imagePick);
 
       Navigator.pop(context);
       // });
-      log('${_imageGallery.path}');
+      log(imageGallery.path);
     }
   }
 
   Future<void> _pickerFromCamera(
       BuildContext context, Function setState) async {
-    final _imageCamera = await _picker.pickImage(
+    final imageCamera = await _picker.pickImage(
       source: ImageSource.camera,
     );
-    if (_imageCamera != null) {
+    if (imageCamera != null) {
       // setState(() {
-      _imagePick = XFile(_imageCamera.path);
+      _imagePick = XFile(imageCamera.path);
       context.read<UserCubit>().uploadProfilePic(_imagePick);
       // });
       Navigator.pop(context);
-      log('${_imageCamera.path}');
+      log(imageCamera.path);
     }
   }
 
@@ -403,7 +404,8 @@ class SignUpScreenUser extends StatelessWidget {
                                       context
                                           .read<UserCubit>()
                                           .setSignupPrameters(
-                                              email: emailController.text,
+                                              email:
+                                                  emailController.text.trim(),
                                               password: passwordController.text,
                                               firstName:
                                                   firstNameController.text,

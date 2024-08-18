@@ -1,6 +1,5 @@
 
 import 'package:json_annotation/json_annotation.dart';
-import 'package:json_serializable/json_serializable.dart';
 import 'package:learning_system/src/features/teacher/data/models/social_media/social_media_model.dart';
 part 'teacher_model.g.dart';
 

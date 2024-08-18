@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -13,8 +12,6 @@ import 'package:learning_system/core/utils/values_manager.dart';
 import 'package:learning_system/core/widgets/loading_indicator.dart';
 import 'package:learning_system/core/widgets/snack_bar.dart';
 import 'package:learning_system/core/widgets/textfield_app.dart';
-import 'package:learning_system/src/features/course/cubit/article/article_cubit.dart';
-import 'package:learning_system/src/features/course/cubit/article/article_states.dart';
 import 'package:learning_system/src/features/course/cubit/video/video_cubit.dart';
 import 'package:learning_system/src/features/course/cubit/video/video_states.dart';
 
@@ -28,7 +25,7 @@ class UpdateVideoPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _formKey = GlobalKey<FormState>();
+    final formKey = GlobalKey<FormState>();
     return BlocConsumer<VideoCubit, VideoStates>(
       listener: (context, state) {},
       builder: (context, state) {
@@ -53,7 +50,7 @@ class UpdateVideoPage extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Form(
-                    key: _formKey,
+                    key: formKey,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
@@ -182,7 +179,7 @@ class UpdateVideoPage extends StatelessWidget {
                             ? LoadingIndicator()
                             : ElevatedButton(
                                 onPressed: () {
-                                  if (_formKey.currentState!.validate() &&
+                                  if (formKey.currentState!.validate() &&
                                       (_videoFile != null ||
                                           description !=
                                               cubit.videoDescription.text ||

@@ -1,4 +1,3 @@
-import 'package:learning_system/src/features/user/data/models/data_user_model.dart';
 
 abstract class UserStates {}
 

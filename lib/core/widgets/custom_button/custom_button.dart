@@ -22,7 +22,7 @@ Color color;
         style: ElevatedButton.styleFrom(
           foregroundColor: ColorManager.black,
           backgroundColor: color,
-          padding: EdgeInsets.symmetric(
+          padding: const EdgeInsets.symmetric(
               horizontal: AppPadding.p20, vertical: AppPadding.p12), // Text and icon color
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10), // Rounded corners

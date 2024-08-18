@@ -26,7 +26,7 @@ class UpdateArticlePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _formKey = GlobalKey<FormState>();
+    final formKey = GlobalKey<FormState>();
     return BlocConsumer<ArticleCubit, ArticleState>(
       listener: (context, state) {
         if (state is LoadArticleFailureState) {
@@ -56,7 +56,7 @@ class UpdateArticlePage extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Form(
-                    key: _formKey,
+                    key: formKey,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
@@ -180,7 +180,7 @@ class UpdateArticlePage extends StatelessWidget {
                             ? LoadingIndicator()
                             : ElevatedButton(
                                 onPressed: () {
-                                  if (_formKey.currentState!.validate() &&
+                                  if (formKey.currentState!.validate() &&
                                       _articleFile != null) {
                                     cubit.updateArticleApi(
                                       articleId: '66bcc749330617bbb4894d60',

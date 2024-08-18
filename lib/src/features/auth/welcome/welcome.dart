@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:learning_system/src/features/auth/welcome/cubit/welcome_cubit.dart';
-import 'package:learning_system/src/features/auth/welcome/cubit/welcome_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:learning_system/src/features/auth/welcome/view/page_one.dart';
 import 'package:learning_system/src/features/auth/welcome/view/page_second.dart';

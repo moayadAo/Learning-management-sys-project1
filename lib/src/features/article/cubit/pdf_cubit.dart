@@ -11,7 +11,7 @@ class FileViewCubit extends Cubit<FileViewState> {
     emit(FileViewLoading());
     try {
       // Replace with actual PDF loading logic
-      await Future.delayed(Duration(seconds: 1));
+      await Future.delayed(const Duration(seconds: 1));
       emit(FileViewLoaded());
     } catch (e) {
       emit(FileViewError(e.toString()));

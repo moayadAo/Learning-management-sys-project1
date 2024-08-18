@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:learning_system/core/cache/cache_helper.dart';
 import 'package:learning_system/core/helper/sizer_media_query.dart';
 import 'package:learning_system/core/services/service_locator.dart';
 import 'package:learning_system/core/utils/app_string.dart';
 import 'package:learning_system/core/utils/assets_manager.dart';
 import 'package:learning_system/core/utils/color_manager.dart';
-import 'package:learning_system/src/features/user/cubit/user_cubit.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -41,16 +39,17 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
             false;
 
     Future.delayed(const Duration(seconds: 2), () {
-      if (!isOnBoardingVisited) {
-        Navigator.pushReplacementNamed(context, AppRoute.welcomeScreen);
-      } else {
-        if (getIt<CacheHelper>().getData(key: AppString.token) == null) {
-          Navigator.pushReplacementNamed(context, AppRoute.loginScreen);
-        } else {
-          context.read<UserCubit>().getUser();
-          Navigator.pushReplacementNamed(context, AppRoute.profileScreen);
-        }
-      }
+      // if (!isOnBoardingVisited) {
+      Navigator.pushReplacementNamed(context, AppRoute.welcomeScreen);
+      // } else {
+      // if (getIt<CacheHelper>().getData(key: AppString.token) == null) {
+      // Navigator.pushReplacementNamed(context, AppRoute.loginScreen);
+
+      // } else {
+      //   context.read<UserCubit>().getUser();
+      //   Navigator.pushReplacementNamed(context, AppRoute.profileScreen);
+      // }
+      // }
     });
 
     // context.read<SplashCubit>().initSplash(context);// here must i push to howe page or welcome or log in

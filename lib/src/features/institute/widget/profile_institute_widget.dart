@@ -105,7 +105,7 @@ class ProfileInstituteWidget extends StatelessWidget {
                         style: getTitleMeduim(color: ColorManager.black),
                       ),
                     ),
-                    Card(),
+                    const Card(),
                     IconManager.location
                   ],
                 ),
@@ -304,7 +304,7 @@ class ProfileInstituteWidget extends StatelessWidget {
                                               onTap: () {
                                                 Navigator.pop(context);
                                               },
-                                              child: Icon(
+                                              child: const Icon(
                                                 Icons.close,
                                                 color: ColorManager.primary,
                                               ))
@@ -348,7 +348,7 @@ class ProfileInstituteWidget extends StatelessWidget {
                             }),
                       ],
                     )
-                  : SizedBox(),
+                  : const SizedBox(),
             ],
           ),
         ),

@@ -30,16 +30,16 @@ class SearchTextField extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(25)),
           borderSide: BorderSide(width: 1, color: Colors.black),
         ),
-        prefixIconConstraints: BoxConstraints(),
+        prefixIconConstraints: const BoxConstraints(),
         prefixIcon: Container(
-          padding: EdgeInsets.all(10),
-          child: Icon(Icons.search),
+          padding: const EdgeInsets.all(10),
+          child: const Icon(Icons.search),
         ),
         filled: true,
         fillColor: ColorManager.white,
         hintText: '   Search...',
         suffixIcon:
-            IconButton(icon: Icon(Icons.clear), onPressed: iconClosePressed),
+            IconButton(icon: const Icon(Icons.clear), onPressed: iconClosePressed),
       ),
     );
   }

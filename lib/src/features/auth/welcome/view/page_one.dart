@@ -65,7 +65,7 @@ class WelcomePageOne extends StatelessWidget {
               ),
               Padding(
                 //edit with media query to be dynamic
-                padding: EdgeInsets.only(right: 85.0, left: 82.0, top: 8.0),
+                padding: const EdgeInsets.only(right: 85.0, left: 82.0, top: 8.0),
                 child: Text(
                   'Free courses for you to find your way to learning',
                   textAlign: TextAlign.center,

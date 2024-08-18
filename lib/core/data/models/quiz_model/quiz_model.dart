@@ -12,7 +12,7 @@ class Question {
 
 class QuestionInfo{
   static List<Question> questions = [
-  Question(
+  const Question(
     question: '1. What is the capital of France?',
     correctAnswerIndex: 1,
     options: [
@@ -22,7 +22,7 @@ class QuestionInfo{
       'd) Rome',
     ],
   ),
-  Question(
+  const Question(
     question: '2. In what continent is Brazil located?',
     correctAnswerIndex: 3,
     options: [
@@ -32,7 +32,7 @@ class QuestionInfo{
       'd) South America',
     ],
   ),
-  Question(
+  const Question(
     question: '3. What is the largest planet in our solar system?',
     correctAnswerIndex: 1,
     options: [
@@ -42,7 +42,7 @@ class QuestionInfo{
       'd) Venus',
     ],
   ),
-  Question(
+  const Question(
     question: '4. What is the longest river in the world?',
     correctAnswerIndex: 0,
     options: [
@@ -52,7 +52,7 @@ class QuestionInfo{
       'd) Danube',
     ],
   ),
-  Question(
+  const Question(
     question: '5. Who is the main character in the Harry Potter series?',
     correctAnswerIndex: 2,
     options: [
@@ -62,7 +62,7 @@ class QuestionInfo{
       'd) Neville Longbottom',
     ],
   ),
-  Question(
+  const Question(
     question: '6. What is the smallest planet in our solar system?',
     correctAnswerIndex: 3,
     options: [
@@ -72,7 +72,7 @@ class QuestionInfo{
       'd) Mercury',
     ],
   ),
-  Question(
+  const Question(
     question: '7. Who wrote the play Romeo and Juliet?',
     correctAnswerIndex: 0,
     options: [
@@ -82,7 +82,7 @@ class QuestionInfo{
       'd) Charles Dickens',
     ],
   ),
-  Question(
+  const Question(
     question: '8. What is the highest mountain in the world?',
     correctAnswerIndex: 1,
     options: [
@@ -92,7 +92,7 @@ class QuestionInfo{
       'd) Aconcagua',
     ],
   ),
-  Question(
+  const Question(
     question:
     '9. What is the name of the famous painting by Leonardo da Vinci that depicts a woman?',
     correctAnswerIndex: 3,

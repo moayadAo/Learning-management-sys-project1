@@ -1,5 +1,4 @@
 import 'dart:developer';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -9,32 +8,33 @@ import 'package:learning_system/core/helper/sizer_media_query.dart';
 import 'package:learning_system/core/utils/app_string.dart';
 import 'package:learning_system/core/utils/assets_manager.dart';
 import 'package:learning_system/core/utils/color_manager.dart';
-import 'package:learning_system/core/utils/font_manager.dart';
-import 'package:learning_system/core/utils/style_manager.dart';
 import 'package:learning_system/core/utils/validator_manager.dart';
 import 'package:learning_system/core/utils/values_manager.dart';
 import 'package:learning_system/core/widgets/image_pick_widget.dart';
-import 'package:learning_system/core/widgets/loading_indicator.dart';
-import 'package:learning_system/core/widgets/snack_bar.dart';
 import 'package:learning_system/core/widgets/textfield_app.dart';
 import 'package:learning_system/core/widgets/white_blue_button.dart';
 import 'package:learning_system/src/features/course/cubit/course/course_cubit.dart';
 import 'package:learning_system/src/features/course/cubit/course/course_state.dart';
-import 'package:learning_system/src/features/course/cubit/video/video_cubit.dart';
-import 'package:learning_system/src/features/course/cubit/video/video_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CreateCoursePage extends StatelessWidget {
-  bool _isSnackBarVisible = false;
+  final bool _isSnackBarVisible = false;
   XFile? _image;
 
   CreateCoursePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final _formKey = GlobalKey<FormState>();
+    final formKey = GlobalKey<FormState>();
     return BlocConsumer<CourseCubit, CourseState>(
-      listener: (context, state) {},
+      listener: (context, state) async {
+        if (state is CreateCourseSuccessState) {
+          await context
+              .read<CourseCubit>()
+              .getCourse(courseId: context.read<CourseCubit>().courseId!);
+          Navigator.pushNamed(context, AppRoute.detailCoursePage);
+        }
+      },
       builder: (context, state) {
         final cubit = context.read<CourseCubit>();
         return Scaffold(
@@ -55,7 +55,7 @@ class CreateCoursePage extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Form(
-                    key: _formKey,
+                    key: formKey,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
@@ -179,7 +179,7 @@ class CreateCoursePage extends StatelessWidget {
                           colorbut: ColorManager.SecondaryColorLogo,
                           colorText: ColorManager.white,
                           onPressed: () {
-                            if (_formKey.currentState!.validate() &&
+                            if (formKey.currentState!.validate() &&
                                 (cubit.articleId.isNotEmpty ||
                                     cubit.videoId.isNotEmpty)) {
                               cubit.createCourse(
@@ -201,6 +201,21 @@ class CreateCoursePage extends StatelessWidget {
                             }
                           },
                         ),
+                        // TextButton(
+                        //     onPressed: () async {
+                        //       await context.read<CourseCubit>().getAllCourse();
+                        //       Navigator.pushNamed(
+                        //           context, AppRoute.browseCoursePage);
+                        //     },
+                        //     child: const Text('Brwose Course')),
+                        // TextButton(
+                        //     onPressed: () async {
+                        //       await context.read<CourseCubit>().getCourse(
+                        //           courseId: '66c0052877e5c730723bd5f8');
+                        //       Navigator.pushNamed(
+                        //           context, AppRoute.detailCoursePage);
+                        //     },
+                        //     child: const Text('getCourse')),
                       ],
                     ),
                   ),

@@ -19,7 +19,7 @@ class ValidatorManager {
     if (value.isEmpty) {
       return 'Please enter your email';
     }
-    if (!regExp.emailRegex.hasMatch(value)) {
+    if (!regExp.emailRegex.hasMatch(value.trim())) {
       return 'Please enter a valid email';
     }
     return null;

@@ -44,7 +44,7 @@ class AssetsManager {
   static const String welcome3 = '$imagePath/welcome3.png';
 
   ///-----------------<Video>---------------------///
-  static const String videoImagePath = '${imagePath}/video';
+  static const String videoImagePath = '$imagePath/video';
   static const String createVideo1 = '$videoImagePath/create_video1.png';
   static const String createVideo2 = '$videoImagePath/create_video2.png';
   static const String createVideo3 = '$videoImagePath/create_video3.png';
@@ -52,11 +52,11 @@ class AssetsManager {
   static const String createVideo5 = '$videoImagePath/create_video5.png ';
 
   ///-----------------<Course>---------------------///
-  static const String courseImagePath = '${imagePath}/course';
+  static const String courseImagePath = '$imagePath/course';
   static const String createCourse = '$courseImagePath/createCourse3.png';
 
   ///-----------------<Article>---------------------///
-  static const String articleImagePath = '${imagePath}/article';
+  static const String articleImagePath = '$imagePath/article';
   static const String createArticle1 = '$articleImagePath/article_image1.png';
   static const String createArticle2 = '$articleImagePath/article_image2.png';
 

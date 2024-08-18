@@ -6,7 +6,6 @@ import 'package:learning_system/core/utils/color_manager.dart';
 import 'package:learning_system/core/utils/style_manager.dart';
 import 'package:learning_system/core/utils/values_manager.dart';
 import 'package:learning_system/core/widgets/quiz/answer_card.dart';
-import 'package:learning_system/core/widgets/quiz/next_button.dart';
 import 'package:learning_system/src/features/quiz/cubit/answer/answer_cubit.dart';
 import 'package:learning_system/src/features/quiz/cubit/answer/answer_state.dart';
 import 'package:learning_system/src/features/quiz/cubit/quiz/cubit_quiz.dart';
@@ -23,8 +22,10 @@ class _QuizScreenState extends State<QuizScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<QuizCubit, QuizState>(builder: (context, state) {
-      final question =
-          QuestionInfo.questions[context.read<QuizCubit>().questionIndex];
+      final quizCubit = context.read<QuizCubit>();
+      final question = quizCubit.quiz!.questions[quizCubit.questionIndex];
+      // final question =
+      //     QuestionInfo.questions[context.read<QuizCubit>().questionIndex];
       return Scaffold(
           backgroundColor: Colors.white,
           body: Padding(
@@ -48,7 +49,7 @@ class _QuizScreenState extends State<QuizScreen> {
                     //  height: AppSize.s80,
                     decoration: BoxDecoration(
                       border: Border.all(),
-                      borderRadius: BorderRadius.only(
+                      borderRadius: const BorderRadius.only(
                           topRight: Radius.circular(30),
                           bottomLeft: Radius.circular(30)),
                       color: ColorManager.yellow,
@@ -57,7 +58,7 @@ class _QuizScreenState extends State<QuizScreen> {
                       padding: const EdgeInsets.all(8.0),
                       child: RichText(
                         text: TextSpan(
-                          text: question.question,
+                          text: question.questionTitle,
                           style: getBoldStyle(
                               fontSize: AppSize.s20, color: ColorManager.black),
                         ),
@@ -68,22 +69,25 @@ class _QuizScreenState extends State<QuizScreen> {
                 SliverToBoxAdapter(
                   child: ListView.builder(
                     shrinkWrap: true,
-                    itemCount: question.options.length,
+                    itemCount: question.answers.length,
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () {
                           if (state is SelectAnswerState ||
                               state is InitialQuizState) {
-                            context.read<QuizCubit>().pickAnswer(index);
+                            quizCubit.pickAnswer(index);
                           }
                         },
-                        child: AnswerCard(
-                          question: question.options[index],
-                          isSelected:
-                              context.read<QuizCubit>().selectedAnswerIndex ==
-                                  index,
-                          selectedAnswerIndex:
-                              context.read<QuizCubit>().selectedAnswerIndex,
+                        child: BlocBuilder<AnswerCubit, AnswerState>(
+                          builder: (context, state) {
+                            return AnswerCard(
+                              question: question.answers[index],
+                              isSelected:
+                                  quizCubit.selectedAnswerIndex == index,
+                              selectedAnswerIndex:
+                                  quizCubit.selectedAnswerIndex,
+                            );
+                          },
                         ),
                       );
                     },
@@ -123,7 +127,7 @@ class _QuizScreenState extends State<QuizScreen> {
                           minWidth: MediaQuery.of(context).size.width * 0.88,
                           height: MediaQuery.of(context).size.height / 15,
                           color: ColorManager.SecondaryColorLogo,
-                          child: Text(
+                          child: const Text(
                             'Next',
                             style: TextStyle(fontSize: 15, color: Colors.white),
                           ),
@@ -140,7 +144,7 @@ class _QuizScreenState extends State<QuizScreen> {
                                   MediaQuery.of(context).size.width * 0.88,
                               height: MediaQuery.of(context).size.height / 15,
                               color: ColorManager.SecondaryColorLogo,
-                              child: Text(
+                              child: const Text(
                                 'finish',
                                 style: TextStyle(
                                     fontSize: 15, color: Colors.white),
@@ -164,7 +168,7 @@ class _QuizScreenState extends State<QuizScreen> {
                                   MediaQuery.of(context).size.width * 0.88,
                               height: MediaQuery.of(context).size.height / 15,
                               color: ColorManager.SecondaryColorLogo,
-                              child: Text(
+                              child: const Text(
                                 'submit',
                                 style: TextStyle(
                                     fontSize: 15, color: Colors.white),

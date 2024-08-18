@@ -6,7 +6,7 @@ import 'package:learning_system/core/utils/color_manager.dart';
 import 'package:learning_system/core/utils/style_manager.dart';
 import 'package:learning_system/core/utils/values_manager.dart';
 import 'package:learning_system/src/features/article/cubit/pdf_cubit.dart';
-
+import 'package:learning_system/src/features/quiz/cubit/quiz/cubit_quiz.dart';
 
 class QuizWelcome extends StatelessWidget {
   const QuizWelcome({super.key});
@@ -18,25 +18,24 @@ class QuizWelcome extends StatelessWidget {
         backgroundColor: Colors.white,
         body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
           children: [
-           const  SizedBox(
+            const SizedBox(
                 width: AppSize.s160,
                 height: AppSize.s160,
-                child:  Image(
-          image: AssetImage(AssetsManager.quizIcon),
+                child: Image(
+                  image: AssetImage(AssetsManager.quizIcon),
                   fit: BoxFit.fill,
                 )),
             RichText(
               text: TextSpan(
-                text: "Title Of quiz ! ",
+                text: context.read<QuizCubit>().quiz!.name,
                 style: getBoldStyle(
-                  fontSize: AppSize.s50,
-                     color: ColorManager.black),
+                    fontSize: AppSize.s50, color: ColorManager.black),
               ),
             ),
-            SizedBox(height: AppSize.s50,),
-
+            const SizedBox(
+              height: AppSize.s50,
+            ),
             Center(
               child: MaterialButton(
                 shape: RoundedRectangleBorder(
@@ -46,13 +45,14 @@ class QuizWelcome extends StatelessWidget {
                 minWidth: MediaQuery.of(context).size.width * 0.88,
                 height: MediaQuery.of(context).size.height / 15,
                 color: ColorManager.SecondaryColorLogo,
-                child: Text(
+                child: const Text(
                   'Are you ready !',
                   style: TextStyle(fontSize: 15, color: Colors.white),
                 ),
                 onPressed: () {
-                  Navigator.pushNamed(context, AppRoute.fileViewWidget);
-                  context.read<FileViewCubit>().loadPdf("https://drive.google.com/uc?export=download&id=1xxvwYFCH1x_vilvOMwUsKduqJIB7UeXv");
+                  Navigator.pushNamed(context, AppRoute.quizPage);
+                  // Navigator.pushNamed(context, AppRoute.fileViewWidget);
+                  // context.read<FileViewCubit>().loadPdf("https://drive.google.com/uc?export=download&id=1xxvwYFCH1x_vilvOMwUsKduqJIB7UeXv");
                 },
               ),
             ),

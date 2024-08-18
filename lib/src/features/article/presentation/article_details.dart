@@ -1,11 +1,15 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:learning_system/core/utils/app_string.dart';
+import 'package:learning_system/core/utils/app_url.dart';
 import 'package:learning_system/core/utils/color_manager.dart';
 import 'package:learning_system/core/widgets/custom_button/custom_button.dart';
 import 'package:learning_system/core/widgets/random_widget/article_details_widget.dart';
 import 'package:learning_system/src/features/article/cubit/pdf_cubit.dart';
 import 'package:learning_system/src/features/article/cubit/pdf_state.dart';
+import 'package:learning_system/src/features/course/cubit/article/article_cubit.dart';
 
 class ArticleDetails extends StatelessWidget {
   const ArticleDetails({super.key});
@@ -15,10 +19,10 @@ class ArticleDetails extends StatelessWidget {
     return Scaffold(
       body: BlocBuilder<FileViewCubit, FileViewState>(
         builder: (context, state) {
-          return const ArticleDetailsWidget(
-              titleOfArticle: "titleOfArticle",
-              nameOfTeacher: "nameOfTeacher",
-              description: "description");
+          return ArticleDetailsWidget(
+              titleOfArticle: context.read<ArticleCubit>().article!.title,
+              nameOfTeacher: context.read<ArticleCubit>().article!.author,
+              description: context.read<ArticleCubit>().article!.category);
         },
       ),
       bottomNavigationBar: BottomAppBar(
@@ -30,8 +34,9 @@ class ArticleDetails extends StatelessWidget {
             CustomButton(
               color: ColorManager.SecondaryColorLogo,
               onPressed: () {
+                log(context.read<ArticleCubit>().article!.pathFile);
                 context.read<FileViewCubit>().loadPdf(
-                    "https://drive.google.com/uc?export=download&id=1xxvwYFCH1x_vilvOMwUsKduqJIB7UeXv");
+                    '${AppUrl.articleUrlUpload}${context.read<ArticleCubit>().article!.pathFile}');
 
                 Navigator.pushNamed(context, AppRoute.fileViewWidget);
               },

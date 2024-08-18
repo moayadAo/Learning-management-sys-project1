@@ -10,7 +10,7 @@ import '../cubit/rate/rating_cubit.dart';
 class RatingWidgetCourse extends StatelessWidget {
   final bool hasPurchasedCourse; // أضف هذا المتغير
 
-  RatingWidgetCourse({required this.hasPurchasedCourse}); // أضف هذا المعامل
+  const RatingWidgetCourse({super.key, required this.hasPurchasedCourse}); // أضف هذا المعامل
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class RatingWidgetCourse extends StatelessWidget {
                     fontSize: FontSize.s16, color: ColorManager.black),
               ),
             ),
-            Card(),
+            const Card(),
             hasPurchasedCourse
                 ? RatingBar.builder(
                     initialRating: rating,
@@ -35,7 +35,7 @@ class RatingWidgetCourse extends StatelessWidget {
                     allowHalfRating: true,
                     itemCount: 5,
                     itemSize: AppSize.s20,
-                    itemPadding: EdgeInsets.symmetric(horizontal: 0.0),
+                    itemPadding: const EdgeInsets.symmetric(horizontal: 0.0),
                     itemBuilder: (context, _) => const Icon(
                       Icons.star,
                       color: ColorManager.primaryColorLogo,

@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:learning_system/core/helper/sizer_media_query.dart';
-import 'package:learning_system/core/utils/app_string.dart';
 import 'package:learning_system/core/utils/assets_manager.dart';
 import 'package:learning_system/core/utils/color_manager.dart';
 import 'package:learning_system/core/utils/font_manager.dart';
@@ -25,7 +24,7 @@ class CreateArticlePage extends StatelessWidget {
   bool _isSnackBarVisible = false;
   @override
   Widget build(BuildContext context) {
-    final _formKey = GlobalKey<FormState>();
+    final formKey = GlobalKey<FormState>();
     return BlocConsumer<ArticleCubit, ArticleState>(
       listener: (context, state) {
         if (state is LoadArticleFailureState) {
@@ -55,7 +54,7 @@ class CreateArticlePage extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Form(
-                    key: _formKey,
+                    key: formKey,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
@@ -154,7 +153,7 @@ class CreateArticlePage extends StatelessWidget {
                             ? LoadingIndicator()
                             : ElevatedButton(
                                 onPressed: () {
-                                  if (_formKey.currentState!.validate() &&
+                                  if (formKey.currentState!.validate() &&
                                       _articleFile != null) {
                                     if (!context
                                         .read<CourseCubit>()

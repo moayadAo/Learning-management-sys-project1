@@ -21,7 +21,7 @@ CourseDataModel _$CourseDataModelFromJson(Map<String, dynamic> json) =>
           (json['language'] as List<dynamic>).map((e) => e as String).toList(),
       EducationLevel: json['Education_Level'] as String?,
       teachersId: (json['Teacher_ID'] as List<dynamic>)
-          .map((e) => e as String)
+          .map((e) => TeacherIdModelNew.fromJson(e as Map<String, dynamic>))
           .toList(),
       video: (json['video'] as List<dynamic>?)
           ?.map((e) => VideoDataModel.fromJson(e as Map<String, dynamic>))
@@ -33,9 +33,12 @@ CourseDataModel _$CourseDataModelFromJson(Map<String, dynamic> json) =>
       quiz: (json['quiz'] as List<dynamic>?)
           ?.map((e) => QuizDataModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      institutionId: json['instituteId'] as String?,
+      institutionId: json['instituteId'] == null
+          ? null
+          : InstiutIdModel.fromJson(
+              json['instituteId'] as Map<String, dynamic>),
       whatYouWillLearn: json['what_you_will_learn'] as String?,
-      courseImage: json['Image'] as String?,
+      courseImage: json['image'] as String?,
       plan: (json['plan'] as List<dynamic>?)?.map((e) => e as String).toList(),
     );
 
@@ -57,6 +60,6 @@ Map<String, dynamic> _$CourseDataModelToJson(CourseDataModel instance) =>
       'quiz': instance.quiz,
       'instituteId': instance.institutionId,
       'what_you_will_learn': instance.whatYouWillLearn,
-      'Image': instance.courseImage,
+      'image': instance.courseImage,
       'ratings': instance.ratings,
     };

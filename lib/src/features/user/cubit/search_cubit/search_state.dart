@@ -1,15 +1,19 @@
-import 'course_item.dart';
+// import 'package:learning_system/src/features/course/data/models/course/new_model.dart/course_data_model_new.dart';
 
-abstract class SearchState {
-  final List<CourseItem> filteredCourses;
+// import 'course_item.dart';
 
-  SearchState(this.filteredCourses);
-}
+// abstract class SearchState {
+//   final List<CourseDataModelNewForGetAllApi> filteredCourses;
 
-class SearchInitial extends SearchState {
-  SearchInitial(List<CourseItem> filteredCourses) : super(filteredCourses);
-}
+//   SearchState(this.filteredCourses);
+// }
 
-class SearchUpdated extends SearchState {
-  SearchUpdated(List<CourseItem> filteredCourses) : super(filteredCourses);
-}
+// class SearchInitial extends SearchState {
+//   SearchInitial(List<CourseDataModelNewForGetAllApi> filteredCourses)
+//       : super(filteredCourses);
+// }
+
+// class SearchUpdated extends SearchState {
+//   SearchUpdated(List<CourseDataModelNewForGetAllApi> filteredCourses)
+//       : super(filteredCourses);
+// }
